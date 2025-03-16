@@ -5,7 +5,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const textOverlay = document.getElementById('text-overlay');
     const memeImage = document.getElementById('meme-image');
     const downloadBtn = document.getElementById('download-btn');
-    const themeButtons = document.querySelectorAll('.theme-btn');
+    const themeGreen = document.getElementById('theme-green');
+    const themeBlack = document.getElementById('theme-black');
+    const themeWhite = document.getElementById('theme-white');
+    const themeBlue = document.getElementById('theme-blue');
     
     // Set initial text
     textOverlay.innerText = textInput.value;
@@ -17,28 +20,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Theme switching
-    themeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            themeButtons.forEach(btn => btn.classList.remove('active'));
-            // Add active class to current button
-            this.classList.add('active');
-            
-            // Get theme ID
-            const themeId = this.id;
-            
-            // Set styles based on theme ID
-            if (themeId === 'theme-green') {
-                setTheme('green');
-            } else if (themeId === 'theme-black') {
-                setTheme('black');
-            } else if (themeId === 'theme-white') {
-                setTheme('white');
-            } else if (themeId === 'theme-blue') {
-                setTheme('blue');
-            }
-        });
-    });
+    themeGreen.addEventListener('click', () => setTheme('green'));
+    themeBlack.addEventListener('click', () => setTheme('black'));
+    themeWhite.addEventListener('click', () => setTheme('white'));
+    themeBlue.addEventListener('click', () => setTheme('blue'));
     
     // Set theme function
     function setTheme(theme) {
@@ -51,35 +36,23 @@ document.addEventListener('DOMContentLoaded', function() {
         switch(theme) {
             case 'green':
                 memeImage.src = 'images/brat-bg-green.png';
-                textOverlay.style.color = '#000';
-                textOverlay.style.filter = 'blur(1px)';
-                textInput.maxLength = 20;
-                if (textInput.value.length > 20) {
-                    textInput.value = textInput.value.substring(0, 20);
-                    textOverlay.innerText = textInput.value;
-                }
+                textOverlay.style.color = '#000000';
+                themeGreen.classList.add('active');
                 break;
             case 'black':
                 memeImage.src = 'images/brat-bg-black.png';
-                textOverlay.style.color = '#fff';
-                textOverlay.style.filter = 'blur(1.5px)';
-                textInput.maxLength = 100;
+                textOverlay.style.color = '#FFFFFF';
+                themeBlack.classList.add('active');
                 break;
             case 'white':
                 memeImage.src = 'images/brat-bg-white.png';
-                textOverlay.style.color = '#000';
-                textOverlay.style.filter = 'blur(1px)';
-                textInput.maxLength = 100;
+                textOverlay.style.color = '#000000';
+                themeWhite.classList.add('active');
                 break;
             case 'blue':
                 memeImage.src = 'images/brat-bg-blue.png';
                 textOverlay.style.color = '#DE0100';
-                textOverlay.style.filter = 'none';
-                textInput.maxLength = 20;
-                if (textInput.value.length > 20) {
-                    textInput.value = textInput.value.substring(0, 20);
-                    textOverlay.innerText = textInput.value;
-                }
+                themeBlue.classList.add('active');
                 break;
         }
         
@@ -106,42 +79,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Download image functionality
     downloadBtn.addEventListener('click', function() {
-        // Create a new canvas element
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        
-        // Set canvas size to match preview container
-        const container = document.getElementById('meme-container');
-        canvas.width = container.offsetWidth;
-        canvas.height = container.offsetHeight;
-        
-        // Draw background image
-        const img = new Image();
-        img.onload = function() {
-            // Draw background image
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-            
-            // Draw text
-            ctx.font = textOverlay.style.fontSize + ' Arial Narrow';
-            ctx.fillStyle = textOverlay.style.color;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            // Apply blur effect
-            if (textOverlay.style.filter.includes('blur')) {
-                ctx.filter = textOverlay.style.filter;
-            }
-            
-            // Draw text
-            ctx.fillText(textOverlay.innerText, canvas.width / 2, canvas.height / 2);
-            
-            // Create download link
+        html2canvas(document.getElementById('meme-container')).then(function(canvas) {
             const link = document.createElement('a');
             link.download = 'brat-image.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
-        };
-        img.src = memeImage.src;
+        });
     });
     
     // Initial text size adjustment
