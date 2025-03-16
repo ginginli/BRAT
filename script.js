@@ -174,4 +174,4 @@ function addStructuredData() {
     script.type = 'application/ld+json';
     script.text = JSON.stringify(structuredData);
     document.head.appendChild(script);
-} 
+}

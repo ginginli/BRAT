@@ -83,4 +83,4 @@ brat-generator/
 
 ## 联系方式
 
-如有任何问题或建议，请发送电子邮件至：contact@bratgenerator.com 
+如有任何问题或建议，请发送电子邮件至：contact@bratgenerator.com
