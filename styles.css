@@ -174,13 +174,14 @@ h2 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scaleX(0.85);
     font-family: 'Arial Narrow', Arial, sans-serif;
-    font-weight: bold;
+    font-weight: normal;
     text-align: center;
     white-space: nowrap;
-    letter-spacing: -0.5px;
-    -webkit-text-stroke: 0.5px black;
+    letter-spacing: -1px;
+    -webkit-text-stroke: 0px black;
+    font-size: 120px;
 }
 
 .input-group {

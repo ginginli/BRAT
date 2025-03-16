@@ -37,29 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'green':
                 memeImage.src = 'images/brat-bg-green.png';
                 textOverlay.style.color = '#000000';
-                textOverlay.style.filter = 'blur(1.5px)';
-                textOverlay.style.fontWeight = 'bold';
+                textOverlay.style.filter = 'blur(1.8px)';
+                textOverlay.style.fontWeight = 'normal';
                 themeGreen.classList.add('active');
                 break;
             case 'black':
                 memeImage.src = 'images/brat-bg-black.png';
                 textOverlay.style.color = '#FFFFFF';
-                textOverlay.style.filter = 'blur(1.5px)';
-                textOverlay.style.fontWeight = 'bold';
+                textOverlay.style.filter = 'blur(1.8px)';
+                textOverlay.style.fontWeight = 'normal';
                 themeBlack.classList.add('active');
                 break;
             case 'white':
                 memeImage.src = 'images/brat-bg-white.png';
                 textOverlay.style.color = '#000000';
-                textOverlay.style.filter = 'blur(1.5px)';
-                textOverlay.style.fontWeight = 'bold';
+                textOverlay.style.filter = 'blur(1.8px)';
+                textOverlay.style.fontWeight = 'normal';
                 themeWhite.classList.add('active');
                 break;
             case 'blue':
                 memeImage.src = 'images/brat-bg-blue.png';
                 textOverlay.style.color = '#DE0100';
-                textOverlay.style.filter = 'blur(1.5px)';
-                textOverlay.style.fontWeight = 'bold';
+                textOverlay.style.filter = 'blur(1.8px)';
+                textOverlay.style.fontWeight = 'normal';
                 themeBlue.classList.add('active');
                 break;
         }
@@ -75,11 +75,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const containerHeight = container.offsetHeight;
         
         // Initial font size
-        let fontSize = 100;
+        let fontSize = 140;
         textOverlay.style.fontSize = `${fontSize}px`;
         
         // Adjust font size until text fits container
-        while ((textOverlay.offsetWidth > containerWidth * 0.9 || textOverlay.offsetHeight > containerHeight * 0.8) && fontSize > 10) {
+        while ((textOverlay.offsetWidth > containerWidth * 0.85 || textOverlay.offsetHeight > containerHeight * 0.75) && fontSize > 10) {
             fontSize -= 5;
             textOverlay.style.fontSize = `${fontSize}px`;
         }
