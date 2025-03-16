@@ -87,30 +87,95 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Download image functionality
     downloadBtn.addEventListener('click', function() {
-        // 设置html2canvas的选项，确保捕获CSS滤镜效果
-        const options = {
-            allowTaint: true,
-            useCORS: true,
-            scale: 2, // 提高分辨率
-            backgroundColor: null,
-            logging: false,
-            // 关键设置：确保捕获CSS滤镜效果
-            onclone: function(clonedDoc) {
-                const clonedOverlay = clonedDoc.getElementById('text-overlay');
-                // 将CSS滤镜效果直接应用为内联样式，确保捕获
-                if (clonedOverlay) {
-                    const currentFilter = textOverlay.style.filter;
-                    clonedOverlay.style.cssText += `filter: ${currentFilter}; -webkit-filter: ${currentFilter};`;
+        const container = document.getElementById('meme-container');
+        const text = textOverlay.innerText;
+        const textColor = textOverlay.style.color;
+        const fontSize = parseInt(textOverlay.style.fontSize);
+        const blurAmount = 1.8; // 与CSS中设置的模糊值相同
+        
+        // 创建一个新的Canvas元素
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // 设置Canvas大小与预览容器相同
+        const width = container.offsetWidth;
+        const height = container.offsetHeight;
+        canvas.width = width * 2; // 提高分辨率
+        canvas.height = height * 2; // 提高分辨率
+        ctx.scale(2, 2); // 缩放上下文以匹配分辨率
+        
+        // 加载背景图片
+        const img = new Image();
+        img.crossOrigin = "Anonymous";
+        img.onload = function() {
+            // 绘制背景图片
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // 设置文本样式
+            ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 应用模糊效果
+            ctx.filter = `blur(${blurAmount}px)`;
+            
+            // 设置文本颜色
+            ctx.fillStyle = textColor;
+            
+            // 应用字母间距和水平缩放效果
+            // 由于Canvas不直接支持letter-spacing和scaleX，我们需要手动绘制每个字符
+            const letterSpacing = -1; // 与CSS中设置的字母间距相同
+            const scaleX = 0.85; // 与CSS中设置的水平缩放相同
+            
+            // 计算文本总宽度（考虑字母间距和水平缩放）
+            let totalWidth = 0;
+            for (let i = 0; i < text.length; i++) {
+                const charWidth = ctx.measureText(text[i]).width * scaleX;
+                totalWidth += charWidth;
+                if (i < text.length - 1) {
+                    totalWidth += letterSpacing;
                 }
             }
-        };
-
-        html2canvas(document.getElementById('meme-container'), options).then(function(canvas) {
+            
+            // 计算起始X位置（居中）
+            let x = (width - totalWidth) / 2;
+            const y = height / 2;
+            
+            // 保存当前上下文状态
+            ctx.save();
+            
+            // 绘制每个字符
+            for (let i = 0; i < text.length; i++) {
+                // 保存上下文状态
+                ctx.save();
+                
+                // 应用水平缩放
+                ctx.translate(x, y);
+                ctx.scale(scaleX, 1);
+                ctx.translate(-x, -y);
+                
+                // 绘制字符
+                ctx.fillText(text[i], x, y);
+                
+                // 恢复上下文状态
+                ctx.restore();
+                
+                // 移动到下一个字符位置
+                x += ctx.measureText(text[i]).width * scaleX + letterSpacing;
+            }
+            
+            // 恢复上下文状态
+            ctx.restore();
+            
+            // 创建下载链接
             const link = document.createElement('a');
             link.download = 'brat-image.png';
             link.href = canvas.toDataURL('image/png');
             link.click();
-        });
+        };
+        
+        // 设置图片源
+        img.src = memeImage.src;
     });
     
     // Initial text size adjustment
