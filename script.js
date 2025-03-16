@@ -87,7 +87,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Download image functionality
     downloadBtn.addEventListener('click', function() {
-        html2canvas(document.getElementById('meme-container')).then(function(canvas) {
+        // 设置html2canvas的选项，确保捕获CSS滤镜效果
+        const options = {
+            allowTaint: true,
+            useCORS: true,
+            scale: 2, // 提高分辨率
+            backgroundColor: null,
+            logging: false,
+            // 关键设置：确保捕获CSS滤镜效果
+            onclone: function(clonedDoc) {
+                const clonedOverlay = clonedDoc.getElementById('text-overlay');
+                // 将CSS滤镜效果直接应用为内联样式，确保捕获
+                if (clonedOverlay) {
+                    const currentFilter = textOverlay.style.filter;
+                    clonedOverlay.style.cssText += `filter: ${currentFilter}; -webkit-filter: ${currentFilter};`;
+                }
+            }
+        };
+
+        html2canvas(document.getElementById('meme-container'), options).then(function(canvas) {
             const link = document.createElement('a');
             link.download = 'brat-image.png';
             link.href = canvas.toDataURL('image/png');
