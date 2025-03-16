@@ -37,21 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'green':
                 memeImage.src = 'images/brat-bg-green.png';
                 textOverlay.style.color = '#000000';
+                textOverlay.style.filter = 'blur(1.5px)';
+                textOverlay.style.fontWeight = 'bold';
                 themeGreen.classList.add('active');
                 break;
             case 'black':
                 memeImage.src = 'images/brat-bg-black.png';
                 textOverlay.style.color = '#FFFFFF';
+                textOverlay.style.filter = 'blur(1.5px)';
+                textOverlay.style.fontWeight = 'bold';
                 themeBlack.classList.add('active');
                 break;
             case 'white':
                 memeImage.src = 'images/brat-bg-white.png';
                 textOverlay.style.color = '#000000';
+                textOverlay.style.filter = 'blur(1.5px)';
+                textOverlay.style.fontWeight = 'bold';
                 themeWhite.classList.add('active');
                 break;
             case 'blue':
                 memeImage.src = 'images/brat-bg-blue.png';
                 textOverlay.style.color = '#DE0100';
+                textOverlay.style.filter = 'blur(1.5px)';
+                textOverlay.style.fontWeight = 'bold';
                 themeBlue.classList.add('active');
                 break;
         }
@@ -92,6 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Readjust text size when window is resized
     window.addEventListener('resize', fitText);
+    
+    // Set default theme (green) with the new style
+    setTheme('green');
     
     // Add structured data to improve SEO
     addStructuredData();
