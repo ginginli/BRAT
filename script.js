@@ -122,47 +122,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // 设置文本颜色
             ctx.fillStyle = textColor;
             
-            // 应用字母间距和水平缩放效果
-            // 由于Canvas不直接支持letter-spacing和scaleX，我们需要手动绘制每个字符
-            const letterSpacing = -1; // 与CSS中设置的字母间距相同
-            const scaleX = 0.85; // 与CSS中设置的水平缩放相同
-            
-            // 计算文本总宽度（考虑字母间距和水平缩放）
-            let totalWidth = 0;
-            for (let i = 0; i < text.length; i++) {
-                const charWidth = ctx.measureText(text[i]).width * scaleX;
-                totalWidth += charWidth;
-                if (i < text.length - 1) {
-                    totalWidth += letterSpacing;
-                }
-            }
-            
-            // 计算起始X位置（居中）
-            let x = (width - totalWidth) / 2;
-            const y = height / 2;
-            
+            // 简化方法：直接绘制文本，不尝试手动实现字母间距
             // 保存当前上下文状态
             ctx.save();
             
-            // 绘制每个字符
-            for (let i = 0; i < text.length; i++) {
-                // 保存上下文状态
-                ctx.save();
-                
-                // 应用水平缩放
-                ctx.translate(x, y);
-                ctx.scale(scaleX, 1);
-                ctx.translate(-x, -y);
-                
-                // 绘制字符
-                ctx.fillText(text[i], x, y);
-                
-                // 恢复上下文状态
-                ctx.restore();
-                
-                // 移动到下一个字符位置
-                x += ctx.measureText(text[i]).width * scaleX + letterSpacing;
-            }
+            // 应用水平缩放到整个文本
+            ctx.translate(width/2, height/2);
+            ctx.scale(0.85, 1); // 应用水平缩放
+            ctx.translate(-width/2, -height/2);
+            
+            // 直接绘制文本（居中）
+            ctx.fillText(text, width/2, height/2);
             
             // 恢复上下文状态
             ctx.restore();
