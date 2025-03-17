@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = textOverlay.innerText;
         const textColor = textOverlay.style.color;
         const fontSize = parseInt(textOverlay.style.fontSize);
-        const blurAmount = 1.8; // 与CSS中设置的模糊值相同
+        const blurAmount = 3; // 增加模糊效果从1.8px到3px
         
         // 创建一个新的Canvas元素
         const canvas = document.createElement('canvas');
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             
-            // 应用模糊效果
+            // 应用更强的模糊效果
             ctx.filter = `blur(${blurAmount}px)`;
             
             // 设置文本颜色
