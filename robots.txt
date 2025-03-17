@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.bratgenerator.com.cn/sitemap.xml 
+# 原始sitemap
+Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
+# 备用sitemap
+Sitemap: https://www.bratgenerator.com.cn/site-map.xml
+Sitemap: https://www.bratgenerator.com.cn/sitemap_minimal.xml 
