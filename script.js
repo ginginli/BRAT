@@ -177,8 +177,70 @@ function addStructuredData() {
         }
     };
     
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.text = JSON.stringify(structuredData);
-    document.head.appendChild(script);
+    const faqStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is a brat generator?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A brat generator is a tool designed to create fictional brat characters for storytelling, role-playing games, or other creative purposes. These generators often provide various traits, backstories, and appearances, allowing users to easily develop unique and intriguing characters that fit into different narratives."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does a brat generator work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Brat generators typically use algorithms or predefined lists of characteristics to randomly combine traits when you input criteria or hit a generate button. This can include personality quirks, physical features, and even conflict scenarios, ensuring a diverse range of outcome options for users."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are brat generators suitable for all ages?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "While brat generators can be fun for all ages, some content may include themes that are more appropriate for older teen or adult audiences. It's important to verify the generator's specifics and adjust the settings to match the intended audience to ensure appropriateness for younger users."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I customize the generated characters?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, many brat generators allow for customization. You can often input specific traits or select preferences for personality, appearance, and background to tailor the generated character to better fit your creative needs, enhancing the storytelling experience."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Where can I find brat generators?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Brat generators can be found on various websites dedicated to storytelling, character creation, and online games. Many forums, game development sites, and creative writing platforms also offer these tools, often for free, to help writers and gamers alike."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Why use a brat generator for storytelling?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Using a brat generator can streamline the creative process, providing inspiration and breaking writer's block. It allows storytellers to create complex characters quickly, enriching narratives with diverse personalities and traits that can lead to unexpected plot developments."
+                }
+            }
+        ]
+    };
+    
+    // 添加主应用结构化数据
+    const appScript = document.createElement('script');
+    appScript.type = 'application/ld+json';
+    appScript.text = JSON.stringify(structuredData);
+    document.head.appendChild(appScript);
+    
+    // 添加FAQ结构化数据
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.text = JSON.stringify(faqStructuredData);
+    document.head.appendChild(faqScript);
 }
