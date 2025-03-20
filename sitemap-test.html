@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sitemap Test</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Sitemap Test</h1>
+    <div id="result"></div>
+    <script>
+        fetch('https://www.bratgenerator.com.cn/sitemap.xml')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then(str => {
+                document.getElementById('result').innerHTML = 
+                    `<p style="color: green;">Sitemap 可以访问！</p>
+                     <pre>${str.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</pre>`;
+            })
+            .catch(err => {
+                document.getElementById('result').innerHTML = 
+                    `<p style="color: red;">错误：${err.message}</p>
+                     <p>请检查：</p>
+                     <ul>
+                         <li>sitemap.xml 文件是否在正确的目录</li>
+                         <li>文件权限是否正确</li>
+                         <li>服务器配置是否正确</li>
+                     </ul>`;
+            });
+    </script>
+</body>
+</html> 
