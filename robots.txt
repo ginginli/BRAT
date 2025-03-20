@@ -9,6 +9,7 @@ Allow: /styles.css
 Allow: /script.js
 Allow: /sitemap.xml
 Allow: /sitemap-test.xml
+Allow: /robots.txt
 
 Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
 Sitemap: https://www.bratgenerator.com.cn/sitemap-test.xml
