@@ -1,8 +1,17 @@
 User-agent: *
 Allow: /
+Allow: /index.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /contact.html
+Allow: /images/
+Allow: /styles.css
+Allow: /script.js
 
-# 原始sitemap
 Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
-# 备用sitemap
-Sitemap: https://www.bratgenerator.com.cn/site-map.xml
-Sitemap: https://www.bratgenerator.com.cn/sitemap_minimal.xml 
+
+# Disallow potentially sensitive directories
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+Disallow: /private/ 

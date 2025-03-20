@@ -1,0 +1,21 @@
+include:
+  - "*.xml"
+  - "*.txt"
+  - "*.html"
+  - "*.js"
+  - "*.css"
+
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: "sitemap.xml"
+    values:
+      sitemap: true
+
+exclude:
+  - README.md
+  - .git/
+  - .gitignore
+  - node_modules/ 
