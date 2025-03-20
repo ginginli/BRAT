@@ -1,0 +1,122 @@
+{
+  "meta": {
+    "title": "Brat Generator | Charli XCX Brat Font & Meme Text Generator",
+    "description": "Brat Generator - Create professional Charli XCX Brat style images for free. Customize text, choose from multiple themes, generate and save high-quality images with one click. Easily create personalized Brat album-style visuals to express your creative personality.",
+    "keywords": "brat generator, brat style, Charli XCX, album cover generator, image creator, personalized images, green background text"
+  },
+  "seo": {
+    "ogTitle": "Brat Generator - Create Professional Brat Style Images",
+    "ogDescription": "Use our Brat Generator to create Charli XCX style images for free. Customize text, multiple themes, simple operation, high-quality results. Create your own Brat style images and show your personality!"
+  },
+  "nav": {
+    "home": "Home",
+    "generator": "Generator",
+    "howItWorks": "How It Works",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "about": "About"
+  },
+  "hero": {
+    "title": "Brat Generator",
+    "subtitle": "Create your own Brat style images"
+  },
+  "generator": {
+    "title": "Create Your Brat Image",
+    "enterText": "Enter Text",
+    "textPlaceholder": "Enter your text",
+    "chooseTheme": "Choose Theme",
+    "green": "Green",
+    "black": "Black",
+    "white": "White",
+    "blue": "Blue",
+    "saveImage": "Save Image",
+    "tip": "Tip: You can also take a screenshot to save the image"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "Enter Text",
+      "description": "Type the text you want to display in the text box"
+    },
+    "step2": {
+      "title": "Choose Theme",
+      "description": "Select a style you like from our available themes"
+    },
+    "step3": {
+      "title": "Save Image",
+      "description": "Click the \"Save Image\" button or take a screenshot to save your creation"
+    }
+  },
+  "gallery": {
+    "title": "Style Examples",
+    "description": "Check out these different Brat style examples with various themes. Create your own by using our generator above.",
+    "greenTheme": "Green Theme",
+    "blackTheme": "Black Theme",
+    "whiteTheme": "White Theme",
+    "blueTheme": "Blue Theme"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "What is a brat generator?",
+        "answer": "A brat generator is a tool designed to create fictional brat characters for storytelling, role-playing games, or other creative purposes. These generators often provide various traits, backstories, and appearances, allowing users to easily develop unique and intriguing characters that fit into different narratives."
+      },
+      {
+        "question": "How does a brat generator work?",
+        "answer": "Brat generators typically use algorithms or predefined lists of characteristics to randomly combine traits when you input criteria or hit a generate button. This can include personality quirks, physical features, and even conflict scenarios, ensuring a diverse range of outcome options for users."
+      },
+      {
+        "question": "Are brat generators suitable for all ages?",
+        "answer": "While brat generators can be fun for all ages, some content may include themes that are more appropriate for older teen or adult audiences. It's important to verify the generator's specifics and adjust the settings to match the intended audience to ensure appropriateness for younger users."
+      },
+      {
+        "question": "Can I customize the generated characters?",
+        "answer": "Yes, many brat generators allow for customization. You can often input specific traits or select preferences for personality, appearance, and background to tailor the generated character to better fit your creative needs, enhancing the storytelling experience."
+      },
+      {
+        "question": "Where can I find brat generators?",
+        "answer": "Brat generators can be found on various websites dedicated to storytelling, character creation, and online games. Many forums, game development sites, and creative writing platforms also offer these tools, often for free, to help writers and gamers alike."
+      },
+      {
+        "question": "Why use a brat generator for storytelling?",
+        "answer": "Using a brat generator can streamline the creative process, providing inspiration and breaking writer's block. It allows storytellers to create complex characters quickly, enriching narratives with diverse personalities and traits that can lead to unexpected plot developments."
+      }
+    ]
+  },
+  "about": {
+    "title": "About Brat Generator",
+    "description1": "Brat Generator is an online tool that lets you easily create Brat style images. Whether you're a music enthusiast, an artist, or a social media user, you can use our tool to create unique Brat style images that showcase your personality and creativity.",
+    "description2": "We offer multiple themes and customization options to make your creations more vibrant. Once created, you can easily save and share them on social media platforms."
+  },
+  "features": [
+    {
+      "title": "User-Friendly Interface",
+      "description": "The brat generator is designed with a user-friendly interface, ensuring that even those with minimal tech skills can easily navigate through the creation process. Clear instructions and intuitive design allow users to customize their characters effortlessly, choosing from a range of attributes while enjoying the experience."
+    },
+    {
+      "title": "Endless Character Combinations",
+      "description": "With numerous combinations of traits, looks, and backstories, a brat generator offers virtually limitless possibilities for character creation. Users can experiment with different personalities and attributes to find the perfect mix for their stories or games, ensuring each brat created is unique and engaging."
+    },
+    {
+      "title": "Fun for All Ages",
+      "description": "Whether you're a writer, gamer, or simply someone who enjoys character creation, the brat generator appeals to all ages. Its engaging and playful nature invites users to explore their creativity and have fun while developing quirky characters, making it a perfect tool for families, educators, and creatives."
+    },
+    {
+      "title": "Inspiration for Storytelling",
+      "description": "The brat generator serves as an excellent source of inspiration for writers and storytellers looking to create dynamic characters. By generating diverse brats, users can develop intricate stories, settings, and plots centered around their creations, enhancing their overall narrative experience."
+    },
+    {
+      "title": "Community and Sharing Features",
+      "description": "Many brat generators come with community-sharing options, allowing users to share their creations with others. This fosters a sense of community and collaboration, where users can get feedback, participate in contests, or find partners for collaborative storytelling projects, enriching their creative journey."
+    }
+  ],
+  "footer": {
+    "links": "Links",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact Us",
+    "followUs": "Follow Us",
+    "copyright": "All rights reserved"
+  }
+} 

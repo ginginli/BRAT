@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Brat Generator - Gumawa ng Propesyonal na Brat Style Images",
+    "description": "Gumawa ng propesyonal na Brat style images gamit ang aming libreng generator. Pumili mula sa iba't ibang tema kabilang ang berde, itim, puti, at asul. I-customize ang text at gumawa ng mataas na kalidad na images kaagad.",
+    "keywords": "brat generator, brat style, image generator, text effects, custom images"
+  },
+  "nav": {
+    "generator": "Generator",
+    "howItWorks": "Paano Gumagana",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "about": "Tungkol Sa"
+  },
+  "generator": {
+    "title": "Gumawa ng Iyong Brat Image",
+    "enterText": "Maglagay ng Text",
+    "themes": {
+      "title": "Pumili ng Tema",
+      "green": "Berde",
+      "black": "Itim",
+      "white": "Puti",
+      "blue": "Asul"
+    },
+    "saveImage": "I-save ang Image",
+    "tip": "Tip: Maaari ka ring kumuha ng screenshot para i-save ang image"
+  },
+  "howItWorks": {
+    "title": "Paano Gumagana",
+    "steps": {
+      "step1": {
+        "title": "Maglagay ng Text",
+        "description": "I-type ang text na gusto mong ipakita sa text box"
+      },
+      "step2": {
+        "title": "Pumili ng Tema",
+        "description": "Pumili ng style na gusto mo mula sa aming mga available na tema"
+      },
+      "step3": {
+        "title": "I-save ang Image",
+        "description": "I-click ang \"I-save ang Image\" button o kumuha ng screenshot para i-save ang iyong creation"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Mga Halimbawa ng Style",
+    "description": "Tingnan ang iba't ibang Brat style examples na may iba't ibang tema. Gumawa ng sarili mo gamit ang aming generator sa itaas."
+  },
+  "footer": {
+    "privacy": "Patakaran sa Privacy",
+    "terms": "Mga Tuntunin ng Paggamit",
+    "contact": "Makipag-ugnayan",
+    "copyright": "© 2024 Brat Generator. Nakalaan ang lahat ng karapatan."
+  }
+} 

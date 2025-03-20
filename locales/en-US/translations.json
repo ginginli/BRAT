@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Brat Generator - Create Professional Brat Style Images",
+    "description": "Create professional Brat style images with our free generator. Choose from multiple themes including green, black, white, and blue. Customize text and generate high-quality images instantly.",
+    "keywords": "brat generator, brat style, image generator, text effects, custom images"
+  },
+  "nav": {
+    "generator": "Generator",
+    "howItWorks": "How It Works",
+    "gallery": "Gallery",
+    "faq": "FAQ",
+    "about": "About"
+  },
+  "generator": {
+    "title": "Create Your Brat Image",
+    "enterText": "Enter Text",
+    "themes": {
+      "title": "Choose Theme",
+      "green": "Green",
+      "black": "Black",
+      "white": "White",
+      "blue": "Blue"
+    },
+    "saveImage": "Save Image",
+    "tip": "Tip: You can also take a screenshot to save the image"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "steps": {
+      "step1": {
+        "title": "Enter Text",
+        "description": "Type the text you want to display in the text box"
+      },
+      "step2": {
+        "title": "Choose Theme",
+        "description": "Select a style you like from our available themes"
+      },
+      "step3": {
+        "title": "Save Image",
+        "description": "Click the \"Save Image\" button or take a screenshot to save your creation"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Style Examples",
+    "description": "Check out these different Brat style examples with various themes. Create your own by using our generator above."
+  },
+  "footer": {
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Use",
+    "contact": "Contact Us",
+    "copyright": "© 2024 Brat Generator. All rights reserved."
+  }
+} 
