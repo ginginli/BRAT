@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sitemap Test</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <h1>Sitemap 测试</h1>
+    <div id="result"></div>
+    <script>
+        async function testSitemap(url) {
+            try {
+                const response = await fetch(url);
+                const text = await response.text();
+                return {
+                    status: response.status,
+                    contentType: response.headers.get('content-type'),
+                    content: text
+                };
+            } catch (error) {
+                return {
+                    error: error.message
+                };
+            }
+        }
+
+        async function runTests() {
+            const result = document.getElementById('result');
+            const urls = [
+                '/sitemap.xml',
+                '/sitemap-test.xml',
+                'https://www.bratgenerator.com.cn/sitemap.xml',
+                'https://www.bratgenerator.com.cn/sitemap-test.xml'
+            ];
+
+            for (const url of urls) {
+                const testResult = await testSitemap(url);
+                result.innerHTML += `
+                    <h3>测试 ${url}</h3>
+                    <pre>
+状态: ${testResult.status || '错误'}
+Content-Type: ${testResult.contentType || 'N/A'}
+${testResult.error ? '错误: ' + testResult.error : '内容预览: ' + testResult.content.substring(0, 200) + '...'}
+                    </pre>
+                    <hr>
+                `;
+            }
+        }
+
+        runTests();
+    </script>
+</body>
+</html> 

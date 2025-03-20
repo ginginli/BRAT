@@ -7,8 +7,11 @@ Allow: /contact.html
 Allow: /images/
 Allow: /styles.css
 Allow: /script.js
+Allow: /sitemap.xml
+Allow: /sitemap-test.xml
 
 Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
+Sitemap: https://www.bratgenerator.com.cn/sitemap-test.xml
 
 # Disallow potentially sensitive directories
 Disallow: /admin/
