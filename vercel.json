@@ -42,7 +42,7 @@
         },
         {
           "key": "X-Robots-Tag",
-          "value": "all"
+          "value": "index, follow"
         },
         {
           "key": "Access-Control-Allow-Origin",
@@ -66,11 +66,44 @@
           "value": "public, max-age=1800"
         }
       ]
+    },
+    {
+      "source": "/locales/:lang/translations.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        }
+      ]
     }
   ],
   "rewrites": [
     {
-      "source": "/",
+      "source": "/en-US",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/es-MX",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/es-AR",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/id",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/tr",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/fil",
       "destination": "/index.html"
     }
   ]

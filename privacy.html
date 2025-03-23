@@ -3,12 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Brat Generator - Privacy Policy">
-    <meta name="robots" content="noindex, follow">
-    <link rel="canonical" href="https://www.bratgenerator.com.cn/privacy.html">
-    <title>Privacy Policy - Brat Generator</title>
+    <meta name="description" content="Privacy Policy for Brat Generator - Learn how we protect your privacy and handle your data.">
+    <title data-i18n="privacy.meta.title">Privacy Policy - Brat Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/privacy" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/privacy" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/privacy" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/privacy" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/privacy" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/privacy" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/privacy" />
+    <!-- 语言切换器脚本 -->
+    <script src="js/LanguageSwitcher.js"></script>
 </head>
 <body>
     <header>
@@ -16,73 +24,81 @@
             <nav>
                 <div class="logo">
                     <a href="/" aria-label="Brat Generator Home">
-                        <span class="logo-text">Brat Generator</span>
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
                     </a>
                 </div>
                 <ul>
-                    <li><a href="index.html#generator">Generator</a></li>
-                    <li><a href="index.html#how-it-works">How It Works</a></li>
-                    <li><a href="index.html#gallery">Gallery</a></li>
-                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="/" data-i18n="nav.home">Home</a></li>
                 </ul>
+                <!-- 添加语言选择器 -->
+                <div id="language-selector"></div>
             </nav>
         </div>
     </header>
 
     <main>
-        <section class="policy-section">
+        <section class="privacy-section">
             <div class="container">
-                <h1>Privacy Policy</h1>
-                <div class="policy-content">
-                    <p>Last updated: <span id="current-date">May 1, 2024</span></p>
-                    
-                    <h2>1. Introduction</h2>
-                    <p>Welcome to Brat Generator. We value your privacy and are committed to protecting your personal information. This Privacy Policy is designed to inform you about how we collect, use, disclose, and protect your information.</p>
-                    
-                    <h2>2. Information We Collect</h2>
-                    <p>When you use our website, we may collect the following types of information:</p>
-                    <ul>
-                        <li><strong>Usage Data</strong>: We automatically collect information about how you access and use our website, including your IP address, browser type, access times, and the pages you view.</li>
-                        <li><strong>Device Information</strong>: We collect information about the device you use to access the website, including hardware model, operating system and version, unique device identifiers, etc.</li>
-                        <li><strong>Cookies and Similar Technologies</strong>: We use cookies and similar technologies to collect and store information about your preferences and activities.</li>
-                    </ul>
-                    
-                    <h2>3. How We Use Your Information</h2>
-                    <p>We may use the information we collect for the following purposes:</p>
-                    <ul>
-                        <li>To provide, maintain, and improve our website and services</li>
-                        <li>To analyze user behavior so we can improve user experience</li>
-                        <li>To detect, prevent, and address technical issues</li>
-                        <li>To comply with legal obligations</li>
-                    </ul>
-                    
-                    <h2>4. Information Sharing and Disclosure</h2>
-                    <p>We do not sell, trade, or otherwise transfer your personal information to third parties. However, we may share your information in the following circumstances:</p>
-                    <ul>
-                        <li>When required by law</li>
-                        <li>To protect our rights, property, or safety, as well as the rights, property, or safety of our users or the public</li>
-                        <li>With our service providers who help us operate our website and deliver services</li>
-                    </ul>
-                    
-                    <h2>5. Data Security</h2>
-                    <p>We take reasonable measures to protect your personal information from unauthorized access, use, or disclosure. However, please note that no electronic transmission method or storage method is 100% secure.</p>
-                    
-                    <h2>6. Your Rights</h2>
-                    <p>Under applicable data protection laws, you may have the following rights:</p>
-                    <ul>
-                        <li>Access to your personal information</li>
-                        <li>Correction of inaccurate personal information</li>
-                        <li>Deletion of your personal information</li>
-                        <li>Restriction of or objection to processing of your personal information</li>
-                        <li>Data portability</li>
-                    </ul>
-                    
-                    <h2>7. Changes to This Privacy Policy</h2>
-                    <p>We may update this Privacy Policy from time to time. We will post the updated version on our website and update the "Last updated" date at the top of this page.</p>
-                    
-                    <h2>8. Contact Us</h2>
-                    <p>If you have any questions or comments about this Privacy Policy, please contact us at:</p>
-                    <p>Email: privacy@bratgenerator.com.cn</p>
+                <h1 data-i18n="privacy.title">Privacy Policy</h1>
+                <div class="privacy-content">
+                    <p data-i18n="privacy.lastUpdated">Last updated: March 20, 2024</p>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.introduction.title">Introduction</h2>
+                        <p data-i18n="privacy.introduction.content">This Privacy Policy describes how Brat Generator ("we," "us," or "our") collects, uses, and shares your information when you use our website and services.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.information.title">Information We Collect</h2>
+                        <p data-i18n="privacy.information.content">We collect information that you provide directly to us, including:</p>
+                        <ul>
+                            <li data-i18n="privacy.information.list.1">Contact information when you communicate with us</li>
+                            <li data-i18n="privacy.information.list.2">Usage data and preferences</li>
+                            <li data-i18n="privacy.information.list.3">Technical information about your device and browser</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.usage.title">How We Use Your Information</h2>
+                        <p data-i18n="privacy.usage.content">We use the information we collect to:</p>
+                        <ul>
+                            <li data-i18n="privacy.usage.list.1">Provide and improve our services</li>
+                            <li data-i18n="privacy.usage.list.2">Respond to your requests and communications</li>
+                            <li data-i18n="privacy.usage.list.3">Analyze and enhance our website's performance</li>
+                            <li data-i18n="privacy.usage.list.4">Protect against fraudulent or illegal activity</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.sharing.title">Information Sharing</h2>
+                        <p data-i18n="privacy.sharing.content">We do not sell or rent your personal information to third parties. We may share your information in the following circumstances:</p>
+                        <ul>
+                            <li data-i18n="privacy.sharing.list.1">With your consent</li>
+                            <li data-i18n="privacy.sharing.list.2">To comply with legal obligations</li>
+                            <li data-i18n="privacy.sharing.list.3">To protect our rights and safety</li>
+                        </ul>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.security.title">Security</h2>
+                        <p data-i18n="privacy.security.content">We take reasonable measures to protect your information from unauthorized access, disclosure, or destruction.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.cookies.title">Cookies and Tracking</h2>
+                        <p data-i18n="privacy.cookies.content">We use cookies and similar technologies to improve your experience on our website. You can control cookie settings through your browser preferences.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.changes.title">Changes to This Policy</h2>
+                        <p data-i18n="privacy.changes.content">We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the updated policy on our website.</p>
+                    </div>
+
+                    <div class="privacy-section">
+                        <h2 data-i18n="privacy.contact.title">Contact Us</h2>
+                        <p data-i18n="privacy.contact.content">If you have any questions about this Privacy Policy, please contact us at:</p>
+                        <p data-i18n="privacy.contact.email">Email: privacy@bratgenerator.com.cn</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -92,34 +108,32 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <span class="logo-text">Brat Generator</span>
+                    <span class="logo-text" data-i18n="footer.logo">Brat Generator</span>
                 </div>
                 <div class="footer-links">
-                    <h3>Links</h3>
+                    <h3 data-i18n="footer.links">Links</h3>
                     <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Use</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="social-links">
-                    <h3>Follow Us</h3>
-                    <ul>
-                        <li><a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><img src="images/instagram.svg" alt="Instagram" width="24" height="24"></a></li>
-                        <li><a href="https://twitter.com/" target="_blank" rel="noopener" aria-label="Twitter"><img src="images/twitter.svg" alt="Twitter" width="24" height="24"></a></li>
-                        <li><a href="https://facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><img src="images/facebook.svg" alt="Facebook" width="24" height="24"></a></li>
+                        <li><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="footer.terms">Terms of Use</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Contact Us</a></li>
                     </ul>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; <span id="current-year">2024</span> Brat Generator. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024 Brat Generator. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Set current year
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // 初始化语言切换器
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSwitcher = new LanguageSwitcher({
+                defaultLanguage: 'en-US',
+                container: document.getElementById('language-selector')
+            });
+            languageSwitcher.init();
+        });
     </script>
 </body>
 </html>

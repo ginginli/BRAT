@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 include:
   - "*.xml"
   - "*.txt"
@@ -18,4 +19,26 @@ exclude:
   - README.md
   - .git/
   - .gitignore
+=======
+include:
+  - "*.xml"
+  - "*.txt"
+  - "*.html"
+  - "*.js"
+  - "*.css"
+
+plugins:
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: "sitemap.xml"
+    values:
+      sitemap: true
+
+exclude:
+  - README.md
+  - .git/
+  - .gitignore
+>>>>>>> master
   - node_modules/ 

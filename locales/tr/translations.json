@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Brat Generator - Profesyonel Brat Tarzı Görseller Oluşturun",
+    "description": "Ücretsiz jeneratörümüzle profesyonel Brat tarzı görseller oluşturun. Yeşil, siyah, beyaz ve mavi dahil birçok tema arasından seçim yapın. Metni özelleştirin ve anında yüksek kaliteli görseller oluşturun.",
+    "keywords": "brat jeneratör, brat tarzı, görsel jeneratör, metin efektleri, özel görseller"
+  },
+  "nav": {
+    "generator": "Jeneratör",
+    "howItWorks": "Nasıl Çalışır",
+    "gallery": "Galeri",
+    "faq": "SSS",
+    "about": "Hakkında"
+  },
+  "generator": {
+    "title": "Brat Görselinizi Oluşturun",
+    "enterText": "Metin Girin",
+    "themes": {
+      "title": "Tema Seçin",
+      "green": "Yeşil",
+      "black": "Siyah",
+      "white": "Beyaz",
+      "blue": "Mavi"
+    },
+    "saveImage": "Görseli Kaydet",
+    "tip": "İpucu: Görseli kaydetmek için ekran görüntüsü de alabilirsiniz"
+  },
+  "howItWorks": {
+    "title": "Nasıl Çalışır",
+    "steps": {
+      "step1": {
+        "title": "Metin Girin",
+        "description": "Metin kutusuna görüntülemek istediğiniz metni yazın"
+      },
+      "step2": {
+        "title": "Tema Seçin",
+        "description": "Mevcut temalarımızdan beğendiğiniz bir stil seçin"
+      },
+      "step3": {
+        "title": "Görseli Kaydedin",
+        "description": "Oluşturduğunuz görseli kaydetmek için \"Görseli Kaydet\" düğmesine tıklayın veya ekran görüntüsü alın"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Stil Örnekleri",
+    "description": "Çeşitli temalarla farklı Brat stili örneklerini inceleyin. Yukarıdaki jeneratörümüzü kullanarak kendinizinkini oluşturun."
+  },
+  "footer": {
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Koşulları",
+    "contact": "İletişim",
+    "copyright": "© 2024 Brat Generator. Tüm hakları saklıdır."
+  }
+} 

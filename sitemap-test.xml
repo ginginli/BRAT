@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://www.bratgenerator.com.cn/</loc>
-    <lastmod>2024-03-20</lastmod>
-  </url>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://www.bratgenerator.com.cn/</loc>
+        <lastmod>2024-03-20</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>1.0</priority>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+    </url>
 </urlset> 

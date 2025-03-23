@@ -16,18 +16,27 @@
     <meta name="googlebot" content="index, follow">
     <meta http-equiv="X-Robots-Tag" content="index, follow">
     <link rel="canonical" href="https://www.bratgenerator.com.cn/" />
-    <title>Brat Generator - Create Professional Brat Style Images</title>
+    <title data-i18n="meta.title">Brat Generator - Create Professional Brat Style Images</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-V98G2H0L37');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V98G2H0L37');
+    </script>
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+    <!-- 语言切换器脚本 -->
+    <script src="js/LanguageSwitcher.js"></script>
 </head>
 <body>
     <header>
@@ -35,16 +44,18 @@
             <nav>
                 <div class="logo">
                     <a href="/" aria-label="Brat Generator Home">
-                        <span class="logo-text brat-header">Brat Generator</span>
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
                     </a>
                 </div>
                 <ul>
-                    <li><a href="#generator">Generator</a></li>
-                    <li><a href="#how-it-works">How It Works</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                    <li><a href="#about">About</a></li>
+                    <li><a href="#generator" data-i18n="nav.generator">Generator</a></li>
+                    <li><a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a></li>
+                    <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+                    <li><a href="#about" data-i18n="nav.about">About</a></li>
                 </ul>
+                <!-- 添加语言选择器 -->
+                <div id="language-selector"></div>
             </nav>
         </div>
     </header>
@@ -53,33 +64,33 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h1 class="brat-title"><span>Brat Generator</span></h1>
-                    <p class="subtitle">Create your own Brat style images</p>
+                    <h1 class="brat-title"><span data-i18n="hero.title">Brat Generator</span></h1>
+                    <p class="subtitle" data-i18n="hero.subtitle">Create your own Brat style images</p>
                 </div>
             </div>
         </section>
 
         <section id="generator" class="generator-section">
             <div class="container">
-                <h2>Create Your Brat Image</h2>
+                <h2 data-i18n="generator.title">Create Your Brat Image</h2>
                 <div class="generator-container">
                     <div class="controls">
                         <div class="input-group">
-                            <label for="text-input">Enter Text</label>
-                            <input type="text" id="text-input" placeholder="Enter your text" maxlength="20" value="brat">
+                            <label for="text-input" data-i18n="generator.textInput">Enter Text</label>
+                            <input type="text" id="text-input" data-i18n-placeholder="generator.textPlaceholder" maxlength="20" value="brat">
                         </div>
                         
                         <div class="theme-selector">
-                            <h3>Choose Theme</h3>
+                            <h3 data-i18n="generator.themeTitle">Choose Theme</h3>
                             <div class="theme-options">
-                                <button id="theme-green" class="theme-btn active" aria-label="Green theme">Green</button>
-                                <button id="theme-black" class="theme-btn" aria-label="Black theme">Black</button>
-                                <button id="theme-white" class="theme-btn" aria-label="White theme">White</button>
-                                <button id="theme-blue" class="theme-btn" aria-label="Blue theme">Blue</button>
+                                <button id="theme-green" class="theme-btn active" aria-label="Green theme" data-i18n="generator.themes.green">Green</button>
+                                <button id="theme-black" class="theme-btn" aria-label="Black theme" data-i18n="generator.themes.black">Black</button>
+                                <button id="theme-white" class="theme-btn" aria-label="White theme" data-i18n="generator.themes.white">White</button>
+                                <button id="theme-blue" class="theme-btn" aria-label="Blue theme" data-i18n="generator.themes.blue">Blue</button>
                             </div>
                         </div>
                         
-                        <button id="download-btn" class="download-button">Save Image</button>
+                        <button id="download-btn" class="download-button" data-i18n="generator.downloadButton">Save Image</button>
                     </div>
                     
                     <div class="preview-container">
@@ -87,7 +98,7 @@
                             <img id="meme-image" src="images/brat-bg-green.png" alt="Brat background image">
                             <div id="text-overlay"></div>
                         </div>
-                        <p class="tip">Tip: You can also take a screenshot to save the image</p>
+                        <p class="tip" data-i18n="generator.tip">Tip: You can also take a screenshot to save the image</p>
                     </div>
                 </div>
             </div>
@@ -228,18 +239,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <span class="logo-text">Brat Generator</span>
+                    <span class="logo-text" data-i18n="footer.logo">Brat Generator</span>
                 </div>
                 <div class="footer-links">
-                    <h3>Links</h3>
+                    <h3 data-i18n="footer.links">Links</h3>
                     <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Use</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="footer.terms">Terms of Use</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="social-links">
-                    <h3>Follow Us</h3>
+                    <h3 data-i18n="footer.followUs">Follow Us</h3>
                     <ul>
                         <li>
                             <a href="https://instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
@@ -266,14 +277,23 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; <span id="current-year">2024</span> Brat Generator. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; <span id="current-year">2024</span> Brat Generator. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <script src="components/LanguageSwitcher.js"></script>
+    <script>
+        // 初始化语言切换器
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSwitcher = new LanguageSwitcher({
+                defaultLanguage: 'en-US',
+                container: document.getElementById('language-selector')
+            });
+            languageSwitcher.init();
+        });
+    </script>
     <script>
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();

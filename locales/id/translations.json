@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "title": "Brat Generator - Buat Gambar Gaya Brat Profesional",
+    "description": "Buat gambar gaya Brat profesional dengan generator gratis kami. Pilih dari berbagai tema termasuk hijau, hitam, putih, dan biru. Sesuaikan teks dan hasilkan gambar berkualitas tinggi secara instan.",
+    "keywords": "generator brat, gaya brat, generator gambar, efek teks, gambar kustom"
+  },
+  "nav": {
+    "generator": "Generator",
+    "howItWorks": "Cara Kerja",
+    "gallery": "Galeri",
+    "faq": "FAQ",
+    "about": "Tentang"
+  },
+  "generator": {
+    "title": "Buat Gambar Brat Anda",
+    "enterText": "Masukkan Teks",
+    "themes": {
+      "title": "Pilih Tema",
+      "green": "Hijau",
+      "black": "Hitam",
+      "white": "Putih",
+      "blue": "Biru"
+    },
+    "saveImage": "Simpan Gambar",
+    "tip": "Tips: Anda juga dapat mengambil tangkapan layar untuk menyimpan gambar"
+  },
+  "howItWorks": {
+    "title": "Cara Kerja",
+    "steps": {
+      "step1": {
+        "title": "Masukkan Teks",
+        "description": "Ketik teks yang ingin Anda tampilkan di kotak teks"
+      },
+      "step2": {
+        "title": "Pilih Tema",
+        "description": "Pilih gaya yang Anda suka dari tema yang tersedia"
+      },
+      "step3": {
+        "title": "Simpan Gambar",
+        "description": "Klik tombol \"Simpan Gambar\" atau ambil tangkapan layar untuk menyimpan kreasi Anda"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Contoh Gaya",
+    "description": "Lihat berbagai contoh gaya Brat dengan berbagai tema. Buat milik Anda sendiri menggunakan generator kami di atas."
+  },
+  "footer": {
+    "privacy": "Kebijakan Privasi",
+    "terms": "Ketentuan Penggunaan",
+    "contact": "Hubungi Kami",
+    "copyright": "© 2024 Brat Generator. Hak cipta dilindungi undang-undang."
+  }
+} 

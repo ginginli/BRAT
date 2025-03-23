@@ -1,53 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sitemap Test</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="test.meta.title">Sitemap Test Page - Brat Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/test-sitemap" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/test-sitemap" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/test-sitemap" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/test-sitemap" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/test-sitemap" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/test-sitemap" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/test-sitemap" />
+    <!-- 语言切换器脚本 -->
+    <script src="js/LanguageSwitcher.js"></script>
 </head>
 <body>
-    <h1>Sitemap 测试</h1>
-    <div id="result"></div>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" aria-label="Brat Generator Home">
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="/" data-i18n="nav.home">Home</a></li>
+                </ul>
+                <!-- 添加语言选择器 -->
+                <div id="language-selector"></div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="test-section">
+            <div class="container">
+                <h1 data-i18n="test.title">Sitemap Test Page</h1>
+                <div class="test-content">
+                    <p data-i18n="test.description">This page is used to test the accessibility of our sitemap files.</p>
+                    
+                    <div class="test-links">
+                        <h2 data-i18n="test.links.title">Test Links</h2>
+                        <ul>
+                            <li>
+                                <a href="/sitemap.xml" target="_blank" data-i18n="test.links.main">Main Sitemap</a>
+                                <span data-i18n="test.links.mainDesc">(Full sitemap with all pages)</span>
+                            </li>
+                            <li>
+                                <a href="/sitemap-test.xml" target="_blank" data-i18n="test.links.test">Test Sitemap</a>
+                                <span data-i18n="test.links.testDesc">(Simplified version for testing)</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="test-instructions">
+                        <h2 data-i18n="test.instructions.title">Instructions</h2>
+                        <ol>
+                            <li data-i18n="test.instructions.step1">Click on the links above to verify that the sitemap files are accessible.</li>
+                            <li data-i18n="test.instructions.step2">Check that the XML is properly formatted and readable.</li>
+                            <li data-i18n="test.instructions.step3">Verify that all URLs in the sitemap are valid and accessible.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text" data-i18n="footer.logo">Brat Generator</span>
+                </div>
+                <div class="footer-links">
+                    <h3 data-i18n="footer.links">Links</h3>
+                    <ul>
+                        <li><a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a></li>
+                        <li><a href="terms.html" data-i18n="footer.terms">Terms of Use</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-i18n="footer.copyright">&copy; 2024 Brat Generator. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        async function testSitemap(url) {
-            try {
-                const response = await fetch(url);
-                const text = await response.text();
-                return {
-                    status: response.status,
-                    contentType: response.headers.get('content-type'),
-                    content: text
-                };
-            } catch (error) {
-                return {
-                    error: error.message
-                };
-            }
-        }
-
-        async function runTests() {
-            const result = document.getElementById('result');
-            const urls = [
-                '/sitemap.xml',
-                '/sitemap-test.xml',
-                'https://www.bratgenerator.com.cn/sitemap.xml',
-                'https://www.bratgenerator.com.cn/sitemap-test.xml'
-            ];
-
-            for (const url of urls) {
-                const testResult = await testSitemap(url);
-                result.innerHTML += `
-                    <h3>测试 ${url}</h3>
-                    <pre>
-状态: ${testResult.status || '错误'}
-Content-Type: ${testResult.contentType || 'N/A'}
-${testResult.error ? '错误: ' + testResult.error : '内容预览: ' + testResult.content.substring(0, 200) + '...'}
-                    </pre>
-                    <hr>
-                `;
-            }
-        }
-
-        runTests();
+        // 初始化语言切换器
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageSwitcher = new LanguageSwitcher({
+                defaultLanguage: 'en-US',
+                container: document.getElementById('language-selector')
+            });
+            languageSwitcher.init();
+        });
     </script>
 </body>
 </html> 
