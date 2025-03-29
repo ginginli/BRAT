@@ -35,8 +35,6 @@
     <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
     <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
     <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
-    <!-- 语言切换器脚本 -->
-    <script src="js/LanguageSwitcher.js"></script>
 </head>
 <body>
     <header>
@@ -54,8 +52,20 @@
                     <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
                     <li><a href="#about" data-i18n="nav.about">About</a></li>
                 </ul>
-                <!-- 添加语言选择器 -->
-                <div id="language-selector"></div>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 Language</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item active">English</a>
+                        <a href="/zh-CN/" class="lang-item">中文</a>
+                        <a href="/es-MX/" class="lang-item">Español (MX)</a>
+                        <a href="/es-AR/" class="lang-item">Español (AR)</a>
+                        <a href="/tr/" class="lang-item">Türkçe</a>
+                        <a href="/fil/" class="lang-item">Filipino</a>
+                        <a href="/id/" class="lang-item">Bahasa Indonesia</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>

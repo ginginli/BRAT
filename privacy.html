@@ -15,8 +15,6 @@
     <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/privacy" />
     <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/privacy" />
     <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/privacy" />
-    <!-- 语言切换器脚本 -->
-    <script src="js/LanguageSwitcher.js"></script>
 </head>
 <body>
     <header>
@@ -30,8 +28,15 @@
                 <ul>
                     <li><a href="/" data-i18n="nav.home">Home</a></li>
                 </ul>
-                <!-- 添加语言选择器 -->
-                <div id="language-selector"></div>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 Language</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item">English</a>
+                        <a href="/zh-CN/privacy.html" class="lang-item">中文</a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -124,16 +129,5 @@
             </div>
         </div>
     </footer>
-
-    <script>
-        // 初始化语言切换器
-        document.addEventListener('DOMContentLoaded', function() {
-            const languageSwitcher = new LanguageSwitcher({
-                defaultLanguage: 'en-US',
-                container: document.getElementById('language-selector')
-            });
-            languageSwitcher.init();
-        });
-    </script>
 </body>
 </html>

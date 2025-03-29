@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brat Generator is an online free tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.">
+    <meta name="keywords" content="brat generator, brat text generator, brat, brat font">
+    <meta name="author" content="Brat Generator">
+    <meta property="og:title" content="Brat Generator - Free Online Charli XCX Brat Text Generator">
+    <meta property="og:description" content="Brat Generator is an online free tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.">
+    <meta property="og:image" content="https://www.bratgenerator.com.cn/images/brat-preview.jpg">
+    <meta property="og:url" content="https://www.bratgenerator.com.cn">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta http-equiv="X-Robots-Tag" content="index, follow">
+    <link rel="canonical" href="https://www.bratgenerator.com.cn/tr/" />
+    <title data-i18n="meta.title">Brat Generator - Free Online Charli XCX Brat Text Generator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V98G2H0L37');
+    </script>
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" aria-label="Brat Generator Home">
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="#generator" data-i18n="nav.generator">Oluşturucu</a></li>
+                    <li><a href="#how-it-works" data-i18n="nav.howItWorks">Nasıl Çalışır</a></li>
+                    <li><a href="#gallery" data-i18n="nav.gallery">Galeri</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">SSS</a></li>
+                    <li><a href="#about" data-i18n="nav.about">Hakkında</a></li>
+                </ul>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 Dil</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item">English</a>
+                        <a href="/zh-CN/" class="lang-item">中文</a>
+                        <a href="/es-MX/" class="lang-item">Español (MX)</a>
+                        <a href="/es-AR/" class="lang-item">Español (AR)</a>
+                        <a href="/tr/" class="lang-item active">Türkçe</a>
+                        <a href="/fil/" class="lang-item">Filipino</a>
+                        <a href="/id/" class="lang-item">Bahasa Indonesia</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="brat-title"><span data-i18n="hero.title">Brat Generator</span></h1>
+                    <p class="subtitle" data-i18n="hero.subtitle">Kendi Charli XCX Brat tarzı metninizi oluşturun</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <h2 data-i18n="generator.title">Brat Görselinizi Oluşturun</h2>
+                <div class="generator-container">
+                    <div class="controls">
+                        <div class="input-group">
+                            <label for="text-input" data-i18n="generator.enterText">Metin Girin</label>
+                            <input type="text" id="text-input" data-i18n-placeholder="generator.textPlaceholder" maxlength="20" value="brat" placeholder="Metninizi girin">
+                        </div>
+                        
+                        <div class="theme-selector">
+                            <h3 data-i18n="generator.chooseTheme">Tema Seçin</h3>
+                            <div class="theme-options">
+                                <button id="theme-green" class="theme-btn active" aria-label="Green theme" data-i18n="generator.green">Yeşil</button>
+                                <button id="theme-black" class="theme-btn" aria-label="Black theme" data-i18n="generator.black">Siyah</button>
+                                <button id="theme-white" class="theme-btn" aria-label="White theme" data-i18n="generator.white">Beyaz</button>
+                                <button id="theme-blue" class="theme-btn" aria-label="Blue theme" data-i18n="generator.blue">Mavi</button>
+                            </div>
+                        </div>
+                        
+                        <button id="download-btn" class="download-button" data-i18n="generator.saveImage">Görseli Kaydet</button>
+                    </div>
+                    
+                    <div class="preview-container">
+                        <div id="meme-container">
+                            <img id="meme-image" src="../images/brat-bg-green.png" alt="Brat background image">
+                            <div id="text-overlay"></div>
+                        </div>
+                        <p class="tip" data-i18n="generator.tip">İpucu: Görseli kaydetmek için ekran görüntüsü de alabilirsiniz</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works-section">
+            <div class="container">
+                <h2>Nasıl Çalışır</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Metin Girin</h3>
+                        <p>Metin kutusunda görüntülemek istediğiniz metni yazın</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Tema Seçin</h3>
+                        <p>Mevcut temalarımızdan beğendiğiniz bir stili seçin</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Görseli Kaydedin</h3>
+                        <p>Eserinizi kaydetmek için "Görseli Kaydet" düğmesine tıklayın veya ekran görüntüsü alın</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2>Stil Örnekleri</h2>
+                <p class="gallery-description">Çeşitli temalarla farklı Brat stili örneklerine göz atın. Yukarıdaki oluşturucumuzu kullanarak kendinizinkini oluşturun.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style green-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Yeşil Tema</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style black-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Siyah Tema</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style white-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Beyaz Tema</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style blue-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Mavi Tema</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Sık Sorulan Sorular</h2>
+                <div class="faq-cards">
+                    <div class="faq-card">
+                        <h3>Brat Oluşturucu nedir?</h3>
+                        <p>Brat Oluşturucu, Charli XCX'in 'Brat' albüm kapağı tarzında metin oluşturmanıza olanak tanıyan ücretsiz bir çevrimiçi araçtır. Metni özelleştirebilir ve albümün ikonik yeşil arka planı da dahil olmak üzere birden fazla tema arasından seçim yapabilirsiniz.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Charli XCX'in Brat albümü nedir?</h3>
+                        <p>Brat, İngiliz şarkıcı-söz yazarı Charli XCX'in 2023 yılında yayınlanan altıncı stüdyo albümüdür. Albüm, ikonik bir görsel stil ve internet fenomeni haline gelen, bulanık metinli, belirgin minimalist yeşil bir kapak içerir.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat metin oluşturucu nasıl çalışır?</h3>
+                        <p>Brat metin oluşturucumuz, kendi metninizi girmenize, farklı renk temaları (ikonik yeşil dahil) arasından seçim yapmanıza ve Charli XCX'in Brat albüm kapağının stilini taklit eden bir görsel oluşturmanıza olanak tanır. Araç, albüm estetiğiyle eşleşmesi için doğru yazı tipini, bulanıklık efektini ve stillendirmeyi uygular.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat metin oluşturucuyu sosyal medya için kullanabilir miyim?</h3>
+                        <p>Evet! Brat Oluşturucu, sosyal medya gönderileri, profil resimleri veya Brat estetiğini benimsemek istediğiniz herhangi bir içeriği oluşturmak için mükemmeldir. Oluşturduğunuz görseli indirip favori platformunuzda paylaşmanız yeterlidir.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat Oluşturucu kullanımı ücretsiz mi?</h3>
+                        <p>Evet, Brat Oluşturucu tamamen ücretsiz olarak kullanılabilir. Herhangi bir maliyet veya hesap kaydı gerektirmeden istediğiniz kadar görsel oluşturabilirsiniz.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat Oluşturucu'da hangi temalar mevcut?</h3>
+                        <p>İkonik yeşil (Charli XCX'in albüm kapağıyla aynı), siyah, beyaz ve mavi varyasyonlar dahil olmak üzere birden fazla tema sunuyoruz. Bu, Brat tarzı metninizi kişisel tercihinize göre özelleştirmenize olanak tanır.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Brat Oluşturucu Hakkında</h2>
+                <p>Brat Oluşturucu, Charli XCX'in 'Brat' albüm kapağından ilham alan ücretsiz bir çevrimiçi araçtır. Oluşturucumuz, kültürel bir fenomen haline gelen ikonik yeşil albüm çalışmasıyla aynı ayırt edici stilde metin oluşturmanıza olanak tanır.</p>
+                <p>İster Charli XCX hayranı, ister müzik tutkunu olun, isterse sadece estetiği seviyor olun, aracımız, çoklu temalar ve basit kontrollerle kendi özelleştirilmiş Brat tarzı görsellerinizi oluşturmayı kolaylaştırır.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>Bağlantılar</h3>
+                    <ul>
+                        <li><a href="./privacy.html">Gizlilik Politikası</a></li>
+                        <li><a href="./terms.html">Kullanım Koşulları</a></li>
+                        <li><a href="./contact.html">Bize Ulaşın</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Bizi Takip Edin</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <p>&copy; <span id="current-year">2024</span> Brat Generator. All rights reserved.</p>
+                <p class="disclaimer">This is an unofficial fan-made tool. Brat Generator is not affiliated with, endorsed by, or connected to Charli XCX or her management. "Brat" is a trademark of Charli XCX. This tool is created for fan entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

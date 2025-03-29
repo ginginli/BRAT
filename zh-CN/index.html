@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brat 生成器是一个免费的在线工具，允许用户创建模仿 Charli XCX 的 Brat 专辑封面风格的自定义文字图片。">
+    <meta name="keywords" content="brat 生成器, brat 文字生成器, brat, brat 字体">
+    <meta name="author" content="Brat Generator">
+    <meta property="og:title" content="Brat 生成器 - 免费在线 Charli XCX Brat 文字生成器">
+    <meta property="og:description" content="Brat 生成器是一个免费的在线工具，允许用户创建模仿 Charli XCX 的 Brat 专辑封面风格的自定义文字图片。">
+    <meta property="og:image" content="https://www.bratgenerator.com.cn/images/brat-preview.jpg">
+    <meta property="og:url" content="https://www.bratgenerator.com.cn">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta http-equiv="X-Robots-Tag" content="index, follow">
+    <link rel="canonical" href="https://www.bratgenerator.com.cn/zh-CN/" />
+    <title data-i18n="meta.title">Brat 生成器 - 免费在线 Charli XCX Brat 文字生成器</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V98G2H0L37');
+    </script>
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" aria-label="Brat Generator Home">
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat 生成器</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="#generator" data-i18n="nav.generator">生成器</a></li>
+                    <li><a href="#how-it-works" data-i18n="nav.howItWorks">使用方法</a></li>
+                    <li><a href="#gallery" data-i18n="nav.gallery">作品展示</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">常见问题</a></li>
+                    <li><a href="#about" data-i18n="nav.about">关于我们</a></li>
+                </ul>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 语言</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item">English</a>
+                        <a href="/zh-CN/" class="lang-item active">中文</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="brat-title"><span data-i18n="hero.title">Brat 生成器</span></h1>
+                    <p class="subtitle" data-i18n="hero.subtitle">创建你自己的 Charli XCX Brat 风格文字</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <h2 data-i18n="generator.title">创建你的 Brat 图片</h2>
+                <div class="generator-container">
+                    <div class="controls">
+                        <div class="input-group">
+                            <label for="text-input" data-i18n="generator.enterText">输入文字</label>
+                            <input type="text" id="text-input" data-i18n-placeholder="generator.textPlaceholder" maxlength="20" value="brat" placeholder="输入你的文字">
+                        </div>
+                        
+                        <div class="theme-selector">
+                            <h3 data-i18n="generator.chooseTheme">选择主题</h3>
+                            <div class="theme-options">
+                                <button id="theme-green" class="theme-btn active" aria-label="Green theme" data-i18n="generator.green">绿色</button>
+                                <button id="theme-black" class="theme-btn" aria-label="Black theme" data-i18n="generator.black">黑色</button>
+                                <button id="theme-white" class="theme-btn" aria-label="White theme" data-i18n="generator.white">白色</button>
+                                <button id="theme-blue" class="theme-btn" aria-label="Blue theme" data-i18n="generator.blue">蓝色</button>
+                            </div>
+                        </div>
+                        
+                        <button id="download-btn" class="download-button" data-i18n="generator.saveImage">保存图片</button>
+                    </div>
+                    
+                    <div class="preview-container">
+                        <div id="meme-container">
+                            <img id="meme-image" src="../images/brat-bg-green.png" alt="Brat 背景图片">
+                            <div id="text-overlay"></div>
+                        </div>
+                        <p class="tip" data-i18n="generator.tip">提示：你也可以截屏保存图片</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works-section">
+            <div class="container">
+                <h2>使用方法</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>输入文字</h3>
+                        <p>在文本框中输入你想要显示的文字</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>选择主题</h3>
+                        <p>从我们提供的主题中选择你喜欢的风格</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>保存图片</h3>
+                        <p>点击"保存图片"按钮或截屏保存你的创作</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2>风格示例</h2>
+                <p class="gallery-description">查看这些不同主题的 Brat 风格示例。使用上方的生成器创建你自己的作品。</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style green-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">绿色主题</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style black-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">黑色主题</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style white-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">白色主题</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style blue-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">蓝色主题</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>常见问题</h2>
+                <div class="faq-cards">
+                    <div class="faq-card">
+                        <h3>什么是 Brat 生成器？</h3>
+                        <p>Brat 生成器是一个免费的在线工具，可让您创建 Charli XCX 的'Brat'专辑封面风格的文字。您可以自定义文本并从多种主题中选择，包括专辑中标志性的绿色背景。</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>什么是 Charli XCX 的 Brat 专辑？</h3>
+                        <p>Brat 是英国歌手兼词曲作者 Charli XCX 于2023年发行的第六张录音室专辑。该专辑以其独特的极简绿色封面和模糊文字为特色，已成为一种标志性的视觉风格和互联网现象。</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat 文字生成器如何工作？</h3>
+                        <p>我们的 Brat 文字生成器允许您输入自己的文字，从不同的颜色主题中选择（包括标志性的绿色），并生成一个模仿 Charli XCX 的 Brat 专辑封面风格的图像。该工具应用了正确的字体、模糊效果和样式，以匹配专辑的美学风格。</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>我可以将 Brat 文字生成器用于社交媒体吗？</h3>
+                        <p>是的！Brat 生成器非常适合创建社交媒体帖子、个人资料图片或任何您想要拥抱 Brat 美学的内容。只需下载您创建的图像并在您喜欢的平台上分享即可。</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat 生成器是免费使用的吗？</h3>
+                        <p>是的，Brat 生成器完全免费使用。您可以创建任意数量的图像，无需任何费用或账户注册。</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Brat 生成器中有哪些主题可用？</h3>
+                        <p>我们提供多种主题，包括标志性的绿色（与 Charli XCX 的专辑封面相同）、黑色、白色和蓝色变体，允许您根据个人喜好自定义 Brat 风格的文字。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>关于 Brat 生成器</h2>
+                <div class="about-content">
+                    <p>Brat 生成器是一个受 Charli XCX 的'Brat'专辑封面启发的免费在线工具。我们的生成器允许您以与标志性绿色专辑艺术作品相同的独特风格创建文本，这已成为一种文化现象。</p>
+                    <p>无论您是 Charli XCX 的粉丝、音乐爱好者，还是只是喜欢这种美学风格，我们的工具都能让您轻松创建自己的定制 Brat 风格图像，提供多种主题和简单的控制。</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>用户友好界面</h3>
+                        <p>Brat 生成器具有直观的界面，使创建受 Charli XCX 启发的文本变得毫不费力。即使没有设计经验，您也可以通过几次点击快速生成专业外观的 Brat 风格图像。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>多种主题选项</h3>
+                        <p>从多种主题中选择，包括 Charli XCX 专辑中标志性的绿色背景，或探索黑色、白色和蓝色等替代颜色，以自定义您的 Brat 文本以匹配您的个人风格。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>高质量结果</h3>
+                        <p>我们的生成器生成高质量图像，捕捉 Brat 专辑封面的独特模糊文字效果和风格。这些结果非常适合社交媒体帖子、个人资料图片或任何创意项目。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>即时生成</h3>
+                        <p>在您输入时，即时看到您定制的 Brat 文本生成。我们的实时预览允许您尝试不同的文本和主题，直到您获得您想要的确切外观。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>免费无限制</h3>
+                        <p>Brat 生成器完全免费使用，没有隐藏费用、账户要求或使用限制。创建任意数量的 Brat 风格图像并直接下载到您的设备上。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>链接</h3>
+                    <ul>
+                        <li><a href="./privacy.html">隐私政策</a></li>
+                        <li><a href="./terms.html">使用条款</a></li>
+                        <li><a href="./contact.html">联系我们</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>关注我们</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <p data-i18n="footer.copyright">&copy; <span id="current-year">2024</span> Brat 生成器。版权所有。</p>
+                <p class="disclaimer" data-i18n="footer.disclaimer">这是一个非官方的粉丝制作工具。Brat 生成器与 Charli XCX 或其管理团队没有任何关联、认可或连接。"Brat"是 Charli XCX 的商标。该工具仅为粉丝娱乐目的而创建。</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化语言切换器
+            const languageSwitcher = new LanguageSwitcher();
+            languageSwitcher.init().catch(console.error);
+            
+            // 其他初始化代码...
+        });
+    </script>
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

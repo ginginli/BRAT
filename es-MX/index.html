@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brat Generator is an online free tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.">
+    <meta name="keywords" content="brat generator, brat text generator, brat, brat font">
+    <meta name="author" content="Brat Generator">
+    <meta property="og:title" content="Brat Generator - Free Online Charli XCX Brat Text Generator">
+    <meta property="og:description" content="Brat Generator is an online free tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.">
+    <meta property="og:image" content="https://www.bratgenerator.com.cn/images/brat-preview.jpg">
+    <meta property="og:url" content="https://www.bratgenerator.com.cn">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta http-equiv="X-Robots-Tag" content="index, follow">
+    <link rel="canonical" href="https://www.bratgenerator.com.cn/es-MX/" />
+    <title data-i18n="meta.title">Brat Generator - Free Online Charli XCX Brat Text Generator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V98G2H0L37');
+    </script>
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" aria-label="Brat Generator Home">
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="#generator" data-i18n="nav.generator">Generador</a></li>
+                    <li><a href="#how-it-works" data-i18n="nav.howItWorks">Cómo Funciona</a></li>
+                    <li><a href="#gallery" data-i18n="nav.gallery">Galería</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">Preguntas Frecuentes</a></li>
+                    <li><a href="#about" data-i18n="nav.about">Acerca de</a></li>
+                </ul>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 Idioma</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item">English</a>
+                        <a href="/zh-CN/" class="lang-item">中文</a>
+                        <a href="/es-MX/" class="lang-item active">Español (MX)</a>
+                        <a href="/es-AR/" class="lang-item">Español (AR)</a>
+                        <a href="/tr/" class="lang-item">Türkçe</a>
+                        <a href="/fil/" class="lang-item">Filipino</a>
+                        <a href="/id/" class="lang-item">Bahasa Indonesia</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="brat-title"><span data-i18n="hero.title">Brat Generator</span></h1>
+                    <p class="subtitle" data-i18n="hero.subtitle">Crea tu propio texto estilo Brat de Charli XCX</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <h2 data-i18n="generator.title">Crea Tu Imagen Brat</h2>
+                <div class="generator-container">
+                    <div class="controls">
+                        <div class="input-group">
+                            <label for="text-input" data-i18n="generator.enterText">Ingresa Texto</label>
+                            <input type="text" id="text-input" data-i18n-placeholder="generator.textPlaceholder" maxlength="20" value="brat" placeholder="Ingresa tu texto">
+                        </div>
+                        
+                        <div class="theme-selector">
+                            <h3 data-i18n="generator.chooseTheme">Elige un Tema</h3>
+                            <div class="theme-options">
+                                <button id="theme-green" class="theme-btn active" aria-label="Green theme" data-i18n="generator.green">Verde</button>
+                                <button id="theme-black" class="theme-btn" aria-label="Black theme" data-i18n="generator.black">Negro</button>
+                                <button id="theme-white" class="theme-btn" aria-label="White theme" data-i18n="generator.white">Blanco</button>
+                                <button id="theme-blue" class="theme-btn" aria-label="Blue theme" data-i18n="generator.blue">Azul</button>
+                            </div>
+                        </div>
+                        
+                        <button id="download-btn" class="download-button" data-i18n="generator.saveImage">Guardar Imagen</button>
+                    </div>
+                    
+                    <div class="preview-container">
+                        <div id="meme-container">
+                            <img id="meme-image" src="../images/brat-bg-green.png" alt="Brat background image">
+                            <div id="text-overlay"></div>
+                        </div>
+                        <p class="tip" data-i18n="generator.tip">Consejo: También puedes tomar una captura de pantalla para guardar la imagen</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works-section">
+            <div class="container">
+                <h2>Cómo Funciona</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Ingresa Texto</h3>
+                        <p>Escribe el texto que quieres mostrar en el cuadro de texto</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Elige un Tema</h3>
+                        <p>Selecciona un estilo que te guste de nuestros temas disponibles</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Guarda la Imagen</h3>
+                        <p>Haz clic en el botón "Guardar Imagen" o toma una captura de pantalla para guardar tu creación</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2>Ejemplos de Estilo</h2>
+                <p class="gallery-description">Mira estos diferentes ejemplos de estilo Brat con varios temas. Crea el tuyo usando nuestro generador arriba.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style green-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Tema Verde</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style black-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Tema Negro</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style white-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Tema Blanco</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style blue-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Tema Azul</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq-cards">
+                    <div class="faq-card">
+                        <h3>¿Qué es el Generador Brat?</h3>
+                        <p>El Generador Brat es una herramienta gratuita en línea que te permite crear texto al estilo de la portada del álbum 'Brat' de Charli XCX. Puedes personalizar el texto y elegir entre múltiples temas, incluido el icónico fondo verde del álbum.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>¿Qué es el álbum Brat de Charli XCX?</h3>
+                        <p>Brat es el sexto álbum de estudio de la cantautora inglesa Charli XCX, lanzado en 2023. El álbum presenta una distintiva portada minimalista verde con texto borroso, que se ha convertido en un estilo visual icónico y un fenómeno de internet.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>¿Cómo funciona el generador de texto Brat?</h3>
+                        <p>Nuestro generador de texto Brat te permite ingresar tu propio texto, seleccionar entre diferentes temas de colores (incluido el icónico verde) y generar una imagen que imita el estilo de la portada del álbum Brat de Charli XCX. La herramienta aplica la fuente correcta, el efecto de desenfoque y el estilo para que coincida con la estética del álbum.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>¿Puedo usar el generador de texto Brat para redes sociales?</h3>
+                        <p>¡Sí! El Generador Brat es perfecto para crear publicaciones de redes sociales, fotos de perfil o cualquier contenido donde quieras adoptar la estética Brat. Simplemente descarga tu imagen creada y compártela en tu plataforma favorita.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>¿Es gratuito el uso del Generador Brat?</h3>
+                        <p>Sí, el Generador Brat es completamente gratuito. Puedes crear tantas imágenes como quieras sin costo alguno ni registro de cuenta.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>¿Qué temas están disponibles en el Generador Brat?</h3>
+                        <p>Ofrecemos múltiples temas, incluido el icónico verde (igual que la portada del álbum de Charli XCX), variaciones en negro, blanco y azul, lo que te permite personalizar tu texto estilo Brat para que coincida con tus preferencias personales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Acerca del Generador Brat</h2>
+                <p>El Generador Brat es una herramienta gratuita en línea inspirada en la portada del álbum 'Brat' de Charli XCX. Nuestro generador te permite crear texto con el mismo estilo distintivo que la icónica obra de arte del álbum verde que se ha convertido en un fenómeno cultural.</p>
+                <p>Ya seas fan de Charli XCX, un entusiasta de la música o simplemente te encanta la estética, nuestra herramienta facilita la creación de tus propias imágenes personalizadas estilo Brat con múltiples temas y controles sencillos.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>Enlaces</h3>
+                    <ul>
+                        <li><a href="./privacy.html">Política de Privacidad</a></li>
+                        <li><a href="./terms.html">Términos de Uso</a></li>
+                        <li><a href="./contact.html">Contáctanos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Síguenos</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <p>&copy; <span id="current-year">2024</span> Brat Generator. All rights reserved.</p>
+                <p class="disclaimer">This is an unofficial fan-made tool. Brat Generator is not affiliated with, endorsed by, or connected to Charli XCX or her management. "Brat" is a trademark of Charli XCX. This tool is created for fan entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 

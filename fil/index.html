@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brat Generator is an online free tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.">
+    <meta name="keywords" content="brat generator, brat text generator, brat, brat font">
+    <meta name="author" content="Brat Generator">
+    <meta property="og:title" content="Brat Generator - Free Online Charli XCX Brat Text Generator">
+    <meta property="og:description" content="Brat Generator is an online free tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.">
+    <meta property="og:image" content="https://www.bratgenerator.com.cn/images/brat-preview.jpg">
+    <meta property="og:url" content="https://www.bratgenerator.com.cn">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta http-equiv="X-Robots-Tag" content="index, follow">
+    <link rel="canonical" href="https://www.bratgenerator.com.cn/fil/" />
+    <title data-i18n="meta.title">Brat Generator - Free Online Charli XCX Brat Text Generator</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-V98G2H0L37');
+    </script>
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+    <link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" aria-label="Brat Generator Home">
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="#generator" data-i18n="nav.generator">Generator</a></li>
+                    <li><a href="#how-it-works" data-i18n="nav.howItWorks">Paano Gumagana</a></li>
+                    <li><a href="#gallery" data-i18n="nav.gallery">Galeri</a></li>
+                    <li><a href="#faq" data-i18n="nav.faq">Mga FAQ</a></li>
+                    <li><a href="#about" data-i18n="nav.about">Tungkol Sa</a></li>
+                </ul>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 Wika</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item">English</a>
+                        <a href="/zh-CN/" class="lang-item">中文</a>
+                        <a href="/es-MX/" class="lang-item">Español (MX)</a>
+                        <a href="/es-AR/" class="lang-item">Español (AR)</a>
+                        <a href="/tr/" class="lang-item">Türkçe</a>
+                        <a href="/fil/" class="lang-item active">Filipino</a>
+                        <a href="/id/" class="lang-item">Bahasa Indonesia</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="brat-title"><span data-i18n="hero.title">Brat Generator</span></h1>
+                    <p class="subtitle" data-i18n="hero.subtitle">Lumikha ng iyong sariling teksto sa istilo ng Charli XCX Brat</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <h2 data-i18n="generator.title">Gumawa ng Iyong Brat na Imahe</h2>
+                <div class="generator-container">
+                    <div class="controls">
+                        <div class="input-group">
+                            <label for="text-input" data-i18n="generator.enterText">Maglagay ng Teksto</label>
+                            <input type="text" id="text-input" data-i18n-placeholder="generator.textPlaceholder" maxlength="20" value="brat" placeholder="Ilagay ang iyong teksto">
+                        </div>
+                        
+                        <div class="theme-selector">
+                            <h3 data-i18n="generator.chooseTheme">Pumili ng Tema</h3>
+                            <div class="theme-options">
+                                <button id="theme-green" class="theme-btn active" aria-label="Green theme" data-i18n="generator.green">Berde</button>
+                                <button id="theme-black" class="theme-btn" aria-label="Black theme" data-i18n="generator.black">Itim</button>
+                                <button id="theme-white" class="theme-btn" aria-label="White theme" data-i18n="generator.white">Puti</button>
+                                <button id="theme-blue" class="theme-btn" aria-label="Blue theme" data-i18n="generator.blue">Asul</button>
+                            </div>
+                        </div>
+                        
+                        <button id="download-btn" class="download-button" data-i18n="generator.saveImage">I-save ang Imahe</button>
+                    </div>
+                    
+                    <div class="preview-container">
+                        <div id="meme-container">
+                            <img id="meme-image" src="../images/brat-bg-green.png" alt="Brat background image">
+                            <div id="text-overlay"></div>
+                        </div>
+                        <p class="tip" data-i18n="generator.tip">Tip: Maaari ka ring kumuha ng screenshot para i-save ang imahe</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works-section">
+            <div class="container">
+                <h2>Paano Gumagana</h2>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Maglagay ng Teksto</h3>
+                        <p>I-type ang tekstong nais mong ipakita sa text box</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Pumili ng Tema</h3>
+                        <p>Pumili ng isang istilo na gusto mo mula sa aming mga available na tema</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>I-save ang Imahe</h3>
+                        <p>I-click ang buton na "I-save ang Imahe" o kumuha ng screenshot para i-save ang iyong nilikha</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="gallery-section">
+            <div class="container">
+                <h2>Mga Halimbawa ng Istilo</h2>
+                <p class="gallery-description">Tingnan ang iba't ibang halimbawa ng istilo ng Brat na may iba't ibang tema. Gumawa ng sarili mo gamit ang aming generator sa itaas.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style green-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Berdeng Tema</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style black-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Itim na Tema</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style white-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Puting Tema</p>
+                    </div>
+                    <div class="gallery-item">
+                        <div class="gallery-placeholder brat-style blue-theme">
+                            <span>brat</span>
+                        </div>
+                        <p class="style-name">Asul na Tema</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq-section">
+            <div class="container">
+                <h2>Mga Madalas na Katanungan</h2>
+                <div class="faq-cards">
+                    <div class="faq-card">
+                        <h3>Ano ang Brat Generator?</h3>
+                        <p>Ang Brat Generator ay isang libreng online tool na nagbibigay-daan sa iyo na lumikha ng teksto sa istilo ng album cover ng 'Brat' ni Charli XCX. Maaari mong i-customize ang teksto at pumili mula sa maraming tema kabilang ang iconic na berdeng background mula sa album.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Ano ang Brat album ni Charli XCX?</h3>
+                        <p>Ang Brat ay ang ikaanim na studio album ng Ingles na singer-songwriter na si Charli XCX, na inilabas noong 2023. Ang album ay may natatanging minimalist na berdeng cover na may malabong teksto, na naging isang iconic na visual style at internet phenomenon.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Paano gumagana ang Brat text generator?</h3>
+                        <p>Ang aming Brat text generator ay nagbibigay-daan sa iyo na maglagay ng iyong sariling teksto, pumili mula sa iba't ibang tema ng kulay (kabilang ang iconic na berde), at gumawa ng isang imahe na kumikilala sa istilo ng album cover ng Brat ni Charli XCX. Ang tool ay gumagamit ng tamang font, blur effect, at styling para tumugma sa aesthetic ng album.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Maaari ko bang gamitin ang Brat text generator para sa social media?</h3>
+                        <p>Oo! Ang Brat Generator ay perpekto para sa paggawa ng mga social media post, profile picture, o anumang content kung saan gusto mong yakapin ang aesthetic ng Brat. I-download lamang ang iyong nilikha na imahe at ibahagi ito sa iyong paboritong platform.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Libre bang gamitin ang Brat Generator?</h3>
+                        <p>Oo, ang Brat Generator ay ganap na libre upang gamitin. Maaari kang gumawa ng maraming imahe hangga't gusto mo nang walang gastos o pangangailangan ng account registration.</p>
+                    </div>
+
+                    <div class="faq-card">
+                        <h3>Anong mga tema ang available sa Brat Generator?</h3>
+                        <p>Nag-aalok kami ng maraming tema kabilang ang iconic na berde (pareho sa album cover ni Charli XCX), itim, puti, at asul na mga variation, na nagbibigay-daan sa iyo na i-customize ang iyong Brat style text para tumugma sa iyong personal na kagustuhan.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>Tungkol sa Brat Generator</h2>
+                <p>Ang Brat Generator ay isang libreng online tool na inspirado sa album cover ng 'Brat' ni Charli XCX. Ang aming generator ay nagbibigay-daan sa iyo na lumikha ng teksto sa parehong natatanging istilo ng iconic na berdeng album artwork na naging isang cultural phenomenon.</p>
+                <p>Maging ikaw man ay isang Charli XCX fan, isang music enthusiast, o gusto mo lang ang aesthetic, ang aming tool ay nagpapadali sa paggawa ng iyong sariling customized na Brat-style na mga imahe na may maraming tema at simpleng mga kontrol.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <h3>Mga Link</h3>
+                    <ul>
+                        <li><a href="./privacy.html">Patakaran sa Privacy</a></li>
+                        <li><a href="./terms.html">Mga Tuntunin ng Paggamit</a></li>
+                        <li><a href="./contact.html">Makipag-ugnay Sa Amin</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Sundan Kami</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <p>&copy; <span id="current-year">2024</span> Brat Generator. All rights reserved.</p>
+                <p class="disclaimer">This is an unofficial fan-made tool. Brat Generator is not affiliated with, endorsed by, or connected to Charli XCX or her management. "Brat" is a trademark of Charli XCX. This tool is created for fan entertainment purposes only.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html> 
