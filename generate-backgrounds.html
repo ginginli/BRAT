@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,4 +91,98 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Background Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .color-box {
+            width: 500px;
+            height: 400px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+        .white {
+            background-color: #FFFFFF;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+        .black {
+            background-color: #000000;
+        }
+        .green {
+            background-color: #8ACF00;
+        }
+        .blue {
+            background-color: #0A00AD;
+        }
+        h1 {
+            margin-bottom: 30px;
+        }
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .instructions {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Background Image Generator</h1>
+    
+    <div class="instructions">
+        <p><strong>Instructions:</strong></p>
+        <ol>
+            <li>Right-click on each color box</li>
+            <li>Select "Save image as" or "Save image"</li>
+            <li>Save the image to the images directory</li>
+            <li>Save with the suggested filename</li>
+        </ol>
+    </div>
+    
+    <div class="color-box white" id="white-bg">
+        White background (brat-bg-white.png)
+    </div>
+    
+    <div class="color-box black" id="black-bg">
+        Black background (brat-bg-black.png)
+    </div>
+    
+    <div class="color-box green" id="green-bg">
+        Green background (brat-bg-green.png)
+    </div>
+    
+    <div class="color-box blue" id="blue-bg">
+        Blue background (brat-bg-blue.png)
+    </div>
+    
+    <script>
+        // Add click event to prompt user to save image
+        document.querySelectorAll('.color-box').forEach(box => {
+            box.addEventListener('click', function() {
+                const color = this.id.split('-')[0];
+                alert(`Please right-click on this box, select "Save image as", and save it as brat-bg-${color}.png`);
+            });
+        });
+    </script>
+</body>
+>>>>>>> b45925e (更新网站为Charli XCX Brat Text Generator)
 </html>

@@ -1,0 +1,33 @@
+{
+    "meta": {
+        "title": "Brat 生成器 - 创建你自己的 Brat 图片",
+        "description": "使用我们的简单工具生成自定义 Brat 图片",
+        "keywords": "brat生成器, 图片生成器, 自定义brat"
+    },
+    "nav": {
+        "home": "首页",
+        "generator": "生成器",
+        "howItWorks": "使用说明",
+        "gallery": "图库",
+        "about": "关于"
+    },
+    "generator": {
+        "title": "Brat 生成器",
+        "enterText": "在此输入文字...",
+        "themes": {
+            "title": "选择主题",
+            "light": "明亮",
+            "dark": "暗黑",
+            "cute": "可爱",
+            "cool": "酷炫"
+        },
+        "saveImage": "保存图片",
+        "tip": "点击保存生成的图片"
+    },
+    "footer": {
+        "privacy": "隐私政策",
+        "terms": "使用条款",
+        "contact": "联系我们",
+        "copyright": "© 2024 Brat Generator. 保留所有权利。"
+    }
+} 

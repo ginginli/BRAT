@@ -1,5 +1,6 @@
 {
   "meta": {
+<<<<<<< HEAD
     "title": "Brat Generator - Create Professional Brat Style Images",
     "description": "Create professional Brat style images with our free generator. Choose from multiple themes including green, black, white, and blue. Customize text and generate high-quality images instantly.",
     "keywords": "brat generator, brat style, image generator, text effects, custom images"
@@ -23,6 +24,31 @@
     },
     "saveImage": "Save Image",
     "tip": "Tip: You can also take a screenshot to save the image"
+=======
+    "title": "Brat Generator - Create Your Own Brat Images",
+    "description": "Generate custom brat images with our easy-to-use tool",
+    "keywords": "brat generator, image generator, custom brat"
+  },
+  "nav": {
+    "home": "Home",
+    "generator": "Generator",
+    "howItWorks": "How It Works",
+    "gallery": "Gallery",
+    "about": "About"
+  },
+  "generator": {
+    "title": "Brat Generator",
+    "enterText": "Enter your text here...",
+    "themes": {
+      "title": "Choose Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "cute": "Cute",
+      "cool": "Cool"
+    },
+    "saveImage": "Save Image",
+    "tip": "Click to save your generated image"
+>>>>>>> b45925e (更新网站为Charli XCX Brat Text Generator)
   },
   "howItWorks": {
     "title": "How It Works",

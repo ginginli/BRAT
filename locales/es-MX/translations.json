@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "meta": {
     "title": "Brat Generator - Crea Imágenes Profesionales Estilo Brat",
@@ -51,4 +52,59 @@
     "contact": "Contacto",
     "copyright": "© 2024 Brat Generator. Todos los derechos reservados."
   }
+=======
+{
+  "meta": {
+    "title": "Brat Generator - Crea Imágenes Profesionales Estilo Brat",
+    "description": "Crea imágenes profesionales estilo Brat con nuestro generador gratuito. Elige entre múltiples temas incluyendo verde, negro, blanco y azul. Personaliza el texto y genera imágenes de alta calidad al instante.",
+    "keywords": "generador brat, estilo brat, generador de imágenes, efectos de texto, imágenes personalizadas"
+  },
+  "nav": {
+    "generator": "Generador",
+    "howItWorks": "Cómo Funciona",
+    "gallery": "Galería",
+    "faq": "Preguntas",
+    "about": "Acerca de"
+  },
+  "generator": {
+    "title": "Crea Tu Imagen Brat",
+    "enterText": "Ingresa Texto",
+    "themes": {
+      "title": "Elige un Tema",
+      "green": "Verde",
+      "black": "Negro",
+      "white": "Blanco",
+      "blue": "Azul"
+    },
+    "saveImage": "Guardar Imagen",
+    "tip": "Consejo: También puedes tomar una captura de pantalla para guardar la imagen"
+  },
+  "howItWorks": {
+    "title": "Cómo Funciona",
+    "steps": {
+      "step1": {
+        "title": "Ingresa Texto",
+        "description": "Escribe el texto que deseas mostrar en el cuadro de texto"
+      },
+      "step2": {
+        "title": "Elige un Tema",
+        "description": "Selecciona un estilo que te guste de nuestros temas disponibles"
+      },
+      "step3": {
+        "title": "Guarda la Imagen",
+        "description": "Haz clic en el botón \"Guardar Imagen\" o toma una captura de pantalla para guardar tu creación"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Ejemplos de Estilos",
+    "description": "Mira estos diferentes ejemplos de estilo Brat con varios temas. Crea el tuyo usando nuestro generador arriba."
+  },
+  "footer": {
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Uso",
+    "contact": "Contacto",
+    "copyright": "© 2024 Brat Generator. Todos los derechos reservados."
+  }
+>>>>>>> b45925e (更新网站为Charli XCX Brat Text Generator)
 } 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 User-agent: *
 Allow: /
 Allow: /index.html
@@ -18,4 +19,26 @@ Sitemap: https://www.bratgenerator.com.cn/sitemap-test.xml
 Disallow: /admin/
 Disallow: /cgi-bin/
 Disallow: /tmp/
+=======
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /contact.html
+Allow: /images/
+Allow: /styles.css
+Allow: /script.js
+Allow: /sitemap.xml
+Allow: /sitemap-test.xml
+Allow: /robots.txt
+
+Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
+Sitemap: https://www.bratgenerator.com.cn/sitemap-test.xml
+
+# Disallow potentially sensitive directories
+Disallow: /admin/
+Disallow: /cgi-bin/
+Disallow: /tmp/
+>>>>>>> b45925e (更新网站为Charli XCX Brat Text Generator)
 Disallow: /private/ 

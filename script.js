@@ -166,8 +166,8 @@ function addStructuredData() {
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Brat Generator",
-        "description": "Create your own Brat style images, easily generate personalized Brat memes",
+        "name": "Brat Generator - Free Online Charli XCX Brat Text Generator",
+        "description": "Create customized text in the style of Charli XCX's Brat album cover with our free online generator",
         "applicationCategory": "MultimediaApplication",
         "operatingSystem": "Web",
         "offers": {
@@ -183,50 +183,50 @@ function addStructuredData() {
         "mainEntity": [
             {
                 "@type": "Question",
-                "name": "What is a brat generator?",
+                "name": "What is the Brat Generator?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "A brat generator is a tool designed to create fictional brat characters for storytelling, role-playing games, or other creative purposes. These generators often provide various traits, backstories, and appearances, allowing users to easily develop unique and intriguing characters that fit into different narratives."
+                    "text": "The Brat Generator is a free online tool that allows you to create text in the style of Charli XCX's 'Brat' album cover. You can customize the text and choose from multiple themes including the iconic green background from the album."
                 }
             },
             {
                 "@type": "Question",
-                "name": "How does a brat generator work?",
+                "name": "What is Charli XCX's Brat album?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Brat generators typically use algorithms or predefined lists of characteristics to randomly combine traits when you input criteria or hit a generate button. This can include personality quirks, physical features, and even conflict scenarios, ensuring a diverse range of outcome options for users."
+                    "text": "Brat is the sixth studio album by English singer-songwriter Charli XCX, released in 2023. The album features a distinctive minimalist green cover with blurred text, which has become an iconic visual style and internet phenomenon."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Are brat generators suitable for all ages?",
+                "name": "How does the Brat text generator work?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "While brat generators can be fun for all ages, some content may include themes that are more appropriate for older teen or adult audiences. It's important to verify the generator's specifics and adjust the settings to match the intended audience to ensure appropriateness for younger users."
+                    "text": "Our Brat text generator lets you input your own text, select from different color themes (including the iconic green), and generate an image that mimics the style of Charli XCX's Brat album cover. The tool applies the right font, blur effect, and styling to match the album aesthetic."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Can I customize the generated characters?",
+                "name": "Can I use the Brat text generator for social media?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes, many brat generators allow for customization. You can often input specific traits or select preferences for personality, appearance, and background to tailor the generated character to better fit your creative needs, enhancing the storytelling experience."
+                    "text": "Yes! The Brat Generator is perfect for creating social media posts, profile pictures, or any content where you want to embrace the Brat aesthetic. Simply download your created image and share it on your favorite platform."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Where can I find brat generators?",
+                "name": "Is the Brat Generator free to use?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Brat generators can be found on various websites dedicated to storytelling, character creation, and online games. Many forums, game development sites, and creative writing platforms also offer these tools, often for free, to help writers and gamers alike."
+                    "text": "Yes, the Brat Generator is completely free to use. You can create as many images as you like with no cost or account registration required."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Why use a brat generator for storytelling?",
+                "name": "What themes are available in the Brat Generator?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Using a brat generator can streamline the creative process, providing inspiration and breaking writer's block. It allows storytellers to create complex characters quickly, enriching narratives with diverse personalities and traits that can lead to unexpected plot developments."
+                    "text": "We offer multiple themes including the iconic green (same as Charli XCX's album cover), black, white, and blue variations, allowing you to customize your Brat style text to match your personal preference."
                 }
             }
         ]
