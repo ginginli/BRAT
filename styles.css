@@ -224,13 +224,12 @@ h2 {
 .preview-container {
     flex: 2;
     min-width: 300px;
-    position: relative;
 }
 
 #meme-container {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0 auto;
 }
 
@@ -249,6 +248,9 @@ h2 {
     text-align: center;
     white-space: nowrap;
     letter-spacing: -2px;
+    -webkit-text-stroke: 0px black;
+    font-size: 120px;
+    filter: blur(2.5px);
 }
 
 .input-group {
@@ -266,6 +268,7 @@ input[type="text"] {
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
+    font-size: 16px;
 }
 
 .theme-selector {
