@@ -37,10 +37,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add current theme class
         document.body.classList.add(`theme-${theme}`);
         
+        // Get the correct image path based on current page location
+        const isRootPage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
+        const imagePath = isRootPage ? 'images/' : '../images/';
+        
         // Set different background images and text styles based on theme
         switch(theme) {
             case 'green':
-                memeImage.src = 'images/brat-bg-green.png';
+                memeImage.src = `${imagePath}brat-bg-green.png`;
                 textOverlay.style.color = '#000000';
                 textOverlay.style.filter = 'blur(2.5px)';
                 textOverlay.style.fontWeight = 'normal';
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 themeGreen.classList.add('active');
                 break;
             case 'black':
-                memeImage.src = 'images/brat-bg-black.png';
+                memeImage.src = `${imagePath}brat-bg-black.png`;
                 textOverlay.style.color = '#FFFFFF';
                 textOverlay.style.filter = 'blur(1.8px)';
                 textOverlay.style.fontWeight = 'normal';
@@ -56,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 themeBlack.classList.add('active');
                 break;
             case 'white':
-                memeImage.src = 'images/brat-bg-white.png';
+                memeImage.src = `${imagePath}brat-bg-white.png`;
                 textOverlay.style.color = '#000000';
                 textOverlay.style.filter = 'blur(1.8px)';
                 textOverlay.style.fontWeight = 'normal';
@@ -64,7 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 themeWhite.classList.add('active');
                 break;
             case 'blue':
-                memeImage.src = 'images/brat-bg-blue.png';
+                memeImage.src = `${imagePath}brat-bg-blue.png`;
                 textOverlay.style.color = '#DE0100';
                 textOverlay.style.filter = 'blur(1.8px)';
                 textOverlay.style.fontWeight = 'normal';
