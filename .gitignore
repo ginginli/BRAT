@@ -1,0 +1,10 @@
+# 系统文件
+.DS_Store
+**/.DS_Store
+
+# 临时工具文件
+blue-bg-generator.html
+create-blue-bg.html
+create_blue_bg.py
+temp_img/
+update_blue_image.html 
