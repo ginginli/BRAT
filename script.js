@@ -27,8 +27,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set theme function
     function setTheme(theme) {
-        // Remove all theme classes
+        // Remove all theme classes and active classes
         document.body.classList.remove('theme-green', 'theme-black', 'theme-white', 'theme-blue');
+        themeGreen.classList.remove('active');
+        themeBlack.classList.remove('active');
+        themeWhite.classList.remove('active');
+        themeBlue.classList.remove('active');
+        
         // Add current theme class
         document.body.classList.add(`theme-${theme}`);
         
@@ -37,8 +42,9 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'green':
                 memeImage.src = 'images/brat-bg-green.png';
                 textOverlay.style.color = '#000000';
-                textOverlay.style.filter = 'blur(1.8px)';
+                textOverlay.style.filter = 'blur(2.5px)';
                 textOverlay.style.fontWeight = 'normal';
+                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeGreen.classList.add('active');
                 break;
             case 'black':
@@ -46,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 textOverlay.style.color = '#FFFFFF';
                 textOverlay.style.filter = 'blur(1.8px)';
                 textOverlay.style.fontWeight = 'normal';
+                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeBlack.classList.add('active');
                 break;
             case 'white':
@@ -53,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 textOverlay.style.color = '#000000';
                 textOverlay.style.filter = 'blur(1.8px)';
                 textOverlay.style.fontWeight = 'normal';
+                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeWhite.classList.add('active');
                 break;
             case 'blue':
@@ -60,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 textOverlay.style.color = '#DE0100';
                 textOverlay.style.filter = 'blur(1.8px)';
                 textOverlay.style.fontWeight = 'normal';
+                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeBlue.classList.add('active');
                 break;
         }
@@ -74,9 +83,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const containerWidth = container.offsetWidth;
         const containerHeight = container.offsetHeight;
         
-        // Initial font size
-        let fontSize = 140;
+        // 设置初始字体大小，绿色主题使用更大字体
+        let fontSize = 120;
+        if(document.body.classList.contains('theme-green')) {
+            fontSize = 140;
+        }
         textOverlay.style.fontSize = `${fontSize}px`;
+        
+        // 确保保留水平缩放效果
+        const currentTransform = textOverlay.style.transform;
+        if(!currentTransform || !currentTransform.includes('scaleX')) {
+            textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
+        }
         
         // Adjust font size until text fits container
         while ((textOverlay.offsetWidth > containerWidth * 0.85 || textOverlay.offsetHeight > containerHeight * 0.75) && fontSize > 10) {
