@@ -9,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeBlack = document.getElementById('theme-black');
     const themeWhite = document.getElementById('theme-white');
     const themeBlue = document.getElementById('theme-blue');
+    const autoWrapCheckbox = document.getElementById('auto-wrap');
+    const fontSizeSlider = document.getElementById('font-size-slider');
+    
+    // 用户自定义字体大小系数
+    let fontSizeFactor = 1.0;
     
     // Set initial text
     textOverlay.innerText = textInput.value;
@@ -24,6 +29,18 @@ document.addEventListener('DOMContentLoaded', function() {
     themeBlack.addEventListener('click', () => setTheme('black'));
     themeWhite.addEventListener('click', () => setTheme('white'));
     themeBlue.addEventListener('click', () => setTheme('blue'));
+    
+    // 自动换行切换
+    autoWrapCheckbox.addEventListener('change', function() {
+        textOverlay.style.whiteSpace = this.checked ? 'normal' : 'nowrap';
+        fitText();
+    });
+    
+    // 字体大小滑块
+    fontSizeSlider.addEventListener('input', function() {
+        fontSizeFactor = this.value / 100;
+        fitText();
+    });
     
     // Set theme function
     function setTheme(theme) {
@@ -88,10 +105,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const containerHeight = container.offsetHeight;
         
         // 设置初始字体大小，绿色主题使用更大字体
-        let fontSize = 120;
+        let baseSize = 120;
         if(document.body.classList.contains('theme-green')) {
-            fontSize = 140;
+            baseSize = 140;
         }
+        
+        // 应用用户自定义字体大小系数
+        let fontSize = baseSize * fontSizeFactor;
+        
         textOverlay.style.fontSize = `${fontSize}px`;
         
         // 确保保留水平缩放效果
@@ -100,10 +121,24 @@ document.addEventListener('DOMContentLoaded', function() {
             textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
         }
         
-        // Adjust font size until text fits container
-        while ((textOverlay.offsetWidth > containerWidth * 0.85 || textOverlay.offsetHeight > containerHeight * 0.75) && fontSize > 10) {
-            fontSize -= 5;
-            textOverlay.style.fontSize = `${fontSize}px`;
+        // 根据是否自动换行调整元素样式
+        textOverlay.style.whiteSpace = autoWrapCheckbox.checked ? 'normal' : 'nowrap';
+        
+        // 如果不自动换行，需要缩小字体以适应一行
+        if (!autoWrapCheckbox.checked) {
+            // Adjust font size until text fits container width
+            while (textOverlay.scrollWidth > containerWidth * 0.85 && fontSize > 10) {
+                fontSize -= 5;
+                textOverlay.style.fontSize = `${fontSize}px`;
+            }
+        } else {
+            // 如果自动换行，确保文本高度不超过容器高度
+            while ((textOverlay.scrollHeight > containerHeight * 0.8 || 
+                  textOverlay.scrollWidth > containerWidth * 0.8) && 
+                  fontSize > 10) {
+                fontSize -= 5;
+                textOverlay.style.fontSize = `${fontSize}px`;
+            }
         }
     }
     
@@ -144,7 +179,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // 设置文本颜色
             ctx.fillStyle = textColor;
             
-            // 简化方法：直接绘制文本，不尝试手动实现字母间距
             // 保存当前上下文状态
             ctx.save();
             
@@ -153,8 +187,26 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.scale(0.85, 1); // 应用水平缩放
             ctx.translate(-width/2, -height/2);
             
-            // 直接绘制文本（居中）
-            ctx.fillText(text, width/2, height/2);
+            // 处理多行文本
+            if (autoWrapCheckbox.checked) {
+                const lineHeight = fontSize * 1.2;
+                const maxWidth = width * 0.8; // 最大宽度为容器的80%
+                const lines = getLines(ctx, text, maxWidth);
+                
+                // 计算总高度
+                const totalHeight = lines.length * lineHeight;
+                // 计算起始Y位置，使文本垂直居中
+                let y = height/2 - (totalHeight / 2) + lineHeight/2;
+                
+                // 绘制每一行文本
+                for (let i = 0; i < lines.length; i++) {
+                    ctx.fillText(lines[i], width/2, y);
+                    y += lineHeight;
+                }
+            } else {
+                // 单行文本居中绘制
+                ctx.fillText(text, width/2, height/2);
+            }
             
             // 恢复上下文状态
             ctx.restore();
@@ -169,6 +221,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // 设置图片源
         img.src = memeImage.src;
     });
+    
+    // 辅助函数：分割文本为多行
+    function getLines(ctx, text, maxWidth) {
+        const words = text.split(' ');
+        const lines = [];
+        let currentLine = words[0];
+        
+        for (let i = 1; i < words.length; i++) {
+            const word = words[i];
+            const width = ctx.measureText(currentLine + ' ' + word).width;
+            
+            if (width < maxWidth) {
+                currentLine += ' ' + word;
+            } else {
+                lines.push(currentLine);
+                currentLine = word;
+            }
+        }
+        
+        lines.push(currentLine);
+        return lines;
+    }
     
     // Initial text size adjustment
     fitText();

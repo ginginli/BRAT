@@ -92,7 +92,21 @@
                     <div class="controls">
                         <div class="input-group">
                             <label for="text-input" data-i18n="generator.textInput">Enter Text</label>
-                            <input type="text" id="text-input" data-i18n-placeholder="generator.textPlaceholder" maxlength="20" value="brat">
+                            <textarea id="text-input" data-i18n-placeholder="generator.textPlaceholder" rows="3">brat</textarea>
+                        </div>
+                        
+                        <div class="text-options">
+                            <h3>Text Options</h3>
+                            <div class="option-group">
+                                <label>
+                                    <input type="checkbox" id="auto-wrap" checked>
+                                    <span>Auto Wrap Text</span>
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label for="font-size-slider">Font Size:</label>
+                                <input type="range" id="font-size-slider" min="50" max="150" value="100">
+                            </div>
                         </div>
                         
                         <div class="theme-selector">

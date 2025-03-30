@@ -246,11 +246,15 @@ h2 {
     font-family: 'Arial Narrow', Arial, sans-serif;
     font-weight: normal;
     text-align: center;
-    white-space: nowrap;
+    white-space: normal;
     letter-spacing: -2px;
     -webkit-text-stroke: 0px black;
     font-size: 120px;
     filter: blur(2.5px);
+    width: 80%;
+    max-height: 80%;
+    word-wrap: break-word;
+    overflow: hidden;
 }
 
 .input-group {
@@ -263,12 +267,15 @@ label {
     font-weight: bold;
 }
 
-input[type="text"] {
+textarea#text-input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
     font-size: 16px;
+    resize: vertical;
+    min-height: 80px;
+    font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
 .theme-selector {
@@ -845,16 +852,11 @@ footer a:hover {
     padding: 8px 0;
     margin-top: 5px;
     z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s;
+    display: none;
 }
 
 .language-switcher:hover .lang-dropdown {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    display: block;
 }
 
 .lang-item {
@@ -886,4 +888,39 @@ footer a:hover {
         width: 100%;
         max-width: 200px;
     }
+}
+
+/* 文本选项样式 */
+.text-options {
+    margin-bottom: 20px;
+    background-color: #f8f8f8;
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+}
+
+.text-options h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.option-group {
+    margin-bottom: 10px;
+}
+
+.option-group label {
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.option-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.option-group input[type="range"] {
+    width: 100%;
+    margin: 5px 0;
 }
