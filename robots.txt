@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 User-agent: *
 Allow: /
 Allow: /index.html
@@ -9,36 +8,31 @@ Allow: /images/
 Allow: /styles.css
 Allow: /script.js
 Allow: /sitemap.xml
-Allow: /sitemap-test.xml
+Allow: /sitemap_index.xml
 Allow: /robots.txt
 
+# 添加语言子目录
+Allow: /zh-CN/
+Allow: /en-US/
+Allow: /es-MX/
+Allow: /es-AR/
+Allow: /id/
+Allow: /tr/
+Allow: /fil/
+
+# 站点地图
+Sitemap: https://www.bratgenerator.com.cn/sitemap_index.xml
 Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
-Sitemap: https://www.bratgenerator.com.cn/sitemap-test.xml
 
 # Disallow potentially sensitive directories
 Disallow: /admin/
 Disallow: /cgi-bin/
 Disallow: /tmp/
-=======
-User-agent: *
-Allow: /
-Allow: /index.html
-Allow: /privacy.html
-Allow: /terms.html
-Allow: /contact.html
-Allow: /images/
-Allow: /styles.css
-Allow: /script.js
-Allow: /sitemap.xml
-Allow: /sitemap-test.xml
-Allow: /robots.txt
+Disallow: /private/
 
-Sitemap: https://www.bratgenerator.com.cn/sitemap.xml
-Sitemap: https://www.bratgenerator.com.cn/sitemap-test.xml
-
-# Disallow potentially sensitive directories
-Disallow: /admin/
-Disallow: /cgi-bin/
-Disallow: /tmp/
->>>>>>> b45925e (更新网站为Charli XCX Brat Text Generator)
-Disallow: /private/ 
+# 不索引临时工具文件
+Disallow: /blue-bg-generator.html
+Disallow: /create-blue-bg.html
+Disallow: /create_blue_bg.py
+Disallow: /update_blue_image.html
+Disallow: /temp_img/ 
