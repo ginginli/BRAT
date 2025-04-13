@@ -148,25 +148,26 @@ document.addEventListener('DOMContentLoaded', function() {
         const text = textOverlay.innerText;
         const textColor = textOverlay.style.color;
         const fontSize = parseInt(textOverlay.style.fontSize);
-        const blurAmount = 3; // 增加模糊效果从1.8px到3px
+        const blurAmount = 3;
         
-        // 创建一个新的Canvas元素
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        // 显示加载动画
+        const loadingAnimation = document.getElementById('loading-animation');
+        loadingAnimation.style.display = 'block';
         
-        // 设置Canvas大小与预览容器相同
-        const width = container.offsetWidth;
-        const height = container.offsetHeight;
-        canvas.width = width * 2; // 提高分辨率
-        canvas.height = height * 2; // 提高分辨率
-        ctx.scale(2, 2); // 缩放上下文以匹配分辨率
-        
-        // 加载背景图片
-        const img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.onload = function() {
-            // 绘制背景图片
-            ctx.drawImage(img, 0, 0, width, height);
+        try {
+            // 创建一个新的Canvas元素
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // 设置Canvas大小与预览容器相同
+            const width = container.offsetWidth;
+            const height = container.offsetHeight;
+            canvas.width = width * 2;
+            canvas.height = height * 2;
+            ctx.scale(2, 2);
+            
+            // 直接使用当前显示的图片
+            ctx.drawImage(memeImage, 0, 0, width, height);
             
             // 设置文本样式
             ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
@@ -184,42 +185,56 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 应用水平缩放到整个文本
             ctx.translate(width/2, height/2);
-            ctx.scale(0.85, 1); // 应用水平缩放
+            ctx.scale(0.85, 1);
             ctx.translate(-width/2, -height/2);
             
             // 处理多行文本
             if (autoWrapCheckbox.checked) {
                 const lineHeight = fontSize * 1.2;
-                const maxWidth = width * 0.8; // 最大宽度为容器的80%
+                const maxWidth = width * 0.8;
                 const lines = getLines(ctx, text, maxWidth);
                 
-                // 计算总高度
                 const totalHeight = lines.length * lineHeight;
-                // 计算起始Y位置，使文本垂直居中
                 let y = height/2 - (totalHeight / 2) + lineHeight/2;
                 
-                // 绘制每一行文本
                 for (let i = 0; i < lines.length; i++) {
                     ctx.fillText(lines[i], width/2, y);
                     y += lineHeight;
                 }
             } else {
-                // 单行文本居中绘制
                 ctx.fillText(text, width/2, height/2);
             }
             
             // 恢复上下文状态
             ctx.restore();
+
+            // 延迟3秒后下载
+            setTimeout(() => {
+                try {
+                    // 获取canvas数据
+                    const dataUrl = canvas.toDataURL('image/png');
+                    
+                    // 创建下载链接
+                    const link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = 'brat-image.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                } catch (error) {
+                    console.error('下载图片时出错:', error);
+                    alert('图片生成失败，请重试');
+                } finally {
+                    // 无论成功还是失败都隐藏加载动画
+                    loadingAnimation.style.display = 'none';
+                }
+            }, 3000);
             
-            // 创建下载链接
-            const link = document.createElement('a');
-            link.download = 'brat-image.png';
-            link.href = canvas.toDataURL('image/png');
-            link.click();
-        };
-        
-        // 设置图片源
-        img.src = memeImage.src;
+        } catch (error) {
+            console.error('生成图片时出错:', error);
+            alert('图片生成失败，请重试');
+            loadingAnimation.style.display = 'none';
+        }
     });
     
     // 辅助函数：分割文本为多行

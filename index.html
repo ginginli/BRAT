@@ -27,6 +27,7 @@
         gtag('js', new Date());
         gtag('config', 'G-V98G2H0L37');
     </script>
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="ps+d9akS4JtD1vgMjzi2Qg" async></script>
     <!-- 语言选择器相关链接 -->
     <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
     <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
@@ -120,6 +121,11 @@
                         </div>
                         
                         <button id="download-btn" class="download-button" data-i18n="generator.downloadButton">Save Image</button>
+                        
+                        <div id="loading-animation" class="loading-animation" style="display: none;">
+                            <div class="loading-spinner"></div>
+                            <p class="loading-text" data-i18n="generator.loading">生成图片中...</p>
+                        </div>
                         
                         <!-- AddToAny BEGIN -->
                         <div class="share-container">
@@ -419,17 +425,16 @@
         </div>
     </footer>
 
+    <!-- 添加语言切换器脚本 -->
+    <script src="components/LanguageSwitcher.js"></script>
     <script src="script.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    <!-- AddToAny JS -->
-    <script defer src="https://static.addtoany.com/menu/page.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // 初始化语言切换器
-            const languageSwitcher = new LanguageSwitcher();
-            languageSwitcher.init().catch(console.error);
-            
-            // 其他初始化代码...
+            if (typeof LanguageSwitcher !== 'undefined') {
+                const languageSwitcher = new LanguageSwitcher();
+                languageSwitcher.init();
+            }
         });
     </script>
     <script>
