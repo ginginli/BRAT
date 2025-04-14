@@ -1,5 +1,9 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
+    // 初始化语言切换器
+    const languageSwitcher = new LanguageSwitcher();
+    languageSwitcher.init();
+
     // Get DOM elements
     const textInput = document.getElementById('text-input');
     const textOverlay = document.getElementById('text-overlay');
