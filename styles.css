@@ -469,12 +469,18 @@ textarea#text-input {
     color: #000000;
 }
 
-.blue-theme {
+.theme-blue {
     background-color: #4D90CD;
 }
 
-.blue-theme span {
+.theme-blue span {
     color: #DE0100;
+    filter: blur(2px) brightness(1.2);
+}
+
+.theme-blue .text-overlay {
+    color: #DE0100;
+    filter: blur(2px) brightness(1.2);
 }
 
 /* 页脚部分 */
