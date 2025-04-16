@@ -927,7 +927,7 @@ footer a:hover {
 
 /* Theme-specific styles */
 .theme-green .text-overlay {
-    color: #ffffff;
+    color: #000000;
     filter: blur(2px) brightness(1.2);
 }
 
@@ -943,7 +943,7 @@ footer a:hover {
 }
 
 .theme-blue .text-overlay {
-    color: #ffffff;
+    color: #DE0100;
     filter: blur(2px) brightness(1.2);
 }
 
