@@ -76,7 +76,7 @@ class LanguageSwitcher {
           break;
         case 'id':
           langBtn.textContent = '🌐 Bahasa';
-          break;
+              break;
         default:
           langBtn.textContent = '🌐 Language';
       }
