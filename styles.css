@@ -250,7 +250,8 @@ h2 {
     letter-spacing: -2px;
     -webkit-text-stroke: 0px black;
     font-size: 120px;
-    filter: blur(2.5px);
+    filter: blur(2px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     width: 80%;
     max-height: 80%;
     word-wrap: break-word;
@@ -456,6 +457,8 @@ textarea#text-input {
 
 .black-theme span {
     color: #FFFFFF;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    filter: blur(2px);
 }
 
 .white-theme {
