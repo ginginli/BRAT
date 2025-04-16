@@ -456,7 +456,7 @@ textarea#text-input {
 }
 
 .black-theme span {
-    color: #FFFFFF;
+    color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     filter: blur(2px);
 }
@@ -934,6 +934,7 @@ footer a:hover {
 .theme-black .text-overlay {
     color: #ffffff;
     filter: blur(2px) brightness(1.2);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .theme-white .text-overlay {
@@ -944,4 +945,9 @@ footer a:hover {
 .theme-blue .text-overlay {
     color: #ffffff;
     filter: blur(2px) brightness(1.2);
+}
+
+.theme-black span {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
