@@ -1,8 +1,8 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', function() {
-    // 初始化语言切换器
-    const languageSwitcher = new LanguageSwitcher();
-    languageSwitcher.init();
+    // 暂时注释掉 LanguageSwitcher 相关代码，因为类未定义，导致其他功能无法执行
+    // const languageSwitcher = new LanguageSwitcher();
+    // languageSwitcher.init();
 
     // Get DOM elements
     const textInput = document.getElementById('text-input');
@@ -58,9 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add current theme class
         document.body.classList.add(`theme-${theme}`);
         
-        // Get the correct image path based on current page location
-        const isRootPage = window.location.pathname === '/' || window.location.pathname.endsWith('index.html');
-        const imagePath = isRootPage ? 'images/' : '../images/';
+        // 使用根路径
+        const imagePath = '/images/';
         
         // Set different background images and text styles based on theme
         switch(theme) {
@@ -102,178 +101,57 @@ document.addEventListener('DOMContentLoaded', function() {
         fitText();
     }
     
-    // Text size auto-adjustment function
+    // Fit text function
     function fitText() {
         const container = document.getElementById('meme-container');
-        const containerWidth = container.offsetWidth;
-        const containerHeight = container.offsetHeight;
+        const containerWidth = container.clientWidth;
+        const containerHeight = container.clientHeight;
         
-        // 设置初始字体大小，绿色主题使用更大字体
-        let baseSize = 120;
-        if(document.body.classList.contains('theme-green')) {
-            baseSize = 140;
-        }
+        // Reset font size
+        textOverlay.style.fontSize = '120px';
         
-        // 应用用户自定义字体大小系数
-        let fontSize = baseSize * fontSizeFactor;
+        // Get text dimensions
+        const textWidth = textOverlay.scrollWidth;
+        const textHeight = textOverlay.scrollHeight;
         
-        textOverlay.style.fontSize = `${fontSize}px`;
+        // Calculate scale factor
+        const widthScale = (containerWidth * 0.8) / textWidth;
+        const heightScale = (containerHeight * 0.8) / textHeight;
+        const scale = Math.min(widthScale, heightScale) * fontSizeFactor;
         
-        // 确保保留水平缩放效果
-        const currentTransform = textOverlay.style.transform;
-        if(!currentTransform || !currentTransform.includes('scaleX')) {
-            textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
-        }
-        
-        // 根据是否自动换行调整元素样式
-        textOverlay.style.whiteSpace = autoWrapCheckbox.checked ? 'normal' : 'nowrap';
-        
-        // 如果不自动换行，需要缩小字体以适应一行
-        if (!autoWrapCheckbox.checked) {
-            // Adjust font size until text fits container width
-            while (textOverlay.scrollWidth > containerWidth * 0.85 && fontSize > 10) {
-                fontSize -= 5;
-                textOverlay.style.fontSize = `${fontSize}px`;
-            }
-        } else {
-            // 如果自动换行，确保文本高度不超过容器高度
-            while ((textOverlay.scrollHeight > containerHeight * 0.8 || 
-                  textOverlay.scrollWidth > containerWidth * 0.8) && 
-                  fontSize > 10) {
-                fontSize -= 5;
-                textOverlay.style.fontSize = `${fontSize}px`;
-            }
-        }
+        // Apply scale
+        textOverlay.style.fontSize = `${120 * scale}px`;
     }
     
-    // Download image functionality
-    downloadBtn.addEventListener('click', function() {
-        const container = document.getElementById('meme-container');
-        const text = textOverlay.innerText;
-        const textColor = textOverlay.style.color;
-        const fontSize = parseInt(textOverlay.style.fontSize);
-        const blurAmount = 3;
-        
-        // 显示加载动画
-        const loadingAnimation = document.getElementById('loading-animation');
-        loadingAnimation.style.display = 'block';
-        
-        try {
-            // 创建一个新的Canvas元素
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            // 设置Canvas大小与预览容器相同
-            const width = container.offsetWidth;
-            const height = container.offsetHeight;
-            canvas.width = width * 2;
-            canvas.height = height * 2;
-            ctx.scale(2, 2);
-            
-            // 直接使用当前显示的图片
-            ctx.drawImage(memeImage, 0, 0, width, height);
-            
-            // 设置文本样式
-            ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            
-            // 应用更强的模糊效果
-            ctx.filter = `blur(${blurAmount}px)`;
-            
-            // 设置文本颜色
-            ctx.fillStyle = textColor;
-            
-            // 保存当前上下文状态
-            ctx.save();
-            
-            // 应用水平缩放到整个文本
-            ctx.translate(width/2, height/2);
-            ctx.scale(0.85, 1);
-            ctx.translate(-width/2, -height/2);
-            
-            // 处理多行文本
-            if (autoWrapCheckbox.checked) {
-                const lineHeight = fontSize * 1.2;
-                const maxWidth = width * 0.8;
-                const lines = getLines(ctx, text, maxWidth);
-                
-                const totalHeight = lines.length * lineHeight;
-                let y = height/2 - (totalHeight / 2) + lineHeight/2;
-                
-                for (let i = 0; i < lines.length; i++) {
-                    ctx.fillText(lines[i], width/2, y);
-                    y += lineHeight;
-                }
-            } else {
-                ctx.fillText(text, width/2, height/2);
-            }
-            
-            // 恢复上下文状态
-            ctx.restore();
-
-            // 延迟3秒后下载
-            setTimeout(() => {
-                try {
-                    // 获取canvas数据
-                    const dataUrl = canvas.toDataURL('image/png');
-                    
-                    // 创建下载链接
-                    const link = document.createElement('a');
-                    link.href = dataUrl;
-                    link.download = 'brat-image.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                } catch (error) {
-                    console.error('下载图片时出错:', error);
-                    alert('图片生成失败，请重试');
-                } finally {
-                    // 无论成功还是失败都隐藏加载动画
-                    loadingAnimation.style.display = 'none';
-                }
-            }, 3000);
-            
-        } catch (error) {
-            console.error('生成图片时出错:', error);
-            alert('图片生成失败，请重试');
-            loadingAnimation.style.display = 'none';
-        }
-    });
-    
-    // 辅助函数：分割文本为多行
-    function getLines(ctx, text, maxWidth) {
-        const words = text.split(' ');
-        const lines = [];
-        let currentLine = words[0];
-        
-        for (let i = 1; i < words.length; i++) {
-            const word = words[i];
-            const width = ctx.measureText(currentLine + ' ' + word).width;
-            
-            if (width < maxWidth) {
-                currentLine += ' ' + word;
-            } else {
-                lines.push(currentLine);
-                currentLine = word;
-            }
-        }
-        
-        lines.push(currentLine);
-        return lines;
-    }
-    
-    // Initial text size adjustment
+    // Initial fit
     fitText();
     
-    // Readjust text size when window is resized
-    window.addEventListener('resize', fitText);
-    
-    // Set default theme (green) with the new style
-    setTheme('green');
-    
-    // Add structured data to improve SEO
-    addStructuredData();
+    // Download button event listener
+    downloadBtn.addEventListener('click', function() {
+        // Show loading animation
+        const loadingAnimation = document.getElementById('loading-animation');
+        if (loadingAnimation) {
+            loadingAnimation.style.display = 'flex';
+        }
+        
+        // Use html2canvas to capture the meme container
+        html2canvas(document.getElementById('meme-container'), {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true
+        }).then(canvas => {
+            // Create download link
+            const link = document.createElement('a');
+            link.download = 'brat-generator.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            
+            // Hide loading animation
+            if (loadingAnimation) {
+                loadingAnimation.style.display = 'none';
+            }
+        });
+    });
 });
 
 // Add structured data
