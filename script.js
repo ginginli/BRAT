@@ -61,41 +61,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // 使用根路径
         const imagePath = '/images/';
         
-        // Set different background images and text styles based on theme
+        // Set different background images based on theme
         switch(theme) {
             case 'green':
                 memeImage.src = `${imagePath}brat-bg-green.png`;
-                textOverlay.style.color = '#000000';
-                textOverlay.style.filter = 'blur(2.5px)';
-                textOverlay.style.fontWeight = 'normal';
-                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeGreen.classList.add('active');
                 break;
             case 'black':
                 memeImage.src = `${imagePath}brat-bg-black.png`;
-                textOverlay.style.color = '#FFFFFF';
-                textOverlay.style.filter = 'blur(1.8px)';
-                textOverlay.style.fontWeight = 'normal';
-                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeBlack.classList.add('active');
                 break;
             case 'white':
                 memeImage.src = `${imagePath}brat-bg-white.png`;
-                textOverlay.style.color = '#000000';
-                textOverlay.style.filter = 'blur(1.8px)';
-                textOverlay.style.fontWeight = 'normal';
-                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeWhite.classList.add('active');
                 break;
             case 'blue':
                 memeImage.src = `${imagePath}brat-bg-blue.png`;
-                textOverlay.style.color = '#DE0100';
-                textOverlay.style.filter = 'blur(1.8px)';
-                textOverlay.style.fontWeight = 'normal';
-                textOverlay.style.transform = 'translate(-50%, -50%) scaleX(0.85)';
                 themeBlue.classList.add('active');
                 break;
         }
+        
+        // Add theme class to text overlay
+        textOverlay.className = `text-overlay theme-${theme}`;
         
         // Adjust text size to fit container
         fitText();

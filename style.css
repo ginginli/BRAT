@@ -1,0 +1,33 @@
+/* Theme styles */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scaleX(0.85);
+    text-align: center;
+    white-space: pre-wrap;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: normal;
+    max-width: 90%;
+    user-select: none;
+}
+
+.theme-green .text-overlay {
+    color: #000000;
+    filter: blur(2.5px);
+}
+
+.theme-black .text-overlay {
+    color: #FFFFFF;
+    filter: blur(1.8px);
+}
+
+.theme-white .text-overlay {
+    color: #000000;
+    filter: blur(1.8px);
+}
+
+.theme-blue .text-overlay {
+    color: #DE0100;
+    filter: blur(1.8px);
+} 
