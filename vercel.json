@@ -80,27 +80,5 @@
         }
       ]
     }
-  ],
-  "rewrites": [
-    {
-      "source": "/en-US",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/es-AR",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/id",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/tr",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/fil",
-      "destination": "/index.html"
-    }
   ]
 } 
