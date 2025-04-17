@@ -137,7 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
         html2canvas(document.getElementById('meme-container'), {
             scale: 2,
             useCORS: true,
-            allowTaint: true
+            allowTaint: true,
+            foreignObjectRendering: true,
+            backgroundColor: null,
+            logging: true  // 添加日志以帮助调试
         }).then(canvas => {
             // Create download link
             const link = document.createElement('a');
@@ -146,6 +149,12 @@ document.addEventListener('DOMContentLoaded', function() {
             link.click();
             
             // Hide loading animation
+            if (loadingAnimation) {
+                loadingAnimation.style.display = 'none';
+            }
+        }).catch(error => {
+            console.error('Error generating image:', error);
+            // Hide loading animation in case of error
             if (loadingAnimation) {
                 loadingAnimation.style.display = 'none';
             }
