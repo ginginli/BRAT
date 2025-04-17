@@ -142,6 +142,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (loadingAnimation) {
                 loadingAnimation.style.display = 'none';
             }
+        }).catch(error => {
+            console.error('Error generating image:', error);
+            // Hide loading animation in case of error
+            if (loadingAnimation) {
+                loadingAnimation.style.display = 'none';
+            }
         });
     });
 });
