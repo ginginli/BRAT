@@ -402,6 +402,12 @@ textarea#text-input {
     margin-top: 30px;
 }
 
+.gallery-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .gallery-description {
     max-width: 800px;
     margin: 0 auto 30px;
@@ -428,6 +434,7 @@ textarea#text-input {
 
 /* 画廊中的BRAT风格预览 */
 .gallery-placeholder {
+    width: 100%;
     height: 200px;
     display: flex;
     align-items: center;
@@ -436,26 +443,44 @@ textarea#text-input {
     overflow: hidden;
     position: relative;
     transition: transform 0.3s;
+    background-color: #000; /* 默认黑色背景 */
+    color: #fff; /* 默认白色文字 */
 }
 
 .gallery-placeholder:hover {
     transform: scale(1.03);
 }
 
+.gallery-placeholder span {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    filter: blur(1px);
+}
+
 .brat-style {
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
-.brat-style span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scaleX(0.85);
-    letter-spacing: -2px;
-    font-size: 80px;
-    font-weight: normal;
-    filter: blur(1.8px);
-    white-space: nowrap;
+.black-theme {
+    background-color: #000;
+    color: #fff;
+}
+
+.green-theme {
+    background-color: #00FF00;
+    color: #000;
+}
+
+.white-theme {
+    background-color: #fff;
+    color: #000;
+}
+
+.blue-theme {
+    background-color: #0066cc;
+    color: #fff;
 }
 
 /* 页脚部分 */
