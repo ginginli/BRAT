@@ -137,10 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
         html2canvas(document.getElementById('meme-container'), {
             scale: 2,
             useCORS: true,
-            allowTaint: true,
-            foreignObjectRendering: true,
-            backgroundColor: null,
-            logging: true  // 添加日志以帮助调试
+            allowTaint: true
         }).then(canvas => {
             // Create download link
             const link = document.createElement('a');
