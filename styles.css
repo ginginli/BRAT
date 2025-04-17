@@ -930,13 +930,12 @@ footer a:hover {
 /* Theme-specific styles */
 .theme-green .text-overlay {
     color: #000000;
-    filter: blur(2px) brightness(1.2);
+    filter: blur(2px);
 }
 
 .theme-black .text-overlay {
     color: #ffffff;
-    filter: blur(2px) brightness(1.2);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    filter: blur(2px);
 }
 
 .theme-white .text-overlay {
@@ -946,7 +945,7 @@ footer a:hover {
 
 .theme-blue .text-overlay {
     color: #DE0100;
-    filter: blur(2px) brightness(1.2);
+    filter: blur(2px);
 }
 
 .theme-black span {
