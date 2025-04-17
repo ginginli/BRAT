@@ -443,36 +443,40 @@ textarea#text-input {
 }
 
 /* 画廊主题样式 */
-.gallery-placeholder.brat-style.green-theme {
+.gallery-placeholder.brat-style.theme-green {
     background-color: #84BD00;
 }
 
-.gallery-placeholder.brat-style.green-theme span {
+.gallery-placeholder.brat-style.theme-green span {
     color: #000000;
+    filter: blur(2px);
 }
 
-.gallery-placeholder.brat-style.black-theme {
-    background-color: #000000;
+.gallery-placeholder.brat-style.theme-black {
+    background-color: #333;
 }
 
-.gallery-placeholder.brat-style.black-theme span {
+.gallery-placeholder.brat-style.theme-black span {
     color: #ffffff;
+    filter: blur(2px);
 }
 
-.gallery-placeholder.brat-style.white-theme {
-    background-color: #ffffff;
+.gallery-placeholder.brat-style.theme-white {
+    background-color: #f1f1f1;
 }
 
-.gallery-placeholder.brat-style.white-theme span {
-    color: #000000;
+.gallery-placeholder.brat-style.theme-white span {
+    color: #333;
+    filter: blur(2px);
 }
 
-.gallery-placeholder.brat-style.blue-theme {
-    background-color: #0066cc;
+.gallery-placeholder.brat-style.theme-blue {
+    background-color: #4D90CD;
 }
 
-.gallery-placeholder.brat-style.blue-theme span {
-    color: #ffffff;
+.gallery-placeholder.brat-style.theme-blue span {
+    color: #FF0000;
+    filter: blur(2px);
 }
 
 /* 页脚部分 */
@@ -940,7 +944,7 @@ footer a:hover {
 }
 
 #meme-container.theme-blue .text-overlay {
-    color: #ffffff;
+    color: #FF0000;
     filter: blur(2px);
 }
 
@@ -990,36 +994,40 @@ footer a:hover {
 }
 
 /* Theme-specific gallery styles */
-.gallery-placeholder.brat-style.green-theme {
+.gallery-placeholder.brat-style.theme-green {
     background-color: #84BD00;
 }
 
-.gallery-placeholder.brat-style.green-theme span {
+.gallery-placeholder.brat-style.theme-green span {
     color: #000000;
+    filter: blur(2px);
 }
 
-.gallery-placeholder.brat-style.black-theme {
-    background-color: #000000;
+.gallery-placeholder.brat-style.theme-black {
+    background-color: #333;
 }
 
-.gallery-placeholder.brat-style.black-theme span {
+.gallery-placeholder.brat-style.theme-black span {
     color: #ffffff;
+    filter: blur(2px);
 }
 
-.gallery-placeholder.brat-style.white-theme {
-    background-color: #ffffff;
+.gallery-placeholder.brat-style.theme-white {
+    background-color: #f1f1f1;
 }
 
-.gallery-placeholder.brat-style.white-theme span {
-    color: #000000;
+.gallery-placeholder.brat-style.theme-white span {
+    color: #333;
+    filter: blur(2px);
 }
 
-.gallery-placeholder.brat-style.blue-theme {
-    background-color: #0066cc;
+.gallery-placeholder.brat-style.theme-blue {
+    background-color: #4D90CD;
 }
 
-.gallery-placeholder.brat-style.blue-theme span {
-    color: #ffffff;
+.gallery-placeholder.brat-style.theme-blue span {
+    color: #FF0000;
+    filter: blur(2px);
 }
 
 
