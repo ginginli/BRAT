@@ -161,26 +161,6 @@ h2 {
     color: #333;
 }
 
-.green-theme.hero {
-    background-color: #84BD00;
-}
-
-.green-theme .brat-title span {
-    color: #000000;
-    font-size: 120px;
-    position: relative;
-    z-index: 2;
-    filter: blur(2.5px);
-}
-
-.green-theme .subtitle {
-    color: #000000;
-    filter: blur(1.2px);
-    letter-spacing: -1px;
-    transform: scaleX(0.9);
-    font-weight: normal;
-}
-
 .subtitle {
     font-size: 20px;
     margin-top: 0;
@@ -233,12 +213,23 @@ h2 {
     margin: 0 auto;
 }
 
-#meme-image {
-    width: 100%;
-    display: block;
+#meme-container.theme-green {
+    background-color: #84BD00;
 }
 
-#text-overlay {
+#meme-container.theme-black {
+    background-color: #333;
+}
+
+#meme-container.theme-white {
+    background-color: #f1f1f1;
+}
+
+#meme-container.theme-blue {
+    background-color: #4D90CD;
+}
+
+#meme-container .text-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -256,6 +247,31 @@ h2 {
     max-height: 80%;
     word-wrap: break-word;
     overflow: hidden;
+}
+
+#meme-container.theme-green .text-overlay {
+    color: #000000;
+    filter: blur(2.5px);
+}
+
+#meme-container.theme-black .text-overlay {
+    color: #ffffff;
+    filter: blur(2.5px);
+}
+
+#meme-container.theme-white .text-overlay {
+    color: #000000;
+    filter: blur(2.5px);
+}
+
+#meme-container.theme-blue .text-overlay {
+    color: #DE0100;
+    filter: blur(2.5px);
+}
+
+#meme-image {
+    width: 100%;
+    display: block;
 }
 
 .input-group {
@@ -440,47 +456,6 @@ textarea#text-input {
     font-weight: normal;
     filter: blur(1.8px);
     white-space: nowrap;
-}
-
-.green-theme {
-    background-color: #84BD00;
-}
-
-.green-theme span {
-    color: #000000;
-    filter: blur(2.5px);
-}
-
-.black-theme {
-    background-color: #333;
-}
-
-.black-theme span {
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    filter: blur(2px);
-}
-
-.white-theme {
-    background-color: #f1f1f1;
-}
-
-.white-theme span {
-    color: #000000;
-}
-
-.theme-blue {
-    background-color: #4D90CD;
-}
-
-.theme-blue span {
-    color: #DE0100;
-    filter: blur(2px) brightness(1.2);
-}
-
-.theme-blue .text-overlay {
-    color: #DE0100;
-    filter: blur(2px) brightness(1.2);
 }
 
 /* 页脚部分 */
@@ -934,23 +909,22 @@ footer a:hover {
 /* Theme-specific styles */
 .theme-green .text-overlay {
     color: #000000;
-    filter: blur(2px) brightness(1.2);
+    filter: blur(2.5px);
 }
 
 .theme-black .text-overlay {
     color: #ffffff;
-    filter: blur(2px) brightness(1.2);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    filter: blur(2.5px);
 }
 
 .theme-white .text-overlay {
     color: #000000;
-    filter: blur(2px);
+    filter: blur(2.5px);
 }
 
 .theme-blue .text-overlay {
     color: #DE0100;
-    filter: blur(2px) brightness(1.2);
+    filter: blur(2.5px);
 }
 
 .theme-black span {

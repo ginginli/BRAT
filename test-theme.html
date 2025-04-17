@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="logo-text">Theme Test</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="brat-title"><span>Test Title</span></h1>
+                    <p class="subtitle">This should not change with theme</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <h2>Theme Test</h2>
+                <div class="generator-container">
+                    <div class="controls">
+                        <div class="theme-selector">
+                            <h3>Choose Theme</h3>
+                            <div class="theme-options">
+                                <button id="theme-green" class="theme-btn active">Green</button>
+                                <button id="theme-black" class="theme-btn">Black</button>
+                                <button id="theme-white" class="theme-btn">White</button>
+                                <button id="theme-blue" class="theme-btn">Blue</button>
+                            </div>
+                        </div>
+                        
+                        <textarea id="text-input">Test Text</textarea>
+                    </div>
+                    
+                    <div class="preview-container">
+                        <div id="meme-container">
+                            <img id="meme-image" src="images/brat-bg-green.png" alt="Theme background">
+                            <div id="text-overlay">Test Text</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html> 

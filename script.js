@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set initial text
     textOverlay.innerText = textInput.value;
     
+    // Set initial theme
+    setTheme('green');
+    
     // Text input event listener
     textInput.addEventListener('input', function() {
         textOverlay.innerText = this.value;
@@ -48,15 +51,17 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Set theme function
     function setTheme(theme) {
+        const memeContainer = document.getElementById('meme-container');
+        
         // Remove all theme classes and active classes
-        document.body.classList.remove('theme-green', 'theme-black', 'theme-white', 'theme-blue');
+        memeContainer.classList.remove('theme-green', 'theme-black', 'theme-white', 'theme-blue');
         themeGreen.classList.remove('active');
         themeBlack.classList.remove('active');
         themeWhite.classList.remove('active');
         themeBlue.classList.remove('active');
         
-        // Add current theme class
-        document.body.classList.add(`theme-${theme}`);
+        // Add current theme class to meme container
+        memeContainer.classList.add(`theme-${theme}`);
         
         // 使用根路径
         const imagePath = '/images/';
