@@ -161,11 +161,12 @@ h2 {
     color: #333;
 }
 
-.green-theme.hero {
+/* 英雄区域主题 */
+.theme-green.hero {
     background-color: #84BD00;
 }
 
-.green-theme .brat-title span {
+.theme-green .brat-title span {
     color: #000000;
     font-size: 120px;
     position: relative;
@@ -173,7 +174,7 @@ h2 {
     filter: blur(2.5px);
 }
 
-.green-theme .subtitle {
+.theme-green .subtitle {
     color: #000000;
     filter: blur(1.2px);
     letter-spacing: -1px;
@@ -381,7 +382,7 @@ textarea#text-input {
 /* 画廊部分 */
 .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
     margin-top: 30px;
 }
@@ -393,11 +394,16 @@ textarea#text-input {
     font-size: 18px;
 }
 
-.style-name {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
+.gallery-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
 }
 
 .gallery-item img {
@@ -410,71 +416,63 @@ textarea#text-input {
     transform: scale(1.03);
 }
 
+.style-name {
+    padding: 15px;
+    font-size: 18px;
+    color: #333;
+    background: #fff;
+}
+
 /* 画廊中的BRAT风格预览 */
 .gallery-placeholder {
     width: 100%;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    overflow: hidden;
+    padding-top: 100%;
     position: relative;
-    transition: transform 0.3s;
-}
-
-.gallery-placeholder:hover {
-    transform: scale(1.03);
+    overflow: hidden;
 }
 
 .gallery-placeholder span {
-    font-size: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
     font-weight: normal;
-    text-transform: lowercase;
-    letter-spacing: -2px;
     filter: blur(2px);
-    z-index: 2;
-    position: relative;
-    transform: scaleX(0.85);
-    font-family: 'Arial Narrow', Arial, sans-serif;
+    white-space: nowrap;
 }
 
-.brat-style {
-    font-family: 'Arial Narrow', Arial, sans-serif;
+/* 画廊主题样式 */
+.gallery-placeholder.brat-style.green-theme {
+    background-color: #84BD00;
 }
 
-/* 提高主题样式优先级并使用相同的颜色 */
-.gallery-grid .gallery-item .gallery-placeholder.black-theme {
-    background-color: #333 !important;
+.gallery-placeholder.brat-style.green-theme span {
+    color: #000000;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.green-theme {
-    background-color: #84BD00 !important;
+.gallery-placeholder.brat-style.black-theme {
+    background-color: #000000;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.white-theme {
-    background-color: #f1f1f1 !important;
-}
-
-.gallery-grid .gallery-item .gallery-placeholder.blue-theme {
-    background-color: #4D90CD !important;
-}
-
-/* 设置主题文字颜色 */
-.gallery-grid .gallery-item .gallery-placeholder.black-theme span {
+.gallery-placeholder.brat-style.black-theme span {
     color: #ffffff;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.green-theme span {
+.gallery-placeholder.brat-style.white-theme {
+    background-color: #ffffff;
+}
+
+.gallery-placeholder.brat-style.white-theme span {
     color: #000000;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.white-theme span {
-    color: #000000;
+.gallery-placeholder.brat-style.blue-theme {
+    background-color: #0066cc;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.blue-theme span {
-    color: #DE0100;
+.gallery-placeholder.brat-style.blue-theme span {
+    color: #ffffff;
 }
 
 /* 页脚部分 */
@@ -942,42 +940,86 @@ footer a:hover {
 }
 
 #meme-container.theme-blue .text-overlay {
-    color: #DE0100;
+    color: #ffffff;
     filter: blur(2px);
 }
 
-/* Gallery theme styles */
-.gallery-grid .gallery-item .gallery-placeholder.black-theme {
-    background-color: #333 !important;
+/* Gallery styles */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.green-theme {
-    background-color: #84BD00 !important;
+.gallery-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.white-theme {
-    background-color: #f1f1f1 !important;
+.gallery-item:hover {
+    transform: translateY(-5px);
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.blue-theme {
-    background-color: #4D90CD !important;
+.gallery-placeholder {
+    width: 100%;
+    padding-top: 100%;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Gallery text colors */
-.gallery-grid .gallery-item .gallery-placeholder.black-theme span {
+.gallery-placeholder span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    font-weight: normal;
+    filter: blur(2px);
+    white-space: nowrap;
+}
+
+.style-name {
+    padding: 15px;
+    font-size: 18px;
+    color: #333;
+    background: #fff;
+}
+
+/* Theme-specific gallery styles */
+.gallery-placeholder.brat-style.green-theme {
+    background-color: #84BD00;
+}
+
+.gallery-placeholder.brat-style.green-theme span {
+    color: #000000;
+}
+
+.gallery-placeholder.brat-style.black-theme {
+    background-color: #000000;
+}
+
+.gallery-placeholder.brat-style.black-theme span {
     color: #ffffff;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.green-theme span {
+.gallery-placeholder.brat-style.white-theme {
+    background-color: #ffffff;
+}
+
+.gallery-placeholder.brat-style.white-theme span {
     color: #000000;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.white-theme span {
-    color: #000000;
+.gallery-placeholder.brat-style.blue-theme {
+    background-color: #0066cc;
 }
 
-.gallery-grid .gallery-item .gallery-placeholder.blue-theme span {
-    color: #DE0100;
+.gallery-placeholder.brat-style.blue-theme span {
+    color: #ffffff;
 }
 
 
