@@ -161,11 +161,12 @@ h2 {
     color: #333;
 }
 
-.green-theme.hero {
+/* 英雄区域主题 */
+.theme-green.hero {
     background-color: #84BD00;
 }
 
-.green-theme .brat-title span {
+.theme-green .brat-title span {
     color: #000000;
     font-size: 120px;
     position: relative;
@@ -173,7 +174,7 @@ h2 {
     filter: blur(2.5px);
 }
 
-.green-theme .subtitle {
+.theme-green .subtitle {
     color: #000000;
     filter: blur(1.2px);
     letter-spacing: -1px;
@@ -445,36 +446,36 @@ textarea#text-input {
     filter: blur(2px);
 }
 
-/* Theme specific styles */
-.gallery-placeholder.black-theme {
+/* 画廊主题样式 */
+.gallery-placeholder.theme-black {
     background-color: #333;
 }
 
-.gallery-placeholder.green-theme {
+.gallery-placeholder.theme-green {
     background-color: #84BD00;
 }
 
-.gallery-placeholder.white-theme {
+.gallery-placeholder.theme-white {
     background-color: #f1f1f1;
 }
 
-.gallery-placeholder.blue-theme {
+.gallery-placeholder.theme-blue {
     background-color: #4D90CD;
 }
 
-.gallery-placeholder.black-theme span {
+.gallery-placeholder.theme-black span {
     color: #ffffff;
 }
 
-.gallery-placeholder.green-theme span {
+.gallery-placeholder.theme-green span {
     color: #000000;
 }
 
-.gallery-placeholder.white-theme span {
+.gallery-placeholder.theme-white span {
     color: #000000;
 }
 
-.gallery-placeholder.blue-theme span {
+.gallery-placeholder.theme-blue span {
     color: #DE0100;
 }
 
