@@ -22,8 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set initial text
     textOverlay.innerText = textInput.value;
     
-    // Set initial theme
-    setTheme('green');
+    // 检查是否应该使用黑色主题
+    function shouldUseBlackTheme() {
+        const path = window.location.pathname;
+        return path.includes('negro') || path.includes('fondo-negro');
+    }
+    
+    // Set initial theme based on URL
+    const defaultTheme = shouldUseBlackTheme() ? 'black' : 'green';
+    setTheme(defaultTheme);
     
     // Text input event listener
     textInput.addEventListener('input', function() {
@@ -130,7 +137,10 @@ document.addEventListener('DOMContentLoaded', function() {
         html2canvas(document.getElementById('meme-container'), {
             scale: 2,
             useCORS: true,
-            allowTaint: true
+            allowTaint: true,
+            foreignObjectRendering: true,
+            backgroundColor: null,
+            logging: true  // 添加日志以帮助调试
         }).then(canvas => {
             // Create download link
             const link = document.createElement('a');

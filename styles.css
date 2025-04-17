@@ -161,6 +161,26 @@ h2 {
     color: #333;
 }
 
+.green-theme.hero {
+    background-color: #84BD00;
+}
+
+.green-theme .brat-title span {
+    color: #000000;
+    font-size: 120px;
+    position: relative;
+    z-index: 2;
+    filter: blur(2.5px);
+}
+
+.green-theme .subtitle {
+    color: #000000;
+    filter: blur(1.2px);
+    letter-spacing: -1px;
+    transform: scaleX(0.9);
+    font-weight: normal;
+}
+
 .subtitle {
     font-size: 20px;
     margin-top: 0;
@@ -213,23 +233,12 @@ h2 {
     margin: 0 auto;
 }
 
-#meme-container.theme-green {
-    background-color: #84BD00;
+#meme-image {
+    width: 100%;
+    display: block;
 }
 
-#meme-container.theme-black {
-    background-color: #333;
-}
-
-#meme-container.theme-white {
-    background-color: #f1f1f1;
-}
-
-#meme-container.theme-blue {
-    background-color: #4D90CD;
-}
-
-#meme-container .text-overlay {
+#text-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -247,31 +256,6 @@ h2 {
     max-height: 80%;
     word-wrap: break-word;
     overflow: hidden;
-}
-
-#meme-container.theme-green .text-overlay {
-    color: #000000;
-    filter: blur(2.5px);
-}
-
-#meme-container.theme-black .text-overlay {
-    color: #ffffff;
-    filter: blur(2.5px);
-}
-
-#meme-container.theme-white .text-overlay {
-    color: #000000;
-    filter: blur(2.5px);
-}
-
-#meme-container.theme-blue .text-overlay {
-    color: #DE0100;
-    filter: blur(2.5px);
-}
-
-#meme-image {
-    width: 100%;
-    display: block;
 }
 
 .input-group {
@@ -402,12 +386,6 @@ textarea#text-input {
     margin-top: 30px;
 }
 
-.gallery-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .gallery-description {
     max-width: 800px;
     margin: 0 auto 30px;
@@ -443,8 +421,6 @@ textarea#text-input {
     overflow: hidden;
     position: relative;
     transition: transform 0.3s;
-    background-color: #000; /* 默认黑色背景 */
-    color: #fff; /* 默认白色文字 */
 }
 
 .gallery-placeholder:hover {
@@ -452,35 +428,53 @@ textarea#text-input {
 }
 
 .gallery-placeholder span {
-    font-size: 2.5em;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    filter: blur(1px);
+    font-size: 60px;
+    font-weight: normal;
+    text-transform: lowercase;
+    letter-spacing: -2px;
+    filter: blur(2px);
+    z-index: 2;
+    position: relative;
+    transform: scaleX(0.85);
+    font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
 .brat-style {
     font-family: 'Arial Narrow', Arial, sans-serif;
 }
 
-.black-theme {
-    background-color: #000;
-    color: #fff;
+/* 提高主题样式优先级并使用相同的颜色 */
+.gallery-grid .gallery-item .gallery-placeholder.black-theme {
+    background-color: #333 !important;
 }
 
-.green-theme {
-    background-color: #00FF00;
-    color: #000;
+.gallery-grid .gallery-item .gallery-placeholder.green-theme {
+    background-color: #84BD00 !important;
 }
 
-.white-theme {
-    background-color: #fff;
-    color: #000;
+.gallery-grid .gallery-item .gallery-placeholder.white-theme {
+    background-color: #f1f1f1 !important;
 }
 
-.blue-theme {
-    background-color: #0066cc;
-    color: #fff;
+.gallery-grid .gallery-item .gallery-placeholder.blue-theme {
+    background-color: #4D90CD !important;
+}
+
+/* 设置主题文字颜色 */
+.gallery-grid .gallery-item .gallery-placeholder.black-theme span {
+    color: #ffffff;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.green-theme span {
+    color: #000000;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.white-theme span {
+    color: #000000;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.blue-theme span {
+    color: #DE0100;
 }
 
 /* 页脚部分 */
@@ -931,28 +925,60 @@ footer a:hover {
     white-space: pre-wrap;
 }
 
-/* Theme-specific styles */
-.theme-green .text-overlay {
+/* Theme-specific styles for text overlay */
+#meme-container.theme-green .text-overlay {
     color: #000000;
-    filter: blur(2.5px);
+    filter: blur(2px) brightness(1.2);
 }
 
-.theme-black .text-overlay {
+#meme-container.theme-black .text-overlay {
     color: #ffffff;
-    filter: blur(2.5px);
-}
-
-.theme-white .text-overlay {
-    color: #000000;
-    filter: blur(2.5px);
-}
-
-.theme-blue .text-overlay {
-    color: #DE0100;
-    filter: blur(2.5px);
-}
-
-.theme-black span {
-    color: #ffffff;
+    filter: blur(2px) brightness(1.2);
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
+
+#meme-container.theme-white .text-overlay {
+    color: #000000;
+    filter: blur(2px);
+}
+
+#meme-container.theme-blue .text-overlay {
+    color: #DE0100;
+    filter: blur(2px) brightness(1.2);
+}
+
+/* Gallery theme styles */
+.gallery-grid .gallery-item .gallery-placeholder.black-theme {
+    background-color: #333 !important;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.green-theme {
+    background-color: #84BD00 !important;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.white-theme {
+    background-color: #f1f1f1 !important;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.blue-theme {
+    background-color: #4D90CD !important;
+}
+
+/* Gallery text colors */
+.gallery-grid .gallery-item .gallery-placeholder.black-theme span {
+    color: #ffffff;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.green-theme span {
+    color: #000000;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.white-theme span {
+    color: #000000;
+}
+
+.gallery-grid .gallery-item .gallery-placeholder.blue-theme span {
+    color: #DE0100;
+}
+
+
