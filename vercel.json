@@ -87,10 +87,6 @@
       "destination": "/index.html"
     },
     {
-      "source": "/es-MX",
-      "destination": "/index.html"
-    },
-    {
       "source": "/es-AR",
       "destination": "/index.html"
     },
