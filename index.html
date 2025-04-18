@@ -66,8 +66,23 @@
         <!-- 2. GENERATOR -->
         <section id="generator" class="generator-section">
             <div class="container">
-                <h2 data-i18n="generator.title">Create Your Brat Image</h2>
+                <h2 class="main-title" data-i18n="generator.mainTitle">Create Your Brat Image</h2>
                 <div class="generator-container">
+                    <div class="preview-container">
+                        <div id="meme-container">
+                            <img id="meme-image" 
+                                srcset="images/brat-bg-green-small.png 300w,
+                                        images/brat-bg-green.png 600w"
+                                sizes="(max-width: 768px) 300px,
+                                       600px"
+                                src="images/brat-bg-green.png" 
+                                alt="Brat background image"
+                                loading="lazy">
+                            <div id="text-overlay"></div>
+                        </div>
+                        <p class="tip" data-i18n="generator.tip">Tip: You can also take a screenshot to save the image</p>
+                    </div>
+
                     <div class="controls">
                         <div class="input-group">
                             <label for="text-input" data-i18n="generator.textInput">Enter Text</label>
@@ -125,21 +140,6 @@
                             </div>
                         </div>
                         <!-- AddToAny END -->
-                    </div>
-                    
-                    <div class="preview-container">
-                        <div id="meme-container">
-                            <img id="meme-image" 
-                                srcset="images/brat-bg-green-small.png 300w,
-                                        images/brat-bg-green.png 600w"
-                                sizes="(max-width: 768px) 300px,
-                                       600px"
-                                src="images/brat-bg-green.png" 
-                                alt="Brat background image"
-                                loading="lazy">
-                            <div id="text-overlay"></div>
-                        </div>
-                        <p class="tip" data-i18n="generator.tip">Tip: You can also take a screenshot to save the image</p>
                     </div>
                 </div>
             </div>

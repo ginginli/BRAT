@@ -78,22 +78,18 @@ document.addEventListener('DOMContentLoaded', function() {
             case 'green':
                 memeImage.src = `${imagePath}brat-bg-green.png`;
                 themeGreen.classList.add('active');
-                document.body.style.backgroundColor = '#FFFFFF';
                 break;
             case 'black':
                 memeImage.src = `${imagePath}brat-bg-black.png`;
                 themeBlack.classList.add('active');
-                document.body.style.backgroundColor = '#FFFFFF';
                 break;
             case 'white':
                 memeImage.src = `${imagePath}brat-bg-white.png`;
                 themeWhite.classList.add('active');
-                document.body.style.backgroundColor = '#FFFFFF';
                 break;
             case 'blue':
                 memeImage.src = `${imagePath}brat-bg-blue.png`;
                 themeBlue.classList.add('active');
-                document.body.style.backgroundColor = '#FFFFFF';
                 break;
         }
         
