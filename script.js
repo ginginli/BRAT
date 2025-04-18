@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add current theme class to meme container
         memeContainer.classList.add(`theme-${theme}`);
         
-        // 使用根路径
-        const imagePath = '/images/';
+        // 使用相对路径
+        const imagePath = 'images/';
         
         // Set different background images based on theme
         switch(theme) {
