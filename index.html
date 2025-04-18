@@ -42,22 +42,10 @@
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <a href="./" aria-label="Brat Generator Home">
-                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
-                    </a>
+                <div class="nav-header">
+                    <h1 class="nav-title"><span data-i18n="header.logo">Brat Generator</span></h1>
+                    <p class="nav-subtitle" data-i18n="hero.subtitle">Create your own Brat style images</p>
                 </div>
-                <ul>
-                    <li><a href="#generator" data-i18n="nav.generator">Generator</a></li>
-                    <li><a href="#features" data-i18n="nav.features">Features</a></li>
-                    <li><a href="#what-is" data-i18n="nav.whatIs">What is Brat</a></li>
-                    <li><a href="#how-it-works" data-i18n="nav.howItWorks">How It Works</a></li>
-                    <li><a href="#why-use" data-i18n="nav.whyUse">Why Use</a></li>
-                    <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
-                    <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
-                </ul>
-                
-                <!-- 添加语言切换器 -->
                 <div class="language-switcher">
                     <button class="lang-btn">🌐 Language</button>
                     <div class="lang-dropdown">
@@ -75,19 +63,7 @@
     </header>
 
     <main>
-        <!-- 2. HERO -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <div class="hero-text">
-                        <h1 class="brat-title"><span data-i18n="hero.title">Brat Generator</span></h1>
-                        <p class="subtitle" data-i18n="hero.subtitle">Create your own Brat style images</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. GENERATOR -->
+        <!-- 2. GENERATOR -->
         <section id="generator" class="generator-section">
             <div class="container">
                 <h2 data-i18n="generator.title">Create Your Brat Image</h2>
@@ -153,7 +129,14 @@
                     
                     <div class="preview-container">
                         <div id="meme-container">
-                            <img id="meme-image" src="images/brat-bg-green.png" alt="Brat background image">
+                            <img id="meme-image" 
+                                srcset="images/brat-bg-green-small.png 300w,
+                                        images/brat-bg-green.png 600w"
+                                sizes="(max-width: 768px) 300px,
+                                       600px"
+                                src="images/brat-bg-green.png" 
+                                alt="Brat background image"
+                                loading="lazy">
                             <div id="text-overlay"></div>
                         </div>
                         <p class="tip" data-i18n="generator.tip">Tip: You can also take a screenshot to save the image</p>
