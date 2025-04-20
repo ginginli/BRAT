@@ -6,8 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Get DOM elements
     const textInput = document.getElementById('text-input');
-    const textOverlay = document.getElementById('text-overlay');
-    const memeImage = document.getElementById('meme-image');
+    const memeContainer = document.getElementById('meme-container');
     const downloadBtn = document.getElementById('download-btn');
     const themeGreen = document.getElementById('theme-green');
     const themeBlack = document.getElementById('theme-black');
@@ -16,114 +15,234 @@ document.addEventListener('DOMContentLoaded', function() {
     const autoWrapCheckbox = document.getElementById('auto-wrap');
     const fontSizeSlider = document.getElementById('font-size-slider');
     
-    // 用户自定义字体大小系数
-    let fontSizeFactor = 1.0;
-    
-    // Set initial text
-    textOverlay.innerText = textInput.value;
-    
-    // 检查是否应该使用黑色主题
-    function shouldUseBlackTheme() {
-        const path = window.location.pathname;
-        return path.includes('negro') || path.includes('fondo-negro');
+    // 清空 memeContainer 中的原有元素
+    while (memeContainer.firstChild) {
+        memeContainer.removeChild(memeContainer.firstChild);
     }
     
-    // Set initial theme based on URL
-    const defaultTheme = shouldUseBlackTheme() ? 'black' : 'green';
-    setTheme(defaultTheme);
+    // 创建预览 Canvas
+    const previewCanvas = document.createElement('canvas');
     
-    // Text input event listener
+    // 设置 Canvas 尺寸为固定的 600x600
+    const canvasWidth = 600;
+    const canvasHeight = 600;
+    previewCanvas.width = canvasWidth;
+    previewCanvas.height = canvasHeight;
+    
+    // 设置显示尺寸
+    previewCanvas.style.width = '100%';
+    previewCanvas.style.height = 'auto';
+    previewCanvas.style.maxWidth = canvasWidth + 'px';
+    previewCanvas.style.display = 'block';
+    previewCanvas.style.margin = '0 auto';
+    
+    // 将 Canvas 添加到容器
+    memeContainer.appendChild(previewCanvas);
+    
+    // 主题颜色配置
+    const themeColors = {
+        'green': '#9FE240',
+        'black': '#000000',
+        'white': '#FFFFFF',
+        'blue': '#4D90CD'
+    };
+    
+    // 文字颜色配置
+    const textColors = {
+        'green': '#000000',
+        'black': '#FFFFFF',
+        'white': '#000000',
+        'blue': '#FF0000'
+    };
+    
+    // 当前状态
+    let currentTheme = 'green';
+    let currentText = 'brat';
+    let fontSizeFactor = 1.0;
+    
+    // 初始化文本输入框的值
+    textInput.value = currentText;
+    
+    // 统一的渲染函数
+    function renderBratCanvas(canvas, options) {
+        const { text, theme, fontSizeFactor, isAutoWrap } = options;
+        const ctx = canvas.getContext('2d');
+        
+        // 重置变换
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        
+        // 确保属性设置正确
+        ctx.globalAlpha = 1.0;
+        ctx.imageSmoothingEnabled = true;
+        ctx.globalCompositeOperation = 'source-over';
+        
+        // 清空画布
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // 绘制背景
+        ctx.fillStyle = themeColors[theme];
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // 如果没有文字，直接返回
+        if (!text) return;
+        
+        // 计算基础字体大小
+        let fontSize = 120 * fontSizeFactor;
+        
+        // 设置文字渲染属性
+        ctx.filter = 'blur(2px)';
+        ctx.fillStyle = textColors[theme];
+        ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        
+        // 应用变换
+        ctx.save();
+        ctx.translate(canvas.width / 2, canvas.height / 2);
+        ctx.scale(0.85, 1);
+        
+        // 处理文字自动换行
+        if (isAutoWrap) {
+            const maxWidth = (canvas.width * 0.8) / 0.85;
+            const words = text.split('');
+            let lines = [];
+            let currentLine = '';
+            
+            for (let word of words) {
+                const testLine = currentLine + word;
+                const metrics = ctx.measureText(testLine);
+                
+                if (metrics.width > maxWidth && currentLine !== '') {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    currentLine = testLine;
+                }
+            }
+            lines.push(currentLine);
+            
+            // 调整字体大小以适应容器
+            const lineHeight = fontSize * 1.2;
+            const totalHeight = lines.length * lineHeight;
+            
+            if (totalHeight > canvas.height * 0.8) {
+                const scale = (canvas.height * 0.8) / totalHeight;
+                fontSize *= scale;
+                ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+            }
+            
+            // 绘制多行文字
+            const adjustedLineHeight = fontSize * 1.2;
+            const adjustedTotalHeight = lines.length * adjustedLineHeight;
+            const startY = -adjustedTotalHeight / 2;
+            
+            lines.forEach((line, index) => {
+                const letters = line.split('');
+                const spacedText = letters.join('\u200B');
+                ctx.fillText(
+                    spacedText,
+                    0,
+                    startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
+                );
+            });
+        } else {
+            // 单行文字
+            const letters = text.split('');
+            const spacedText = letters.join('\u200B');
+            const metrics = ctx.measureText(spacedText);
+            
+            // 调整字体大小以适应容器宽度
+            if (metrics.width > canvas.width * 0.8) {
+                const scale = (canvas.width * 0.8) / metrics.width;
+                fontSize *= scale;
+                ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+            }
+            
+            ctx.fillText(spacedText, 0, 0);
+        }
+        
+        ctx.restore();
+    }
+    
+    // 更新预览
+    function updatePreview() {
+        renderBratCanvas(previewCanvas, {
+            text: currentText,
+            theme: currentTheme,
+            fontSizeFactor: fontSizeFactor,
+            isAutoWrap: autoWrapCheckbox.checked
+        });
+    }
+    
+    // 事件监听器
     textInput.addEventListener('input', function() {
-        textOverlay.innerText = this.value;
-        fitText();
+        currentText = this.value;
+        updatePreview();
     });
     
     // Theme switching
-    themeGreen.addEventListener('click', () => setTheme('green'));
-    themeBlack.addEventListener('click', () => setTheme('black'));
-    themeWhite.addEventListener('click', () => setTheme('white'));
-    themeBlue.addEventListener('click', () => setTheme('blue'));
+    themeGreen.addEventListener('click', () => {
+        currentTheme = 'green';
+        if (!currentText) {
+            currentText = 'brat';
+            textInput.value = currentText;
+        }
+        updatePreview();
+        updateThemeButtons();
+    });
+    
+    themeBlack.addEventListener('click', () => {
+        currentTheme = 'black';
+        if (!currentText) {
+            currentText = 'brat';
+            textInput.value = currentText;
+        }
+        updatePreview();
+        updateThemeButtons();
+    });
+    
+    themeWhite.addEventListener('click', () => {
+        currentTheme = 'white';
+        if (!currentText) {
+            currentText = 'brat';
+            textInput.value = currentText;
+        }
+        updatePreview();
+        updateThemeButtons();
+    });
+    
+    themeBlue.addEventListener('click', () => {
+        currentTheme = 'blue';
+        if (!currentText) {
+            currentText = 'brat';
+            textInput.value = currentText;
+        }
+        updatePreview();
+        updateThemeButtons();
+    });
+    
+    // 更新主题按钮状态
+    function updateThemeButtons() {
+        [themeGreen, themeBlack, themeWhite, themeBlue].forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        switch(currentTheme) {
+            case 'green': themeGreen.classList.add('active'); break;
+            case 'black': themeBlack.classList.add('active'); break;
+            case 'white': themeWhite.classList.add('active'); break;
+            case 'blue': themeBlue.classList.add('active'); break;
+        }
+    }
     
     // 自动换行切换
-    autoWrapCheckbox.addEventListener('change', function() {
-        textOverlay.style.whiteSpace = this.checked ? 'normal' : 'nowrap';
-        fitText();
-    });
+    autoWrapCheckbox.addEventListener('change', updatePreview);
     
     // 字体大小滑块
     fontSizeSlider.addEventListener('input', function() {
         fontSizeFactor = this.value / 100;
-        fitText();
+        updatePreview();
     });
-    
-    // Set theme function
-    function setTheme(theme) {
-        const memeContainer = document.getElementById('meme-container');
-        
-        // Remove all theme classes and active classes
-        memeContainer.classList.remove('theme-green', 'theme-black', 'theme-white', 'theme-blue');
-        themeGreen.classList.remove('active');
-        themeBlack.classList.remove('active');
-        themeWhite.classList.remove('active');
-        themeBlue.classList.remove('active');
-        
-        // Add current theme class to meme container
-        memeContainer.classList.add(`theme-${theme}`);
-        
-        // 使用相对路径
-        const imagePath = 'images/';
-        
-        // Set different background images based on theme
-        switch(theme) {
-            case 'green':
-                memeImage.src = `${imagePath}brat-bg-green.png`;
-                themeGreen.classList.add('active');
-                break;
-            case 'black':
-                memeImage.src = `${imagePath}brat-bg-black.png`;
-                themeBlack.classList.add('active');
-                break;
-            case 'white':
-                memeImage.src = `${imagePath}brat-bg-white.png`;
-                themeWhite.classList.add('active');
-                break;
-            case 'blue':
-                memeImage.src = `${imagePath}brat-bg-blue.png`;
-                themeBlue.classList.add('active');
-                break;
-        }
-        
-        // Add theme class to text overlay
-        textOverlay.className = `text-overlay theme-${theme}`;
-        
-        // Adjust text size to fit container
-        fitText();
-    }
-    
-    // Fit text function
-    function fitText() {
-        const container = document.getElementById('meme-container');
-        const containerWidth = container.clientWidth;
-        const containerHeight = container.clientHeight;
-        
-        // Reset font size
-        textOverlay.style.fontSize = '120px';
-        
-        // Get text dimensions
-        const textWidth = textOverlay.scrollWidth;
-        const textHeight = textOverlay.scrollHeight;
-        
-        // Calculate scale factor
-        const widthScale = (containerWidth * 0.8) / textWidth;
-        const heightScale = (containerHeight * 0.8) / textHeight;
-        const scale = Math.min(widthScale, heightScale) * fontSizeFactor;
-        
-        // Apply scale
-        textOverlay.style.fontSize = `${120 * scale}px`;
-    }
-    
-    // Initial fit
-    fitText();
     
     // Download button event listener
     downloadBtn.addEventListener('click', function() {
@@ -132,126 +251,35 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loadingAnimation) {
             loadingAnimation.style.display = 'flex';
         }
-
-        // 获取文字层元素
-        const textOverlay = document.getElementById('text-overlay');
-        // 保存原始显示状态
-        const originalDisplay = textOverlay.style.display;
-        // 临时隐藏文字层
-        textOverlay.style.display = 'none';
         
-        // Use html2canvas to capture the meme container
-        html2canvas(document.getElementById('meme-container'), {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true
-        }).then(canvas => {
-            // 恢复文字层显示
-            textOverlay.style.display = originalDisplay;
-
-            // 1. 获取当前的主题和文字样式
-            const memeContainer = document.getElementById('meme-container');
-            const computedStyle = window.getComputedStyle(textOverlay);
-            
-            // 2. 创建临时 canvas 用于文字层
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = canvas.width;
-            tempCanvas.height = canvas.height;
-            const tempCtx = tempCanvas.getContext('2d');
-            
-            // 3. 获取当前的文字配置
-            const text = textOverlay.innerText;
-            const fontSize = computedStyle.fontSize;
-            const fontFamily = "'Arial Narrow', Arial, sans-serif";
-            const textColor = computedStyle.color;
-            const isAutoWrap = document.getElementById('auto-wrap').checked;
-            
-            // 4. 设置文字渲染属性
-            tempCtx.filter = 'blur(2px)';
-            tempCtx.fillStyle = textColor;
-            tempCtx.font = `normal ${fontSize} ${fontFamily}`;
-            tempCtx.textAlign = 'center';
-            tempCtx.textBaseline = 'middle';
-            
-            // 5. 应用变换
-            tempCtx.save();
-            tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
-            tempCtx.scale(0.85, 1); // 应用 scaleX(0.85)
-            
-            // 6. 处理字母间距
-            if (isAutoWrap) {
-                const lines = [];
-                const words = text.split(' ');
-                let currentLine = '';
-                
-                for (let word of words) {
-                    // 为每个字符添加 -2px 的间距
-                    const letters = word.split('');
-                    const spacedWord = letters.join('\u200B');  // 使用零宽空格
-                    
-                    const testLine = currentLine + (currentLine ? ' ' : '') + spacedWord;
-                    const metrics = tempCtx.measureText(testLine);
-                    
-                    if (metrics.width > (tempCanvas.width * 0.8) / 0.85) { // 考虑 scale 影响
-                        lines.push(currentLine);
-                        currentLine = spacedWord;
-                    } else {
-                        currentLine = testLine;
-                    }
-                }
-                lines.push(currentLine);
-                
-                // 绘制多行文字
-                const lineHeight = parseInt(fontSize) * 1.2;
-                const totalHeight = lines.length * lineHeight;
-                const startY = -totalHeight / 2;
-                
-                lines.forEach((line, index) => {
-                    tempCtx.fillText(line, 
-                                   0,  // 因为已经平移了坐标系，所以x为0
-                                   startY + (index * lineHeight) + lineHeight / 2);
-                });
-            } else {
-                // 单行文字，添加字母间距
-                const letters = text.split('');
-                const spacedText = letters.join('\u200B');  // 使用零宽空格添加间距
-                tempCtx.fillText(spacedText, 0, 0);
-            }
-            
-            tempCtx.restore();
-            
-            // 7. 将背景和模糊文字组合
-            const finalCanvas = document.createElement('canvas');
-            finalCanvas.width = canvas.width;
-            finalCanvas.height = canvas.height;
-            const finalCtx = finalCanvas.getContext('2d');
-            
-            // 先绘制背景
-            finalCtx.drawImage(canvas, 0, 0);
-            // 再绘制模糊文字
-            finalCtx.drawImage(tempCanvas, 0, 0);
-            
-            // 8. 导出最终图片
-            const link = document.createElement('a');
-            link.download = 'brat-generator.png';
-            link.href = finalCanvas.toDataURL('image/png', 1.0);
-            link.click();
-            
-            // Hide loading animation
-            if (loadingAnimation) {
-                loadingAnimation.style.display = 'none';
-            }
-        }).catch(error => {
-            // 确保在出错时也恢复文字层显示
-            textOverlay.style.display = originalDisplay;
-            
-            console.error('Error generating image:', error);
-            // Hide loading animation in case of error
-            if (loadingAnimation) {
-                loadingAnimation.style.display = 'none';
-            }
+        // 创建导出用的 canvas，固定尺寸为 600x600
+        const exportCanvas = document.createElement('canvas');
+        exportCanvas.width = 600;
+        exportCanvas.height = 600;
+        
+        // 使用相同的渲染逻辑
+        renderBratCanvas(exportCanvas, {
+            text: currentText,
+            theme: currentTheme,
+            fontSizeFactor: fontSizeFactor,
+            isAutoWrap: autoWrapCheckbox.checked
         });
+        
+        // 导出图片
+        const link = document.createElement('a');
+        link.download = 'brat-generator.png';
+        link.href = exportCanvas.toDataURL('image/png', 1.0);
+        link.click();
+        
+        // Hide loading animation
+        if (loadingAnimation) {
+            loadingAnimation.style.display = 'none';
+        }
     });
+    
+    // 初始化
+    updateThemeButtons();
+    updatePreview();
 });
 
 // Add structured data
