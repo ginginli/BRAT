@@ -132,6 +132,13 @@ document.addEventListener('DOMContentLoaded', function() {
         if (loadingAnimation) {
             loadingAnimation.style.display = 'flex';
         }
+
+        // 获取文字层元素
+        const textOverlay = document.getElementById('text-overlay');
+        // 保存原始显示状态
+        const originalDisplay = textOverlay.style.display;
+        // 临时隐藏文字层
+        textOverlay.style.display = 'none';
         
         // Use html2canvas to capture the meme container
         html2canvas(document.getElementById('meme-container'), {
@@ -139,10 +146,95 @@ document.addEventListener('DOMContentLoaded', function() {
             useCORS: true,
             allowTaint: true
         }).then(canvas => {
-            // Create download link
+            // 恢复文字层显示
+            textOverlay.style.display = originalDisplay;
+
+            // 1. 获取当前的主题和文字样式
+            const memeContainer = document.getElementById('meme-container');
+            const computedStyle = window.getComputedStyle(textOverlay);
+            
+            // 2. 创建临时 canvas 用于文字层
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = canvas.width;
+            tempCanvas.height = canvas.height;
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // 3. 获取当前的文字配置
+            const text = textOverlay.innerText;
+            const fontSize = computedStyle.fontSize;
+            const fontFamily = "'Arial Narrow', Arial, sans-serif";
+            const textColor = computedStyle.color;
+            const isAutoWrap = document.getElementById('auto-wrap').checked;
+            
+            // 4. 设置文字渲染属性
+            tempCtx.filter = 'blur(2px)';
+            tempCtx.fillStyle = textColor;
+            tempCtx.font = `normal ${fontSize} ${fontFamily}`;
+            tempCtx.textAlign = 'center';
+            tempCtx.textBaseline = 'middle';
+            
+            // 5. 应用变换
+            tempCtx.save();
+            tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
+            tempCtx.scale(0.85, 1); // 应用 scaleX(0.85)
+            
+            // 6. 处理字母间距
+            if (isAutoWrap) {
+                const lines = [];
+                const words = text.split(' ');
+                let currentLine = '';
+                
+                for (let word of words) {
+                    // 为每个字符添加 -2px 的间距
+                    const letters = word.split('');
+                    const spacedWord = letters.join('\u200B');  // 使用零宽空格
+                    
+                    const testLine = currentLine + (currentLine ? ' ' : '') + spacedWord;
+                    const metrics = tempCtx.measureText(testLine);
+                    
+                    if (metrics.width > (tempCanvas.width * 0.8) / 0.85) { // 考虑 scale 影响
+                        lines.push(currentLine);
+                        currentLine = spacedWord;
+                    } else {
+                        currentLine = testLine;
+                    }
+                }
+                lines.push(currentLine);
+                
+                // 绘制多行文字
+                const lineHeight = parseInt(fontSize) * 1.2;
+                const totalHeight = lines.length * lineHeight;
+                const startY = -totalHeight / 2;
+                
+                lines.forEach((line, index) => {
+                    tempCtx.fillText(line, 
+                                   0,  // 因为已经平移了坐标系，所以x为0
+                                   startY + (index * lineHeight) + lineHeight / 2);
+                });
+            } else {
+                // 单行文字，添加字母间距
+                const letters = text.split('');
+                const spacedText = letters.join('\u200B');  // 使用零宽空格添加间距
+                tempCtx.fillText(spacedText, 0, 0);
+            }
+            
+            tempCtx.restore();
+            
+            // 7. 将背景和模糊文字组合
+            const finalCanvas = document.createElement('canvas');
+            finalCanvas.width = canvas.width;
+            finalCanvas.height = canvas.height;
+            const finalCtx = finalCanvas.getContext('2d');
+            
+            // 先绘制背景
+            finalCtx.drawImage(canvas, 0, 0);
+            // 再绘制模糊文字
+            finalCtx.drawImage(tempCanvas, 0, 0);
+            
+            // 8. 导出最终图片
             const link = document.createElement('a');
             link.download = 'brat-generator.png';
-            link.href = canvas.toDataURL('image/png');
+            link.href = finalCanvas.toDataURL('image/png', 1.0);
             link.click();
             
             // Hide loading animation
@@ -150,6 +242,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingAnimation.style.display = 'none';
             }
         }).catch(error => {
+            // 确保在出错时也恢复文字层显示
+            textOverlay.style.display = originalDisplay;
+            
             console.error('Error generating image:', error);
             // Hide loading animation in case of error
             if (loadingAnimation) {
