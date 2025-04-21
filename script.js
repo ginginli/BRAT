@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 主题颜色配置
     const themeColors = {
-        'green': '#9FE240',
+        'green': '#8ACF01',
         'black': '#000000',
         'white': '#FFFFFF',
         'blue': '#4D90CD'

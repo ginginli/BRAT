@@ -51,62 +51,89 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
 }
 
 /* 导航栏样式 */
 header {
     background-color: #fff;
+    color: #333;
+    padding: 8px 0;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
 }
 
 nav {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.logo-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    padding: 2px 0;
-}
-
-.brat-header {
-    font-family: 'Arial Narrow', Arial, sans-serif;
-    font-weight: normal;
-}
-
-nav ul {
+.nav-header {
     display: flex;
-    list-style: none;
+    flex-direction: column;
+    gap: 0px;
 }
 
-nav ul li {
-    margin-left: 20px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: #000;
+.nav-title {
+    font-size: 1.6em;
+    margin: 0;
     font-weight: bold;
-    transition: all 0.3s;
-    padding: 5px 10px;
-    border-radius: 4px;
+    line-height: 1;
 }
 
-nav ul li a:hover {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.1);
+.nav-subtitle {
+    font-size: 0.85em;
+    margin: 0;
+    font-weight: normal;
+    padding-right: 120px;
+}
+
+/* Language Switcher */
+.language-switcher {
+    position: absolute;
+    right: 20px;
+    bottom: 2px;
+}
+
+.lang-btn {
+    background: transparent;
+    border: none;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85em;
+    line-height: 1.1;
+}
+
+.lang-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    min-width: 120px;
+}
+
+.lang-item {
+    display: block;
+    padding: 8px 12px;
+    color: #000;
+    text-decoration: none;
+    text-align: left;
+    font-size: 0.85em;
 }
 
 /* 主要内容区域 */
 section {
-    padding: 60px 0;
+    padding: 15px 0;
 }
 
 h1, h2, h3 {
@@ -163,7 +190,7 @@ h2 {
 
 /* 英雄区域主题 */
 .theme-green.hero {
-    background-color: #84BD00;
+    background-color: #8ACE00;
 }
 
 .theme-green .brat-title span {
@@ -214,7 +241,7 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .controls {
@@ -298,7 +325,7 @@ textarea#text-input {
 }
 
 #theme-green {
-    background-color: #A3D83B;
+    background-color: #8ACF01;
     color: white;
 }
 
@@ -443,7 +470,7 @@ textarea#text-input {
 
 /* 画廊主题样式 */
 .gallery-placeholder.brat-style.theme-green {
-    background-color: #84BD00;
+    background-color: #8ACF01;
 }
 
 .gallery-placeholder.brat-style.theme-green span {
@@ -712,7 +739,7 @@ footer a:hover {
     bottom: 0;
     width: 50px;
     height: 3px;
-    background-color: #84BD00;
+    background-color: #8ACE00;
 }
 
 .feature-card p {
@@ -820,64 +847,6 @@ footer a:hover {
     .testimonial-card {
         padding: 20px;
     }
-}
-
-/* 语言切换器样式 */
-.language-switcher {
-    position: relative;
-    display: inline-block;
-}
-
-.lang-btn {
-    padding: 8px 16px;
-    background-color: transparent;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #333;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.lang-dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    padding: 8px 0;
-    min-width: 150px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    z-index: 1000;
-}
-
-.language-switcher:hover .lang-dropdown {
-    display: block;
-}
-
-.lang-item {
-    display: block;
-    padding: 8px 16px;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.2s;
-}
-
-.lang-item:hover {
-    background-color: #f5f5f5;
-}
-
-.lang-item.active {
-    background-color: #e9e9e9;
-    font-weight: bold;
-}
-
-/* 确保下拉菜单在悬停时保持显示 */
-.lang-dropdown:hover {
-    display: block;
 }
 
 /* 文本选项样式 */
@@ -994,7 +963,7 @@ footer a:hover {
 
 /* Theme-specific gallery styles */
 .gallery-placeholder.brat-style.theme-green {
-    background-color: #84BD00;
+    background-color: #8ACF01;
 }
 
 .gallery-placeholder.brat-style.theme-green span {
@@ -1027,6 +996,21 @@ footer a:hover {
 .gallery-placeholder.brat-style.theme-blue span {
     color: #FF0000;
     filter: blur(2px);
+}
+
+/* 调整主要内容区域的间距 */
+main {
+    padding-top: 10px;
+}
+
+/* 生成器部分的间距 */
+.generator-section {
+    padding-top: 10px;
+}
+
+.main-title {
+    font-size: 1.4em;
+    margin: 0 0 10px 0;
 }
 
 
