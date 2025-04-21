@@ -34,11 +34,14 @@ class LanguageSwitcher {
         'nav.about': '关于我们'
       }
     };
+    console.log('LanguageSwitcher constructed');
   }
 
   init() {
+    console.log('LanguageSwitcher initializing');
     this.setupLanguageSwitcher();
     this.updateNavigation();
+    console.log('LanguageSwitcher initialization complete');
   }
 
   setupLanguageSwitcher() {
@@ -47,7 +50,9 @@ class LanguageSwitcher {
     
     console.log('Setting up language switcher:', {
       langBtn: !!langBtn,
-      langDropdown: !!langDropdown
+      langDropdown: !!langDropdown,
+      btnText: langBtn ? langBtn.textContent : null,
+      dropdownVisible: langDropdown ? langDropdown.classList.contains('show') : null
     });
     
     if (langBtn && langDropdown) {
@@ -60,25 +65,33 @@ class LanguageSwitcher {
         currentLangItem.classList.add('active');
       }
 
-      // 点击按钮时切换下拉菜单
-      langBtn.addEventListener('click', (e) => {
+      // 移除现有的事件监听器（如果有的话）
+      const newLangBtn = langBtn.cloneNode(true);
+      langBtn.parentNode.replaceChild(newLangBtn, langBtn);
+      
+      const newLangDropdown = langDropdown.cloneNode(true);
+      langDropdown.parentNode.replaceChild(newLangDropdown, langDropdown);
+
+      // 重新添加事件监听器
+      newLangBtn.addEventListener('click', (e) => {
         console.log('Language button clicked');
         e.stopPropagation();
-        langDropdown.classList.toggle('show');
-        console.log('Dropdown visibility:', langDropdown.classList.contains('show'));
+        const isVisible = newLangDropdown.classList.contains('show');
+        console.log('Current dropdown state:', isVisible);
+        newLangDropdown.classList.toggle('show');
+        console.log('New dropdown state:', newLangDropdown.classList.contains('show'));
       });
 
-      // 点击页面其他地方时关闭下拉菜单
-      document.addEventListener('click', () => {
-        console.log('Document clicked');
-        if (langDropdown.classList.contains('show')) {
-          langDropdown.classList.remove('show');
+      document.addEventListener('click', (e) => {
+        console.log('Document clicked, target:', e.target.tagName, e.target.className);
+        if (newLangDropdown.classList.contains('show')) {
+          console.log('Closing dropdown');
+          newLangDropdown.classList.remove('show');
         }
       });
 
-      // 防止点击下拉菜单时关闭
-      langDropdown.addEventListener('click', (e) => {
-        console.log('Dropdown clicked');
+      newLangDropdown.addEventListener('click', (e) => {
+        console.log('Dropdown clicked, target:', e.target.tagName, e.target.className);
         e.stopPropagation();
       });
     }
@@ -123,6 +136,7 @@ class LanguageSwitcher {
 
 // 页面加载时初始化语言切换器
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM loaded, creating LanguageSwitcher');
   const langSwitcher = new LanguageSwitcher();
   langSwitcher.init();
   window.langSwitcher = langSwitcher;

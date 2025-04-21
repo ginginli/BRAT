@@ -47,7 +47,7 @@
                     <p class="nav-subtitle" data-i18n="hero.subtitle">Create your own Brat style images</p>
                 </div>
                 <div class="language-switcher">
-                    <button class="lang-btn">🌐 Language</button>
+                    <button type="button" class="lang-btn">🌐 Language</button>
                     <div class="lang-dropdown">
                         <a href="./" class="lang-item active">English</a>
                         <a href="./zh-CN/" class="lang-item">中文</a>
@@ -406,23 +406,13 @@
         </div>
     </footer>
 
-    <!-- 添加语言切换器脚本 -->
-    <script src="components/LanguageSwitcher.js"></script>
+    <!-- Scripts -->
+    <script src="js/language.js"></script>
     <script src="script.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 初始化语言切换器
-            if (typeof LanguageSwitcher !== 'undefined') {
-                const languageSwitcher = new LanguageSwitcher();
-                languageSwitcher.init();
-            }
-        });
-    </script>
     <script>
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
-    <!-- Scripts -->
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
         // AddToAny
