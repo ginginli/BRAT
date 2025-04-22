@@ -237,15 +237,19 @@ document.addEventListener('DOMContentLoaded', function() {
         function renderPrerenderedBlurText(canvas, text, theme, fontSizeFactor, isAutoWrap) {
             const ctx = canvas.getContext('2d');
             
-            // 步骤1: 创建两个离屏Canvas，一个用于渲染清晰文本，一个用于模糊处理
+            // 步骤1: 创建离屏Canvas，用于渲染清晰文本
             const clearTextCanvas = document.createElement('canvas');
             clearTextCanvas.width = canvas.width * 2; // 更高分辨率以获得更好的模糊效果
             clearTextCanvas.height = canvas.height * 2;
             const clearCtx = clearTextCanvas.getContext('2d');
             
+            // 获取当前主题的文本颜色
+            const textColor = textColors[theme];
+            console.log(`Theme: ${theme}, Text color: ${textColor}`);
+            
             // 步骤2: 先在高分辨率Canvas上渲染清晰文本
             const fontSize = 120 * fontSizeFactor * 2; // 由于Canvas尺寸加倍，字体也需要加倍
-            clearCtx.fillStyle = textColors[theme];
+            clearCtx.fillStyle = textColor;
             clearCtx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
             clearCtx.textAlign = 'center';
             clearCtx.textBaseline = 'middle';
@@ -326,100 +330,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             clearCtx.restore();
             
-            // 步骤3: 多阶段模糊处理，模拟高质量模糊效果
+            // 步骤3: 创建模糊Canvas
             const blurredCanvas = document.createElement('canvas');
             blurredCanvas.width = clearTextCanvas.width;
             blurredCanvas.height = clearTextCanvas.height;
             const blurCtx = blurredCanvas.getContext('2d');
             
-            // 应用多阶段处理
-            const performMultiStageBlur = () => {
-                // 初始复制清晰文本Canvas
-                blurCtx.clearRect(0, 0, blurredCanvas.width, blurredCanvas.height);
-                blurCtx.drawImage(clearTextCanvas, 0, 0);
-                
-                // 下面的方法为移动设备实现更有效的模糊
-                let blurRadius = 6;  // 较大的模糊半径
-                
-                // 根据设备优化模糊值
-                const pixelRatio = window.devicePixelRatio || 1;
-                if (pixelRatio >= 3) {
-                    // 超高DPI设备需要更强的模糊
-                    blurRadius = 8;
-                }
-                
-                // 应用多次堆叠模糊
-                stackBlur(blurCtx, blurredCanvas.width, blurredCanvas.height, blurRadius);
-                
-                // 再次应用较小半径的模糊以增强边缘
-                stackBlur(blurCtx, blurredCanvas.width, blurredCanvas.height, blurRadius/2);
-                
-                // 可选: 适当增加对比度以强调模糊后的文本
-                enhanceContrast(blurCtx, blurredCanvas.width, blurredCanvas.height, 1.2);
-            };
+            // 步骤4: 应用简单的模糊效果，保持原始颜色
+            applySimpleBlur(clearTextCanvas, blurredCanvas);
             
-            // 简化版的StackBlur算法，专为文本模糊优化
-            function stackBlur(ctx, width, height, radius) {
-                // 模拟StackBlur的效果，使用多次不透明度叠加
-                const tempCanvas = document.createElement('canvas');
-                tempCanvas.width = width;
-                tempCanvas.height = height;
-                const tempCtx = tempCanvas.getContext('2d');
-                
-                // 复制原始图像
-                tempCtx.drawImage(blurredCanvas, 0, 0);
-                
-                // 应用径向模糊（通过多次绘制略微偏移的图像）
-                ctx.globalAlpha = 1.0;
-                ctx.clearRect(0, 0, width, height);
-                
-                // 中心副本（权重最高）
-                ctx.globalAlpha = 0.4;
-                ctx.drawImage(tempCanvas, 0, 0);
-                
-                // 应用径向模糊
-                const iterations = 8;
-                for (let i = 0; i < iterations; i++) {
-                    const angle = (Math.PI * 2 * i) / iterations;
-                    const dx = Math.round(Math.cos(angle) * radius);
-                    const dy = Math.round(Math.sin(angle) * radius);
-                    ctx.globalAlpha = 0.075; // 较低的透明度，多次叠加
-                    ctx.drawImage(tempCanvas, dx, dy);
-                }
-                
-                // 恢复Alpha
-                ctx.globalAlpha = 1.0;
-            }
-            
-            // 增强对比度，使模糊后的文本更明显
-            function enhanceContrast(ctx, width, height, factor) {
-                try {
-                    // 读取图像数据
-                    const imageData = ctx.getImageData(0, 0, width, height);
-                    const data = imageData.data;
-                    
-                    // 简单的对比度增强
-                    for (let i = 0; i < data.length; i += 4) {
-                        // 只处理非透明像素
-                        if (data[i+3] > 0) {
-                            // 文本颜色已经很深，只需要稍微增强
-                            data[i] = Math.min(255, data[i] * factor);
-                            data[i+1] = Math.min(255, data[i+1] * factor);
-                            data[i+2] = Math.min(255, data[i+2] * factor);
-                        }
-                    }
-                    
-                    // 放回处理后的数据
-                    ctx.putImageData(imageData, 0, 0);
-                } catch (e) {
-                    console.warn('Contrast enhancement failed:', e);
-                }
-            }
-            
-            // 执行多阶段模糊
-            performMultiStageBlur();
-            
-            // 步骤4: 将处理后的模糊文本绘制到目标Canvas
+            // 步骤5: 将处理后的模糊文本绘制到目标Canvas
             ctx.save();
             ctx.imageSmoothingEnabled = true;
             ctx.imageSmoothingQuality = 'high';
@@ -429,6 +349,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 0, 0, canvas.width, canvas.height
             );
             ctx.restore();
+            
+            // 简单模糊函数，保持原始颜色
+            function applySimpleBlur(sourceCanvas, destCanvas) {
+                const destCtx = destCanvas.getContext('2d');
+                const width = destCanvas.width;
+                const height = destCanvas.height;
+                
+                // 清空目标画布
+                destCtx.clearRect(0, 0, width, height);
+                
+                // 创建临时画布
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = width;
+                tempCanvas.height = height;
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                // 复制原始图像到临时Canvas
+                tempCtx.drawImage(sourceCanvas, 0, 0);
+                
+                // 原始清晰图像保持较高权重
+                destCtx.globalAlpha = 0.6; // 增加清晰图像的权重
+                destCtx.drawImage(sourceCanvas, 0, 0);
+                
+                // 应用非常轻微的模糊效果
+                const blurRadius = 4; // 减小模糊半径
+                const iterations = 8; // 减少迭代次数，让模糊更轻微
+                
+                for (let i = 0; i < iterations; i++) {
+                    const angle = (Math.PI * 2 * i) / iterations;
+                    const dx = Math.cos(angle) * blurRadius;
+                    const dy = Math.sin(angle) * blurRadius;
+                    destCtx.globalAlpha = 0.04; // 降低模糊层的透明度
+                    destCtx.drawImage(tempCanvas, dx, dy);
+                }
+                
+                // 恢复Alpha
+                destCtx.globalAlpha = 1.0;
+            }
         }
         
         // 更新预览
