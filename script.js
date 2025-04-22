@@ -372,15 +372,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 destCtx.globalAlpha = 0.7; // 提高清晰图像的权重到0.7
                 destCtx.drawImage(sourceCanvas, 0, 0);
                 
-                // 应用更强的模糊效果
-                const blurRadius = 10; // 增加模糊半径到10px，观察极端情况
-                const iterations = 8; // 保持迭代次数不变
+                // 应用中等强度模糊效果，增加迭代次数
+                const blurRadius = 6; // 设置为中等模糊半径
+                const iterations = 10; // 增加迭代次数到10次
                 
                 for (let i = 0; i < iterations; i++) {
                     const angle = (Math.PI * 2 * i) / iterations;
                     const dx = Math.cos(angle) * blurRadius;
                     const dy = Math.sin(angle) * blurRadius;
-                    destCtx.globalAlpha = 0.04; // 保持模糊层的透明度不变
+                    destCtx.globalAlpha = 0.035; // 略微调低单次模糊的透明度
                     destCtx.drawImage(tempCanvas, dx, dy);
                 }
                 
