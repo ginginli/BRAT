@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tempCtx.drawImage(sourceCanvas, 0, 0);
                 
                 // 原始清晰图像保持较高权重
-                destCtx.globalAlpha = 0.6; // 增加清晰图像的权重
+                destCtx.globalAlpha = 0.7; // 提高清晰图像的权重到0.7
                 destCtx.drawImage(sourceCanvas, 0, 0);
                 
                 // 应用非常轻微的模糊效果
