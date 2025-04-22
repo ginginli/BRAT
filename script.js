@@ -146,19 +146,35 @@ document.addEventListener('DOMContentLoaded', function() {
             let blurSize = 2; // 默认模糊值
             
             if (isMobile) {
-                // 移动设备上调整模糊值
+                // 移动设备上调整模糊值 - 增加模糊强度
                 if (pixelRatio >= 3) {
-                    blurSize = 1.5; // 超高DPI设备需要较小的模糊值
+                    blurSize = 2.5; // 超高DPI设备增加模糊值
+                    console.log(`High DPI mobile device (${pixelRatio}x), increasing blur to: ${blurSize}`);
                 } else if (pixelRatio >= 2) {
-                    blurSize = 1.8; // 高DPI设备
+                    blurSize = 2.8; // 高DPI设备进一步提高模糊值
+                    console.log(`Medium-high DPI mobile device (${pixelRatio}x), increasing blur to: ${blurSize}`);
                 } else {
-                    blurSize = 2; // 标准DPI设备
+                    blurSize = 3.0; // 标准DPI移动设备也增加模糊
+                    console.log(`Standard DPI mobile device, using higher blur: ${blurSize}`);
                 }
-                console.log(`Mobile device detected, pixelRatio: ${pixelRatio}, using blurSize: ${blurSize}`);
+                
+                // 检测特定移动设备
+                const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+                const isAndroid = /Android/i.test(navigator.userAgent);
+                
+                if (isIOS) {
+                    // iOS设备额外增加模糊值
+                    blurSize *= 1.2;
+                    console.log(`iOS device detected, further increasing blur to: ${blurSize}`);
+                } else if (isAndroid) {
+                    // Android设备稍微不同的调整
+                    blurSize *= 1.1;
+                    console.log(`Android device detected, adjusting blur to: ${blurSize}`);
+                }
             } else {
-                // 桌面设备上的模糊值
+                // 桌面设备上保持原有的模糊值
                 blurSize = 2;
-                console.log(`Desktop device detected, using blurSize: ${blurSize}`);
+                console.log(`Desktop device detected, using standard blur: ${blurSize}`);
             }
             
             // 尝试使用CSS样式的模糊效果
@@ -286,16 +302,34 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!useCanvasFilter) {
                 // 使用分层模糊技术
                 const applyManualBlur = () => {
-                    // 基础模糊 - 使用一个小的偏移量和较高的透明度
-                    const blurPasses = [
-                        { offsetRange: blurSize, alpha: 0.3, count: 8 },     // 主模糊层
-                        { offsetRange: blurSize/2, alpha: 0.5, count: 4 }    // 加强中心模糊
-                    ];
+                    // 基础模糊配置
+                    let blurPasses;
                     
-                    // 在特定设备上额外调整
-                    if (isMobile && pixelRatio >= 2) {
-                        // 高DPI移动设备需要更细致的近距离模糊
-                        blurPasses.push({ offsetRange: blurSize/4, alpha: 0.6, count: 4 });
+                    if (isMobile) {
+                        // 移动设备使用更强的模糊效果
+                        blurPasses = [
+                            { offsetRange: blurSize, alpha: 0.35, count: 8 },      // 主模糊层 - 增强透明度
+                            { offsetRange: blurSize/1.5, alpha: 0.6, count: 6 },   // 中距离模糊层 - 增加数量和透明度
+                            { offsetRange: blurSize/3, alpha: 0.7, count: 4 }      // 近距离模糊层 - 加强效果
+                        ];
+                        
+                        // 检测iOS设备，可能需要特殊处理
+                        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+                            // 为iOS添加额外的中距离模糊，使效果更明显
+                            blurPasses.push({ offsetRange: blurSize/2, alpha: 0.5, count: 6 });
+                            console.log('Added extra blur pass for iOS device');
+                        }
+                    } else {
+                        // 桌面设备保持原有的模糊效果
+                        blurPasses = [
+                            { offsetRange: blurSize, alpha: 0.3, count: 8 },     // 主模糊层
+                            { offsetRange: blurSize/2, alpha: 0.5, count: 4 }    // 加强中心模糊
+                        ];
+                        
+                        // 仅为高DPI桌面设备添加额外模糊
+                        if (pixelRatio >= 2) {
+                            blurPasses.push({ offsetRange: blurSize/4, alpha: 0.6, count: 4 });
+                        }
                     }
                     
                     // 应用每组模糊效果
@@ -312,8 +346,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                     
-                    // 最后添加中心原始图像，提升清晰度
-                    ctx.globalAlpha = 0.4;
+                    // 调整中心原始图像的透明度
+                    const centerAlpha = isMobile ? 0.35 : 0.4; // 移动设备降低中心清晰度
+                    ctx.globalAlpha = centerAlpha;
                     ctx.drawImage(offscreenCanvas, 0, 0);
                     
                     // 重置Alpha
