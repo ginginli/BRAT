@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded', function() {
             );
             ctx.restore();
             
-            // 简单模糊函数，保持原始颜色
+            // 为移动设备优化的模糊处理函数
             function applySimpleBlur(sourceCanvas, destCanvas) {
                 const destCtx = destCanvas.getContext('2d');
                 const width = destCanvas.width;
@@ -368,24 +368,106 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 复制原始图像到临时Canvas
                 tempCtx.drawImage(sourceCanvas, 0, 0);
                 
-                // 原始清晰图像保持较高权重
-                destCtx.globalAlpha = 0.7; // 提高清晰图像的权重到0.7
+                // 使用多阶段模糊处理获得更均匀的效果
+                // 先应用一个原始图像作为基础，权重降低以获得更自然的模糊效果
+                destCtx.globalAlpha = 0.55; // 降低原图权重以更接近目标效果
                 destCtx.drawImage(sourceCanvas, 0, 0);
                 
-                // 应用中等强度模糊效果，增加迭代次数
-                const blurRadius = 6; // 设置为中等模糊半径
-                const iterations = 10; // 增加迭代次数到10次
+                // 第一阶段：使用较小半径，大量迭代获得均匀模糊
+                applyMultiDirectionalBlur(tempCanvas, destCanvas, 3, 16, 0.02);
                 
-                for (let i = 0; i < iterations; i++) {
-                    const angle = (Math.PI * 2 * i) / iterations;
-                    const dx = Math.cos(angle) * blurRadius;
-                    const dy = Math.sin(angle) * blurRadius;
-                    destCtx.globalAlpha = 0.035; // 略微调低单次模糊的透明度
-                    destCtx.drawImage(tempCanvas, dx, dy);
-                }
+                // 第二阶段：使用中等半径加强模糊效果，保持均匀性
+                applyMultiDirectionalBlur(tempCanvas, destCanvas, 5, 12, 0.02);
+                
+                // 第三阶段：应用精细模糊以平滑边缘
+                applyMultiDirectionalBlur(tempCanvas, destCanvas, 2, 8, 0.02);
                 
                 // 恢复Alpha
                 destCtx.globalAlpha = 1.0;
+                
+                // 应用轻微的对比度增强，使文字更加清晰
+                enhanceContrast(destCanvas, 1.1);
+                
+                // 辅助函数：应用多方向模糊以获得更均匀的效果
+                function applyMultiDirectionalBlur(sourceCanvas, destCanvas, radius, iterations, alpha) {
+                    const srcCtx = sourceCanvas.getContext('2d');
+                    const destCtx = destCanvas.getContext('2d');
+                    
+                    // 复制到临时画布用于处理
+                    const tempCanvas = document.createElement('canvas');
+                    tempCanvas.width = sourceCanvas.width;
+                    tempCanvas.height = sourceCanvas.height;
+                    const tempCtx = tempCanvas.getContext('2d');
+                    tempCtx.drawImage(sourceCanvas, 0, 0);
+                    
+                    // 使用更多迭代来获得更均匀的模糊
+                    destCtx.globalAlpha = alpha;
+                    
+                    for (let i = 0; i < iterations; i++) {
+                        const angle = (Math.PI * 2 * i) / iterations;
+                        // 使用余弦和正弦计算偏移
+                        const dx = Math.cos(angle) * radius;
+                        const dy = Math.sin(angle) * radius;
+                        destCtx.drawImage(tempCanvas, dx, dy);
+                        
+                        // 添加额外的偏移点以填充间隙，使模糊更均匀
+                        if (iterations < 24 && radius > 3) {
+                            const halfAngle = angle + (Math.PI / iterations);
+                            const halfDx = Math.cos(halfAngle) * (radius * 0.7);
+                            const halfDy = Math.sin(halfAngle) * (radius * 0.7);
+                            destCtx.drawImage(tempCanvas, halfDx, halfDy);
+                        }
+                    }
+                }
+                
+                // 辅助函数：增强对比度，使模糊文字更加突出
+                function enhanceContrast(canvas, factor) {
+                    const ctx = canvas.getContext('2d');
+                    try {
+                        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                        const data = imageData.data;
+                        
+                        // 获取绿色背景的平均值，用于校准对比度
+                        let backgroundSum = 0;
+                        let backgroundPixels = 0;
+                        let textSum = 0;
+                        let textPixels = 0;
+                        
+                        // 采样识别背景和文字
+                        for (let i = 0; i < data.length; i += 4) {
+                            // 检测是否为绿色背景(G通道显著高于R和B)
+                            if (data[i+1] > data[i] * 1.5 && data[i+1] > data[i+2] * 1.5) {
+                                backgroundSum += data[i+1];
+                                backgroundPixels++;
+                            } else {
+                                // 可能是文字区域
+                                textSum += (data[i] + data[i+1] + data[i+2])/3;
+                                textPixels++;
+                            }
+                        }
+                        
+                        // 计算平均值
+                        const backgroundAvg = backgroundPixels > 0 ? backgroundSum / backgroundPixels : 0;
+                        const textAvg = textPixels > 0 ? textSum / textPixels : 0;
+                        
+                        // 应用对比度增强
+                        for (let i = 0; i < data.length; i += 4) {
+                            // 检测是否为文字区域(非纯绿色区域)
+                            const avgPixel = (data[i] + data[i+1] + data[i+2])/3;
+                            
+                            // 如果是深色区域(可能是文字)，增强对比度
+                            if (avgPixel < textAvg * 1.2) {
+                                data[i] = Math.max(0, Math.min(255, data[i] * factor));
+                                data[i+1] = Math.max(0, Math.min(255, data[i+1] * factor));
+                                data[i+2] = Math.max(0, Math.min(255, data[i+2] * factor));
+                            }
+                        }
+                        
+                        ctx.putImageData(imageData, 0, 0);
+                    } catch (e) {
+                        console.error('Error enhancing contrast:', e);
+                    }
+                }
             }
         }
         
