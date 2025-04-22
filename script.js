@@ -138,8 +138,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // 计算基础字体大小
             let fontSize = 120 * fontSizeFactor;
             
+            // 检测是否为移动设备
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
             // 设置文字渲染属性
-            ctx.filter = 'blur(2px)';
+            try {
+                ctx.filter = 'blur(2px)';
+            } catch (e) {
+                console.warn('Canvas filter not supported:', e);
+                // 备用模糊方法将在绘制文本后应用
+            }
+            
             ctx.fillStyle = textColors[theme];
             ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
             ctx.textAlign = 'center';
@@ -149,6 +158,17 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2);
             ctx.scale(0.85, 1);
+            
+            // 创建离屏Canvas用于额外的模糊效果（针对不支持filter的设备）
+            const offscreenCanvas = document.createElement('canvas');
+            offscreenCanvas.width = canvas.width;
+            offscreenCanvas.height = canvas.height;
+            const offCtx = offscreenCanvas.getContext('2d');
+            offCtx.fillStyle = textColors[theme];
+            offCtx.font = ctx.font;
+            offCtx.textAlign = ctx.textAlign;
+            offCtx.textBaseline = ctx.textBaseline;
+            offCtx.setTransform(ctx.getTransform());
             
             // 处理文字自动换行
             if (isAutoWrap) {
@@ -178,6 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const scale = (canvas.height * 0.8) / totalHeight;
                     fontSize *= scale;
                     ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+                    offCtx.font = ctx.font;
                 }
                 
                 // 绘制多行文字
@@ -188,7 +209,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 lines.forEach((line, index) => {
                     const letters = line.split('');
                     const spacedText = letters.join('\u200B');
+                    
+                    // 在主画布上绘制
                     ctx.fillText(
+                        spacedText,
+                        0,
+                        startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
+                    );
+                    
+                    // 在离屏画布上绘制（用于备用模糊）
+                    offCtx.fillText(
                         spacedText,
                         0,
                         startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
@@ -205,12 +235,36 @@ document.addEventListener('DOMContentLoaded', function() {
                     const scale = (canvas.width * 0.8) / metrics.width;
                     fontSize *= scale;
                     ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+                    offCtx.font = ctx.font;
                 }
                 
+                // 在主画布上绘制
                 ctx.fillText(spacedText, 0, 0);
+                
+                // 在离屏画布上绘制（用于备用模糊）
+                offCtx.fillText(spacedText, 0, 0);
             }
             
             ctx.restore();
+            
+            // 检查是否需要应用备用模糊效果（针对不支持filter的设备）
+            if (isMobile) {
+                try {
+                    // 尝试使用堆叠多层半透明的方法实现模糊效果
+                    ctx.save();
+                    const blurAmount = 2;
+                    for (let i = -blurAmount; i <= blurAmount; i++) {
+                        for (let j = -blurAmount; j <= blurAmount; j++) {
+                            if (i === 0 && j === 0) continue;
+                            ctx.globalAlpha = 0.05;
+                            ctx.drawImage(offscreenCanvas, i, j);
+                        }
+                    }
+                    ctx.restore();
+                } catch (e) {
+                    console.warn('Backup blur method failed:', e);
+                }
+            }
         }
         
         // 更新预览
