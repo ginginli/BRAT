@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fil">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Makipag-ugnayan sa Brat Generator team para sa suporta, feedback, o mga katanungan. Narito kami para tumulong!">
+    <title data-i18n="contact.meta.title">Makipag-ugnayan sa Amin - Brat Generator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!-- 语言选择器相关链接 -->
+    <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/contact" />
+    <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/contact" />
+    <link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/contact" />
+    <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/contact" />
+    <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/contact" />
+    <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/contact" />
+    <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/contact" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="/" aria-label="Brat Generator Home">
+                        <span class="logo-text brat-header" data-i18n="header.logo">Brat Generator</span>
+                    </a>
+                </div>
+                <ul>
+                    <li><a href="/" data-i18n="nav.home">Home</a></li>
+                </ul>
+                
+                <!-- 添加语言切换器 -->
+                <div class="language-switcher">
+                    <button class="lang-btn">🌐 Wika</button>
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-item">English</a>
+                        <a href="/zh-CN/contact.html" class="lang-item">中文</a>
+                        <a href="/es-MX/contact.html" class="lang-item">Español (MX)</a>
+                        <a href="/es-AR/contact.html" class="lang-item">Español (AR)</a>
+                        <a href="/tr/contact.html" class="lang-item">Türkçe</a>
+                        <a href="/fil/contact.html" class="lang-item active">Filipino</a>
+                        <a href="/id/contact.html" class="lang-item">Bahasa Indonesia</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-section">
+            <div class="container">
+                <h1 data-i18n="contact.title">Makipag-ugnayan sa Amin</h1>
+                <div class="contact-content">
+                    <p data-i18n="contact.description">May mga katanungan, feedback, o kailangan ng suporta? Narito kami para tumulong! Mangyaring gamitin ang form sa ibaba para makipag-ugnayan sa amin.</p>
+                    
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group">
+                            <label for="name" data-i18n="contact.form.name">Pangalan:</label>
+                            <input type="text" id="name" name="name" required data-i18n-placeholder="contact.form.namePlaceholder" placeholder="Ipasok ang iyong pangalan">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" data-i18n="contact.form.email">Email:</label>
+                            <input type="email" id="email" name="email" required data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="Ipasok ang iyong email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject" data-i18n="contact.form.subject">Paksa:</label>
+                            <input type="text" id="subject" name="subject" required data-i18n-placeholder="contact.form.subjectPlaceholder" placeholder="Ipasok ang paksa ng iyong mensahe">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" data-i18n="contact.form.message">Mensahe:</label>
+                            <textarea id="message" name="message" required data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="Ipasok ang iyong mensahe"></textarea>
+                        </div>
+                        
+                        <button type="submit" data-i18n="contact.form.submit">Ipadala ang Mensahe</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text" data-i18n="footer.logo">Brat Generator</span>
+                </div>
+                <div class="footer-links">
+                    <h3 data-i18n="footer.links">Mga Link</h3>
+                    <ul>
+                        <li><a href="privacy.html" data-i18n="footer.privacy">Patakaran sa Privacy</a></li>
+                        <li><a href="terms.html" data-i18n="footer.terms">Mga Tuntunin ng Serbisyo</a></li>
+                        <li><a href="contact.html" data-i18n="footer.contact">Makipag-ugnayan sa Amin</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p data-i18n="footer.copyright">&copy; <span id="current-year">2024</span> Brat Generator. Lahat ng karapatan ay nakalaan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
