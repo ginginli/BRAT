@@ -138,15 +138,46 @@ document.addEventListener('DOMContentLoaded', function() {
             // 计算基础字体大小
             let fontSize = 120 * fontSizeFactor;
             
-            // 检测是否为移动设备
+            // 检测设备类型和像素比
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const pixelRatio = window.devicePixelRatio || 1;
             
-            // 设置文字渲染属性
+            // 根据设备类型和像素比调整模糊参数
+            let blurSize = 2; // 默认模糊值
+            
+            if (isMobile) {
+                // 移动设备上调整模糊值
+                if (pixelRatio >= 3) {
+                    blurSize = 1.5; // 超高DPI设备需要较小的模糊值
+                } else if (pixelRatio >= 2) {
+                    blurSize = 1.8; // 高DPI设备
+                } else {
+                    blurSize = 2; // 标准DPI设备
+                }
+                console.log(`Mobile device detected, pixelRatio: ${pixelRatio}, using blurSize: ${blurSize}`);
+            } else {
+                // 桌面设备上的模糊值
+                blurSize = 2;
+                console.log(`Desktop device detected, using blurSize: ${blurSize}`);
+            }
+            
+            // 尝试使用CSS样式的模糊效果
+            let useCanvasFilter = true;
+            
             try {
-                ctx.filter = 'blur(2px)';
+                // 测试Canvas滤镜支持
+                ctx.filter = `blur(${blurSize}px)`;
+                
+                // 检查是否真正支持滤镜（某些浏览器会忽略不支持的属性而不报错）
+                if (ctx.filter !== `blur(${blurSize}px)` && 
+                    ctx.filter !== 'blur('+blurSize+'px)' && 
+                    ctx.filter !== 'blur(2px)') {
+                    console.warn('Canvas filter not fully supported, fallback to manual blur');
+                    useCanvasFilter = false;
+                }
             } catch (e) {
                 console.warn('Canvas filter not supported:', e);
-                // 备用模糊方法将在绘制文本后应用
+                useCanvasFilter = false;
             }
             
             ctx.fillStyle = textColors[theme];
@@ -159,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.translate(canvas.width / 2, canvas.height / 2);
             ctx.scale(0.85, 1);
             
-            // 创建离屏Canvas用于额外的模糊效果（针对不支持filter的设备）
+            // 创建离屏Canvas用于手动模糊效果
             const offscreenCanvas = document.createElement('canvas');
             offscreenCanvas.width = canvas.width;
             offscreenCanvas.height = canvas.height;
@@ -206,24 +237,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 const adjustedTotalHeight = lines.length * adjustedLineHeight;
                 const startY = -adjustedTotalHeight / 2;
                 
-                lines.forEach((line, index) => {
-                    const letters = line.split('');
-                    const spacedText = letters.join('\u200B');
-                    
-                    // 在主画布上绘制
-                    ctx.fillText(
-                        spacedText,
-                        0,
-                        startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
-                    );
-                    
-                    // 在离屏画布上绘制（用于备用模糊）
-                    offCtx.fillText(
-                        spacedText,
-                        0,
-                        startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
-                    );
-                });
+                // 是否使用Canvas滤镜
+                if (useCanvasFilter) {
+                    lines.forEach((line, index) => {
+                        const letters = line.split('');
+                        const spacedText = letters.join('\u200B');
+                        ctx.fillText(
+                            spacedText,
+                            0,
+                            startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
+                        );
+                    });
+                } else {
+                    // 使用离屏Canvas绘制清晰文本
+                    lines.forEach((line, index) => {
+                        const letters = line.split('');
+                        const spacedText = letters.join('\u200B');
+                        offCtx.fillText(
+                            spacedText,
+                            0,
+                            startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
+                        );
+                    });
+                }
             } else {
                 // 单行文字
                 const letters = text.split('');
@@ -238,43 +274,56 @@ document.addEventListener('DOMContentLoaded', function() {
                     offCtx.font = ctx.font;
                 }
                 
-                // 在主画布上绘制
-                ctx.fillText(spacedText, 0, 0);
+                // 是否使用Canvas滤镜
+                if (useCanvasFilter) {
+                    ctx.fillText(spacedText, 0, 0);
+                } else {
+                    offCtx.fillText(spacedText, 0, 0);
+                }
+            }
+            
+            // 如果不使用Canvas滤镜，则需要手动应用模糊效果
+            if (!useCanvasFilter) {
+                // 使用分层模糊技术
+                const applyManualBlur = () => {
+                    // 基础模糊 - 使用一个小的偏移量和较高的透明度
+                    const blurPasses = [
+                        { offsetRange: blurSize, alpha: 0.3, count: 8 },     // 主模糊层
+                        { offsetRange: blurSize/2, alpha: 0.5, count: 4 }    // 加强中心模糊
+                    ];
+                    
+                    // 在特定设备上额外调整
+                    if (isMobile && pixelRatio >= 2) {
+                        // 高DPI移动设备需要更细致的近距离模糊
+                        blurPasses.push({ offsetRange: blurSize/4, alpha: 0.6, count: 4 });
+                    }
+                    
+                    // 应用每组模糊效果
+                    blurPasses.forEach(pass => {
+                        // 生成平均分布的点，确保360度覆盖
+                        const step = (Math.PI * 2) / pass.count;
+                        for (let i = 0; i < pass.count; i++) {
+                            const angle = i * step;
+                            const offsetX = Math.cos(angle) * pass.offsetRange;
+                            const offsetY = Math.sin(angle) * pass.offsetRange;
+                            
+                            ctx.globalAlpha = pass.alpha;
+                            ctx.drawImage(offscreenCanvas, offsetX, offsetY);
+                        }
+                    });
+                    
+                    // 最后添加中心原始图像，提升清晰度
+                    ctx.globalAlpha = 0.4;
+                    ctx.drawImage(offscreenCanvas, 0, 0);
+                    
+                    // 重置Alpha
+                    ctx.globalAlpha = 1.0;
+                };
                 
-                // 在离屏画布上绘制（用于备用模糊）
-                offCtx.fillText(spacedText, 0, 0);
+                applyManualBlur();
             }
             
             ctx.restore();
-            
-            // 检查是否需要应用备用模糊效果（针对不支持filter的设备）
-            if (isMobile) {
-                try {
-                    // 尝试使用堆叠多层半透明的方法实现模糊效果
-                    ctx.save();
-                    const blurAmount = 4; // 增加模糊量
-                    for (let i = -blurAmount; i <= blurAmount; i++) {
-                        for (let j = -blurAmount; j <= blurAmount; j++) {
-                            if (i === 0 && j === 0) continue;
-                            ctx.globalAlpha = 0.08; // 增加透明度
-                            ctx.drawImage(offscreenCanvas, i, j);
-                        }
-                    }
-                    
-                    // 额外添加更明显的模糊效果
-                    for (let i = -2; i <= 2; i += 2) {
-                        for (let j = -2; j <= 2; j += 2) {
-                            if (i === 0 && j === 0) continue;
-                            ctx.globalAlpha = 0.12;
-                            ctx.drawImage(offscreenCanvas, i * 2, j * 2);
-                        }
-                    }
-                    
-                    ctx.restore();
-                } catch (e) {
-                    console.warn('Backup blur method failed:', e);
-                }
-            }
         }
         
         // 更新预览
