@@ -117,13 +117,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const { text, theme, fontSizeFactor, isAutoWrap } = options;
             const ctx = canvas.getContext('2d');
             
-            // 重置变换
-            ctx.setTransform(1, 0, 0, 1, 0, 0);
-            
-            // 确保属性设置正确
-            ctx.globalAlpha = 1.0;
-            ctx.imageSmoothingEnabled = true;
-            ctx.globalCompositeOperation = 'source-over';
+            // 检测设备类型和像素比
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            const pixelRatio = window.devicePixelRatio || 1;
             
             // 清空画布
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -135,45 +131,35 @@ document.addEventListener('DOMContentLoaded', function() {
             // 如果没有文字，直接返回
             if (!text) return;
             
+            // 对移动设备使用预渲染模糊方法，桌面设备使用原有方法
+            if (isMobile) {
+                // 移动设备使用预渲染模糊方法
+                console.log("Using pre-rendered blur method for mobile device");
+                renderPrerenderedBlurText(canvas, text, theme, fontSizeFactor, isAutoWrap);
+            } else {
+                // 桌面设备使用原有的Canvas滤镜方法
+                console.log("Using standard Canvas filter blur for desktop device");
+                renderStandardBlurText(canvas, text, theme, fontSizeFactor, isAutoWrap);
+            }
+        }
+        
+        // 桌面设备使用的标准Canvas滤镜方法
+        function renderStandardBlurText(canvas, text, theme, fontSizeFactor, isAutoWrap) {
+            const ctx = canvas.getContext('2d');
+            
+            // 重置变换
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            
+            // 确保属性设置正确
+            ctx.globalAlpha = 1.0;
+            ctx.imageSmoothingEnabled = true;
+            ctx.globalCompositeOperation = 'source-over';
+            
             // 计算基础字体大小
             let fontSize = 120 * fontSizeFactor;
             
-            // 检测设备类型和像素比
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const pixelRatio = window.devicePixelRatio || 1;
-            
-            // 根据设备类型和像素比调整模糊参数
-            let blurSize = 2; // 默认模糊值
-            
-            if (isMobile) {
-                // 移动设备测试 - 设置极大的模糊值进行测试
-                blurSize = 20; // 极端测试：设置非常大的模糊值
-                console.log(`EXTREME TEST MODE: Setting mobile blur to ${blurSize} to test blur effectiveness`);
-            } else {
-                // 桌面设备上保持原有的模糊值
-                blurSize = 2;
-                console.log(`Desktop device detected, using standard blur: ${blurSize}`);
-            }
-            
-            // 尝试使用CSS样式的模糊效果
-            let useCanvasFilter = true;
-            
-            try {
-                // 测试Canvas滤镜支持
-                ctx.filter = `blur(${blurSize}px)`;
-                
-                // 检查是否真正支持滤镜（某些浏览器会忽略不支持的属性而不报错）
-                if (ctx.filter !== `blur(${blurSize}px)` && 
-                    ctx.filter !== 'blur('+blurSize+'px)' && 
-                    ctx.filter !== 'blur(2px)') {
-                    console.warn('Canvas filter not fully supported, fallback to manual blur');
-                    useCanvasFilter = false;
-                }
-            } catch (e) {
-                console.warn('Canvas filter not supported:', e);
-                useCanvasFilter = false;
-            }
-            
+            // 设置文字渲染属性
+            ctx.filter = 'blur(2px)';
             ctx.fillStyle = textColors[theme];
             ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
             ctx.textAlign = 'center';
@@ -183,17 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
             ctx.save();
             ctx.translate(canvas.width / 2, canvas.height / 2);
             ctx.scale(0.85, 1);
-            
-            // 创建离屏Canvas用于手动模糊效果
-            const offscreenCanvas = document.createElement('canvas');
-            offscreenCanvas.width = canvas.width;
-            offscreenCanvas.height = canvas.height;
-            const offCtx = offscreenCanvas.getContext('2d');
-            offCtx.fillStyle = textColors[theme];
-            offCtx.font = ctx.font;
-            offCtx.textAlign = ctx.textAlign;
-            offCtx.textBaseline = ctx.textBaseline;
-            offCtx.setTransform(ctx.getTransform());
             
             // 处理文字自动换行
             if (isAutoWrap) {
@@ -223,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     const scale = (canvas.height * 0.8) / totalHeight;
                     fontSize *= scale;
                     ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
-                    offCtx.font = ctx.font;
                 }
                 
                 // 绘制多行文字
@@ -231,29 +205,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const adjustedTotalHeight = lines.length * adjustedLineHeight;
                 const startY = -adjustedTotalHeight / 2;
                 
-                // 是否使用Canvas滤镜
-                if (useCanvasFilter) {
-                    lines.forEach((line, index) => {
-                        const letters = line.split('');
-                        const spacedText = letters.join('\u200B');
-                        ctx.fillText(
-                            spacedText,
-                            0,
-                            startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
-                        );
-                    });
-                } else {
-                    // 使用离屏Canvas绘制清晰文本
-                    lines.forEach((line, index) => {
-                        const letters = line.split('');
-                        const spacedText = letters.join('\u200B');
-                        offCtx.fillText(
-                            spacedText,
-                            0,
-                            startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
-                        );
-                    });
-                }
+                lines.forEach((line, index) => {
+                    const letters = line.split('');
+                    const spacedText = letters.join('\u200B');
+                    ctx.fillText(
+                        spacedText,
+                        0,
+                        startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
+                    );
+                });
             } else {
                 // 单行文字
                 const letters = text.split('');
@@ -265,77 +225,209 @@ document.addEventListener('DOMContentLoaded', function() {
                     const scale = (canvas.width * 0.8) / metrics.width;
                     fontSize *= scale;
                     ctx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
-                    offCtx.font = ctx.font;
                 }
                 
-                // 是否使用Canvas滤镜
-                if (useCanvasFilter) {
-                    ctx.fillText(spacedText, 0, 0);
-                } else {
-                    offCtx.fillText(spacedText, 0, 0);
-                }
+                ctx.fillText(spacedText, 0, 0);
             }
             
-            // 如果不使用Canvas滤镜，则需要手动应用模糊效果
-            if (!useCanvasFilter) {
-                // 使用分层模糊技术
-                const applyManualBlur = () => {
-                    // 基础模糊配置
-                    let blurPasses;
+            ctx.restore();
+        }
+        
+        // 移动设备使用的预渲染模糊方法
+        function renderPrerenderedBlurText(canvas, text, theme, fontSizeFactor, isAutoWrap) {
+            const ctx = canvas.getContext('2d');
+            
+            // 步骤1: 创建两个离屏Canvas，一个用于渲染清晰文本，一个用于模糊处理
+            const clearTextCanvas = document.createElement('canvas');
+            clearTextCanvas.width = canvas.width * 2; // 更高分辨率以获得更好的模糊效果
+            clearTextCanvas.height = canvas.height * 2;
+            const clearCtx = clearTextCanvas.getContext('2d');
+            
+            // 步骤2: 先在高分辨率Canvas上渲染清晰文本
+            const fontSize = 120 * fontSizeFactor * 2; // 由于Canvas尺寸加倍，字体也需要加倍
+            clearCtx.fillStyle = textColors[theme];
+            clearCtx.font = `normal ${fontSize}px 'Arial Narrow', Arial, sans-serif`;
+            clearCtx.textAlign = 'center';
+            clearCtx.textBaseline = 'middle';
+            clearCtx.save();
+            clearCtx.translate(clearTextCanvas.width / 2, clearTextCanvas.height / 2);
+            clearCtx.scale(0.85, 1);
+            
+            // 处理文字渲染
+            let renderedWidth, renderedHeight;
+            
+            if (isAutoWrap) {
+                const maxWidth = (clearTextCanvas.width * 0.8) / 0.85;
+                const words = text.split('');
+                let lines = [];
+                let currentLine = '';
+                
+                for (let word of words) {
+                    const testLine = currentLine + word;
+                    const metrics = clearCtx.measureText(testLine);
                     
-                    if (isMobile) {
-                        // 移动设备使用更强的模糊效果
-                        blurPasses = [
-                            { offsetRange: blurSize, alpha: 0.35, count: 8 },      // 主模糊层 - 增强透明度
-                            { offsetRange: blurSize/1.5, alpha: 0.6, count: 6 },   // 中距离模糊层 - 增加数量和透明度
-                            { offsetRange: blurSize/3, alpha: 0.7, count: 4 }      // 近距离模糊层 - 加强效果
-                        ];
-                        
-                        // 检测iOS设备，可能需要特殊处理
-                        if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                            // 为iOS添加额外的中距离模糊，使效果更明显
-                            blurPasses.push({ offsetRange: blurSize/2, alpha: 0.5, count: 6 });
-                            console.log('Added extra blur pass for iOS device');
-                        }
+                    if (metrics.width > maxWidth && currentLine !== '') {
+                        lines.push(currentLine);
+                        currentLine = word;
                     } else {
-                        // 桌面设备保持原有的模糊效果
-                        blurPasses = [
-                            { offsetRange: blurSize, alpha: 0.3, count: 8 },     // 主模糊层
-                            { offsetRange: blurSize/2, alpha: 0.5, count: 4 }    // 加强中心模糊
-                        ];
-                        
-                        // 仅为高DPI桌面设备添加额外模糊
-                        if (pixelRatio >= 2) {
-                            blurPasses.push({ offsetRange: blurSize/4, alpha: 0.6, count: 4 });
+                        currentLine = testLine;
+                    }
+                }
+                lines.push(currentLine);
+                
+                // 调整字体大小以适应容器
+                let adjustedFontSize = fontSize;
+                const lineHeight = fontSize * 1.2;
+                const totalHeight = lines.length * lineHeight;
+                
+                if (totalHeight > clearTextCanvas.height * 0.8) {
+                    const scale = (clearTextCanvas.height * 0.8) / totalHeight;
+                    adjustedFontSize = fontSize * scale;
+                    clearCtx.font = `normal ${adjustedFontSize}px 'Arial Narrow', Arial, sans-serif`;
+                }
+                
+                // 绘制多行文字
+                const adjustedLineHeight = adjustedFontSize * 1.2;
+                const adjustedTotalHeight = lines.length * adjustedLineHeight;
+                const startY = -adjustedTotalHeight / 2;
+                
+                renderedWidth = 0;
+                lines.forEach((line, index) => {
+                    const letters = line.split('');
+                    const spacedText = letters.join('\u200B');
+                    const metrics = clearCtx.measureText(spacedText);
+                    renderedWidth = Math.max(renderedWidth, metrics.width);
+                    
+                    clearCtx.fillText(
+                        spacedText,
+                        0,
+                        startY + (index * adjustedLineHeight) + adjustedLineHeight / 2
+                    );
+                });
+                renderedHeight = adjustedTotalHeight;
+            } else {
+                // 单行文字
+                const letters = text.split('');
+                const spacedText = letters.join('\u200B');
+                const metrics = clearCtx.measureText(spacedText);
+                renderedWidth = metrics.width;
+                renderedHeight = fontSize;
+                
+                // 调整字体大小以适应容器宽度
+                if (metrics.width > clearTextCanvas.width * 0.8) {
+                    const scale = (clearTextCanvas.width * 0.8) / metrics.width;
+                    const adjustedFontSize = fontSize * scale;
+                    clearCtx.font = `normal ${adjustedFontSize}px 'Arial Narrow', Arial, sans-serif`;
+                    renderedHeight = adjustedFontSize;
+                }
+                
+                clearCtx.fillText(spacedText, 0, 0);
+            }
+            
+            clearCtx.restore();
+            
+            // 步骤3: 多阶段模糊处理，模拟高质量模糊效果
+            const blurredCanvas = document.createElement('canvas');
+            blurredCanvas.width = clearTextCanvas.width;
+            blurredCanvas.height = clearTextCanvas.height;
+            const blurCtx = blurredCanvas.getContext('2d');
+            
+            // 应用多阶段处理
+            const performMultiStageBlur = () => {
+                // 初始复制清晰文本Canvas
+                blurCtx.clearRect(0, 0, blurredCanvas.width, blurredCanvas.height);
+                blurCtx.drawImage(clearTextCanvas, 0, 0);
+                
+                // 下面的方法为移动设备实现更有效的模糊
+                let blurRadius = 6;  // 较大的模糊半径
+                
+                // 根据设备优化模糊值
+                const pixelRatio = window.devicePixelRatio || 1;
+                if (pixelRatio >= 3) {
+                    // 超高DPI设备需要更强的模糊
+                    blurRadius = 8;
+                }
+                
+                // 应用多次堆叠模糊
+                stackBlur(blurCtx, blurredCanvas.width, blurredCanvas.height, blurRadius);
+                
+                // 再次应用较小半径的模糊以增强边缘
+                stackBlur(blurCtx, blurredCanvas.width, blurredCanvas.height, blurRadius/2);
+                
+                // 可选: 适当增加对比度以强调模糊后的文本
+                enhanceContrast(blurCtx, blurredCanvas.width, blurredCanvas.height, 1.2);
+            };
+            
+            // 简化版的StackBlur算法，专为文本模糊优化
+            function stackBlur(ctx, width, height, radius) {
+                // 模拟StackBlur的效果，使用多次不透明度叠加
+                const tempCanvas = document.createElement('canvas');
+                tempCanvas.width = width;
+                tempCanvas.height = height;
+                const tempCtx = tempCanvas.getContext('2d');
+                
+                // 复制原始图像
+                tempCtx.drawImage(blurredCanvas, 0, 0);
+                
+                // 应用径向模糊（通过多次绘制略微偏移的图像）
+                ctx.globalAlpha = 1.0;
+                ctx.clearRect(0, 0, width, height);
+                
+                // 中心副本（权重最高）
+                ctx.globalAlpha = 0.4;
+                ctx.drawImage(tempCanvas, 0, 0);
+                
+                // 应用径向模糊
+                const iterations = 8;
+                for (let i = 0; i < iterations; i++) {
+                    const angle = (Math.PI * 2 * i) / iterations;
+                    const dx = Math.round(Math.cos(angle) * radius);
+                    const dy = Math.round(Math.sin(angle) * radius);
+                    ctx.globalAlpha = 0.075; // 较低的透明度，多次叠加
+                    ctx.drawImage(tempCanvas, dx, dy);
+                }
+                
+                // 恢复Alpha
+                ctx.globalAlpha = 1.0;
+            }
+            
+            // 增强对比度，使模糊后的文本更明显
+            function enhanceContrast(ctx, width, height, factor) {
+                try {
+                    // 读取图像数据
+                    const imageData = ctx.getImageData(0, 0, width, height);
+                    const data = imageData.data;
+                    
+                    // 简单的对比度增强
+                    for (let i = 0; i < data.length; i += 4) {
+                        // 只处理非透明像素
+                        if (data[i+3] > 0) {
+                            // 文本颜色已经很深，只需要稍微增强
+                            data[i] = Math.min(255, data[i] * factor);
+                            data[i+1] = Math.min(255, data[i+1] * factor);
+                            data[i+2] = Math.min(255, data[i+2] * factor);
                         }
                     }
                     
-                    // 应用每组模糊效果
-                    blurPasses.forEach(pass => {
-                        // 生成平均分布的点，确保360度覆盖
-                        const step = (Math.PI * 2) / pass.count;
-                        for (let i = 0; i < pass.count; i++) {
-                            const angle = i * step;
-                            const offsetX = Math.cos(angle) * pass.offsetRange;
-                            const offsetY = Math.sin(angle) * pass.offsetRange;
-                            
-                            ctx.globalAlpha = pass.alpha;
-                            ctx.drawImage(offscreenCanvas, offsetX, offsetY);
-                        }
-                    });
-                    
-                    // 调整中心原始图像的透明度
-                    const centerAlpha = isMobile ? 0.35 : 0.4; // 移动设备降低中心清晰度
-                    ctx.globalAlpha = centerAlpha;
-                    ctx.drawImage(offscreenCanvas, 0, 0);
-                    
-                    // 重置Alpha
-                    ctx.globalAlpha = 1.0;
-                };
-                
-                applyManualBlur();
+                    // 放回处理后的数据
+                    ctx.putImageData(imageData, 0, 0);
+                } catch (e) {
+                    console.warn('Contrast enhancement failed:', e);
+                }
             }
             
+            // 执行多阶段模糊
+            performMultiStageBlur();
+            
+            // 步骤4: 将处理后的模糊文本绘制到目标Canvas
+            ctx.save();
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            ctx.drawImage(
+                blurredCanvas, 
+                0, 0, blurredCanvas.width, blurredCanvas.height,
+                0, 0, canvas.width, canvas.height
+            );
             ctx.restore();
         }
         
