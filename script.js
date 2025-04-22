@@ -31,18 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function initializeApp() {
         console.log('Initializing app...');
-        
-        // Get DOM elements
-        const textInput = document.getElementById('text-input');
+
+    // Get DOM elements
+    const textInput = document.getElementById('text-input');
         const memeContainer = document.getElementById('meme-container');
-        const downloadBtn = document.getElementById('download-btn');
-        const themeGreen = document.getElementById('theme-green');
-        const themeBlack = document.getElementById('theme-black');
-        const themeWhite = document.getElementById('theme-white');
-        const themeBlue = document.getElementById('theme-blue');
-        const autoWrapCheckbox = document.getElementById('auto-wrap');
-        const fontSizeSlider = document.getElementById('font-size-slider');
-        
+    const downloadBtn = document.getElementById('download-btn');
+    const themeGreen = document.getElementById('theme-green');
+    const themeBlack = document.getElementById('theme-black');
+    const themeWhite = document.getElementById('theme-white');
+    const themeBlue = document.getElementById('theme-blue');
+    const autoWrapCheckbox = document.getElementById('auto-wrap');
+    const fontSizeSlider = document.getElementById('font-size-slider');
+    
         // Log element status
         console.log('Elements found:', {
             textInput: !!textInput,
@@ -562,15 +562,15 @@ document.addEventListener('DOMContentLoaded', function() {
             fontSizeFactor = this.value / 100;
             updatePreview();
         });
+    
+    // Download button event listener
+    downloadBtn.addEventListener('click', function() {
+        // Show loading animation
+        const loadingAnimation = document.getElementById('loading-animation');
+        if (loadingAnimation) {
+            loadingAnimation.style.display = 'flex';
+        }
         
-        // Download button event listener
-        downloadBtn.addEventListener('click', function() {
-            // Show loading animation
-            const loadingAnimation = document.getElementById('loading-animation');
-            if (loadingAnimation) {
-                loadingAnimation.style.display = 'flex';
-            }
-            
             // 创建导出用的 canvas，固定尺寸为 600x600
             const exportCanvas = document.createElement('canvas');
             exportCanvas.width = 600;
@@ -594,96 +594,96 @@ document.addEventListener('DOMContentLoaded', function() {
             if (loadingAnimation) {
                 loadingAnimation.style.display = 'none';
             }
-        });
+});
         
         // 初始化
         updateThemeButtons();
         updatePreview();
     }
 
-    // Add structured data
-    function addStructuredData() {
-        const structuredData = {
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "Brat Generator - Free Online Charli XCX Brat Text Generator",
-            "description": "Create customized text in the style of Charli XCX's Brat album cover with our free online generator",
-            "applicationCategory": "MultimediaApplication",
-            "operatingSystem": "Web",
-            "offers": {
-                "@type": "Offer",
-                "price": "0",
-                "priceCurrency": "USD"
-            }
-        };
-        
-        const faqStructuredData = {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "mainEntity": [
-                {
-                    "@type": "Question",
-                    "name": "What is the Brat Generator?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "The Brat Generator is a free online tool that allows you to create text in the style of Charli XCX's 'Brat' album cover. You can customize the text and choose from multiple themes including the iconic green background from the album."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What is Charli XCX's Brat album?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Brat is the sixth studio album by English singer-songwriter Charli XCX, released in 2023. The album features a distinctive minimalist green cover with blurred text, which has become an iconic visual style and internet phenomenon."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "How does the Brat text generator work?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Our Brat text generator lets you input your own text, select from different color themes (including the iconic green), and generate an image that mimics the style of Charli XCX's Brat album cover. The tool applies the right font, blur effect, and styling to match the album aesthetic."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Can I use the Brat text generator for social media?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes! The Brat Generator is perfect for creating social media posts, profile pictures, or any content where you want to embrace the Brat aesthetic. Simply download your created image and share it on your favorite platform."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "Is the Brat Generator free to use?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "Yes, the Brat Generator is completely free to use. You can create as many images as you like with no cost or account registration required."
-                    }
-                },
-                {
-                    "@type": "Question",
-                    "name": "What themes are available in the Brat Generator?",
-                    "acceptedAnswer": {
-                        "@type": "Answer",
-                        "text": "We offer multiple themes including the iconic green (same as Charli XCX's album cover), black, white, and blue variations, allowing you to customize your Brat style text to match your personal preference."
-                    }
+// Add structured data
+function addStructuredData() {
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Brat Generator - Free Online Charli XCX Brat Text Generator",
+        "description": "Create customized text in the style of Charli XCX's Brat album cover with our free online generator",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Web",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    };
+    
+    const faqStructuredData = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the Brat Generator?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The Brat Generator is a free online tool that allows you to create text in the style of Charli XCX's 'Brat' album cover. You can customize the text and choose from multiple themes including the iconic green background from the album."
                 }
-            ]
-        };
-        
-        // 添加主应用结构化数据
-        const appScript = document.createElement('script');
-        appScript.type = 'application/ld+json';
-        appScript.text = JSON.stringify(structuredData);
-        document.head.appendChild(appScript);
-        
-        // 添加FAQ结构化数据
-        const faqScript = document.createElement('script');
-        faqScript.type = 'application/ld+json';
-        faqScript.text = JSON.stringify(faqStructuredData);
-        document.head.appendChild(faqScript);
-    }
+            },
+            {
+                "@type": "Question",
+                "name": "What is Charli XCX's Brat album?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Brat is the sixth studio album by English singer-songwriter Charli XCX, released in 2023. The album features a distinctive minimalist green cover with blurred text, which has become an iconic visual style and internet phenomenon."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does the Brat text generator work?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our Brat text generator lets you input your own text, select from different color themes (including the iconic green), and generate an image that mimics the style of Charli XCX's Brat album cover. The tool applies the right font, blur effect, and styling to match the album aesthetic."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can I use the Brat text generator for social media?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes! The Brat Generator is perfect for creating social media posts, profile pictures, or any content where you want to embrace the Brat aesthetic. Simply download your created image and share it on your favorite platform."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is the Brat Generator free to use?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, the Brat Generator is completely free to use. You can create as many images as you like with no cost or account registration required."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What themes are available in the Brat Generator?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We offer multiple themes including the iconic green (same as Charli XCX's album cover), black, white, and blue variations, allowing you to customize your Brat style text to match your personal preference."
+                }
+            }
+        ]
+    };
+    
+    // 添加主应用结构化数据
+    const appScript = document.createElement('script');
+    appScript.type = 'application/ld+json';
+    appScript.text = JSON.stringify(structuredData);
+    document.head.appendChild(appScript);
+    
+    // 添加FAQ结构化数据
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.text = JSON.stringify(faqStructuredData);
+    document.head.appendChild(faqScript);
+}
 
     addStructuredData();
 });
