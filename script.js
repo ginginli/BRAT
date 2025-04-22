@@ -146,31 +146,9 @@ document.addEventListener('DOMContentLoaded', function() {
             let blurSize = 2; // 默认模糊值
             
             if (isMobile) {
-                // 移动设备上调整模糊值 - 增加模糊强度
-                if (pixelRatio >= 3) {
-                    blurSize = 2.5; // 超高DPI设备增加模糊值
-                    console.log(`High DPI mobile device (${pixelRatio}x), increasing blur to: ${blurSize}`);
-                } else if (pixelRatio >= 2) {
-                    blurSize = 2.8; // 高DPI设备进一步提高模糊值
-                    console.log(`Medium-high DPI mobile device (${pixelRatio}x), increasing blur to: ${blurSize}`);
-                } else {
-                    blurSize = 3.0; // 标准DPI移动设备也增加模糊
-                    console.log(`Standard DPI mobile device, using higher blur: ${blurSize}`);
-                }
-                
-                // 检测特定移动设备
-                const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-                const isAndroid = /Android/i.test(navigator.userAgent);
-                
-                if (isIOS) {
-                    // iOS设备额外增加模糊值
-                    blurSize *= 1.2;
-                    console.log(`iOS device detected, further increasing blur to: ${blurSize}`);
-                } else if (isAndroid) {
-                    // Android设备稍微不同的调整
-                    blurSize *= 1.1;
-                    console.log(`Android device detected, adjusting blur to: ${blurSize}`);
-                }
+                // 移动设备测试 - 设置极大的模糊值进行测试
+                blurSize = 20; // 极端测试：设置非常大的模糊值
+                console.log(`EXTREME TEST MODE: Setting mobile blur to ${blurSize} to test blur effectiveness`);
             } else {
                 // 桌面设备上保持原有的模糊值
                 blurSize = 2;
