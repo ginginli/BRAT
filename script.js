@@ -252,14 +252,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     // 尝试使用堆叠多层半透明的方法实现模糊效果
                     ctx.save();
-                    const blurAmount = 2;
+                    const blurAmount = 4; // 增加模糊量
                     for (let i = -blurAmount; i <= blurAmount; i++) {
                         for (let j = -blurAmount; j <= blurAmount; j++) {
                             if (i === 0 && j === 0) continue;
-                            ctx.globalAlpha = 0.05;
+                            ctx.globalAlpha = 0.08; // 增加透明度
                             ctx.drawImage(offscreenCanvas, i, j);
                         }
                     }
+                    
+                    // 额外添加更明显的模糊效果
+                    for (let i = -2; i <= 2; i += 2) {
+                        for (let j = -2; j <= 2; j += 2) {
+                            if (i === 0 && j === 0) continue;
+                            ctx.globalAlpha = 0.12;
+                            ctx.drawImage(offscreenCanvas, i * 2, j * 2);
+                        }
+                    }
+                    
                     ctx.restore();
                 } catch (e) {
                     console.warn('Backup blur method failed:', e);
