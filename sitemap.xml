@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    <!-- 主页（中文版） -->
+    <!-- 主页（英文/默认版本） -->
     <url>
         <loc>https://www.bratgenerator.com.cn/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
+        <!-- 自引用必须包含 -->
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
         <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
         <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
@@ -15,15 +16,28 @@
         <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
         <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
         <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 隐私政策页面（中文版） -->
+    <!-- Brat Green Generator 页面 -->
+    <url>
+        <loc>https://www.bratgenerator.com.cn/bratgreen/</loc>
+        <lastmod>2024-04-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/bratgreen/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/bratgreen/" />
+    </url>
+
+    <!-- 隐私政策页面 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/privacy.html</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/privacy.html" />
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/privacy.html" />
         <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/privacy.html" />
         <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/privacy.html" />
@@ -31,15 +45,18 @@
         <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/privacy.html" />
         <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/privacy.html" />
         <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/privacy.html" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/privacy.html" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/privacy.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/privacy.html" />
     </url>
 
-    <!-- 使用条款页面（中文版） -->
+    <!-- 使用条款页面 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/terms.html</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/terms.html" />
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/terms.html" />
         <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/terms.html" />
         <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/terms.html" />
@@ -47,15 +64,18 @@
         <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/terms.html" />
         <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/terms.html" />
         <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/terms.html" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/terms.html" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/terms.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/terms.html" />
     </url>
 
-    <!-- 联系我们页面（中文版） -->
+    <!-- 联系我们页面 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/contact.html</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/contact.html" />
         <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/contact.html" />
         <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/contact.html" />
         <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/contact.html" />
@@ -63,152 +83,212 @@
         <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/contact.html" />
         <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/contact.html" />
         <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/contact.html" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/contact.html" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/contact.html" />
         <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/contact.html" />
     </url>
 
-    <!-- 中文版页面 -->
+    <!-- 各语言版本主页 -->
+    <!-- 中文版 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/zh-CN/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/zh-CN/privacy.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/zh-CN/terms.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/zh-CN/contact.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 墨西哥西班牙语版页面 -->
+    <!-- 美国英语版 -->
+    <url>
+        <loc>https://www.bratgenerator.com.cn/en-US/</loc>
+        <lastmod>2024-04-23</lastmod>
+        <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+    </url>
+
+    <!-- 墨西哥西班牙语版 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/es-MX/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/es-MX/privacy.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/es-MX/terms.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/es-MX/contact.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 阿根廷西班牙语版页面 -->
+    <!-- 阿根廷西班牙语版 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/es-AR/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 印尼语版页面 -->
+    <!-- 印尼语版 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/id/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/id/privacy.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/id/terms.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    <url>
-        <loc>https://www.bratgenerator.com.cn/id/contact.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 土耳其语版页面 -->
+    <!-- 土耳其语版 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/tr/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 菲律宾语版页面 -->
+    <!-- 菲律宾语版 -->
     <url>
         <loc>https://www.bratgenerator.com.cn/fil/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
         <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
 
-    <!-- 新添加的子目录页面 -->
+    <!-- 日语版 -->
     <url>
-        <loc>https://bratgenerator.com/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <loc>https://www.bratgenerator.com.cn/ja-JP/</loc>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
-        <priority>1.0</priority>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
     </url>
+
+    <!-- 韩语版 -->
     <url>
-        <loc>https://bratgenerator.com/brat-maker/</loc>
-        <lastmod>2024-04-16</lastmod>
+        <loc>https://www.bratgenerator.com.cn/ko-KR/</loc>
+        <lastmod>2024-04-23</lastmod>
         <changefreq>daily</changefreq>
+        <priority>0.9</priority>
+        <xhtml:link rel="alternate" hreflang="ko-KR" href="https://www.bratgenerator.com.cn/ko-KR/" />
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
+        <xhtml:link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
+        <xhtml:link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
+        <xhtml:link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
+        <xhtml:link rel="alternate" hreflang="es-AR" href="https://www.bratgenerator.com.cn/es-AR/" />
+        <xhtml:link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
+        <xhtml:link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/" />
+        <xhtml:link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
+        <xhtml:link rel="alternate" hreflang="ja-JP" href="https://www.bratgenerator.com.cn/ja-JP/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+    </url>
+
+    <!-- 黑色生成器页面 -->
+    <url>
+        <loc>https://www.bratgenerator.com.cn/brat-generator-negro/</loc>
+        <lastmod>2024-04-23</lastmod>
+        <changefreq>weekly</changefreq>
         <priority>0.8</priority>
+        <xhtml:link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/brat-generator-negro/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/brat-generator-negro/" />
     </url>
+
+    <!-- 其他创建页面 -->
     <url>
-        <loc>https://bratgenerator.com/brat-text-generator/</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>https://www.bratgenerator.com.cn/create-blue-bg.html</loc>
+        <lastmod>2024-04-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
+
     <url>
-        <loc>https://bratgenerator.com/brat-font-generator/</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.8</priority>
+        <loc>https://www.bratgenerator.com.cn/blue-bg-generator.html</loc>
+        <lastmod>2024-04-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
+
     <url>
-        <loc>https://bratgenerator.com/privacy.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://bratgenerator.com/terms.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
-    </url>
-    <url>
-        <loc>https://bratgenerator.com/contact.html</loc>
-        <lastmod>2024-04-16</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.5</priority>
+        <loc>https://www.bratgenerator.com.cn/generate-backgrounds.html</loc>
+        <lastmod>2024-04-23</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.7</priority>
     </url>
 </urlset> 
