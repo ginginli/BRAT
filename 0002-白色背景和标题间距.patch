@@ -1,0 +1,104 @@
+From 00a2bd6212b398c6b8b7c192cfe09f487088e059 Mon Sep 17 00:00:00 2001
+From: ginginli <ljjy02@163.com>
+Date: Tue, 22 Apr 2025 12:16:09 +0800
+Subject: [PATCH] =?UTF-8?q?=E6=94=B9=E8=BF=9B=E6=A0=B7=E5=BC=8F=EF=BC=9A?=
+ =?UTF-8?q?=E9=A1=B5=E9=9D=A2=E8=83=8C=E6=99=AF=E6=94=B9=E4=B8=BA=E7=BA=AF?=
+ =?UTF-8?q?=E7=99=BD=E8=89=B2=EF=BC=8C=E7=BC=A9=E5=B0=8F=E6=A0=87=E9=A2=98?=
+ =?UTF-8?q?=E9=97=B4=E8=B7=9D?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ styles.css | 33 ++++++++++++++++++++++++++++-----
+ 1 file changed, 28 insertions(+), 5 deletions(-)
+
+diff --git a/styles.css b/styles.css
+index 6741657..3ed1b4f 100644
+--- a/styles.css
++++ b/styles.css
+@@ -43,7 +43,7 @@ body {
+     font-family: 'Arial Narrow', Arial, sans-serif;
+     line-height: 1.6;
+     color: #333;
+-    background-color: #f8f8f8;
++    background-color: #fff;
+     text-align: center;
+ }
+ 
+@@ -128,6 +128,19 @@ section {
+     padding: 60px 0;
+ }
+ 
++/* 生成器部分特殊调整 */
++.generator-section {
++    padding-top: 30px;
++    padding-bottom: 40px;
++}
++
++/* 主标题样式调整 */
++.main-title {
++    margin-top: 0;
++    margin-bottom: 15px;
++    font-size: 28px;
++}
++
+ h1, h2, h3 {
+     margin-bottom: 20px;
+ }
+@@ -233,7 +246,7 @@ h2 {
+     display: flex;
+     flex-wrap: wrap;
+     gap: 30px;
+-    margin-top: 30px;
++    margin-top: 20px;
+ }
+ 
+ .controls {
+@@ -579,6 +592,16 @@ footer a:hover {
+         flex-direction: column;
+     }
+     
++    .generator-section {
++        padding-top: 20px;
++        padding-bottom: 30px;
++    }
++    
++    .main-title {
++        font-size: 24px;
++        margin-bottom: 10px;
++    }
++    
+     nav {
+         flex-direction: column;
+         align-items: center;
+@@ -639,7 +662,7 @@ footer a:hover {
+ 
+ /* FAQ部分样式 */
+ .faq-section {
+-    background-color: #f9f9f9;
++    background-color: #fff;
+     padding: 60px 0;
+ }
+ 
+@@ -799,7 +822,7 @@ footer a:hover {
+ 
+ /* Testimonials Section */
+ .testimonials-section {
+-    background-color: #f9f9f9;
++    background-color: #fff;
+     padding: 80px 0;
+ }
+ 
+@@ -917,7 +940,7 @@ footer a:hover {
+ /* 文本选项样式 */
+ .text-options {
+     margin-bottom: 20px;
+-    background-color: #f8f8f8;
++    background-color: #fff;
+     padding: 15px;
+     border-radius: 4px;
+     border: 1px solid #eee;
+-- 
+2.39.5 (Apple Git-154)
+
