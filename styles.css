@@ -1138,4 +1138,31 @@ body.no-lazy-load section {
     opacity: 1 !important;
 }
 
+/* 懒加载图片相关样式 */
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+.lazy-section {
+  opacity: 0.2;
+  transition: opacity 0.5s ease-in;
+}
+
+.lazy-section.loaded {
+  opacity: 1;
+}
+
+/* 确保懒加载占位符有合理的高度 */
+.lazy-section .content-placeholder {
+  min-height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 

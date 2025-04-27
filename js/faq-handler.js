@@ -75,7 +75,17 @@ function initFaqFunctionality() {
   }
 }
 
-// 监听懒加载事件
+// 监听新的懒加载事件名称
+document.addEventListener('section-visible', function(e) {
+  if (e.detail && e.detail.section.classList.contains('faq-section')) {
+    // 短暂延迟以确保DOM已完全渲染
+    setTimeout(() => {
+      initFaqFunctionality();
+    }, 100);
+  }
+});
+
+// 同时保留对旧事件的支持
 document.addEventListener('section-loaded', function(e) {
   if (e.detail && e.detail.section.classList.contains('faq-section')) {
     initFaqFunctionality();
