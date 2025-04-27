@@ -1172,14 +1172,14 @@ img.lazy-loaded {
     content: "";
     display: block;
     position: absolute;
-    left: -150px;
+    left: 0;
     top: 0;
     height: 100%;
-    width: 150px;
-    background: linear-gradient(to right, transparent 0%, #e8e8e8 50%, transparent 100%);
-    animation: shimmer 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+    width: 100%;
+    background-color: #f0f0f0;
 }
 
+/* 移除闪光动画关键帧定义 */
 @keyframes shimmer {
     0% {
         left: -150px;
