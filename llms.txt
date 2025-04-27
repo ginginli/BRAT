@@ -1,0 +1,21 @@
+# Brat Generator
+
+> Brat Generator is a free online tool that allows users to create customized brat style images resembling the album cover of Brat by Charli XCX.
+
+This tool offers multiple color theme options, including the iconic green background, black, white, and blue variants, allowing users to easily create personalized Brat style text images. Simple to use, no design experience required, perfect for social media sharing.
+
+## Core Features
+- [Main Generator](https://www.bratgenerator.com.cn/): The primary tool for creating custom Brat style images
+- [Green Theme](https://www.bratgenerator.com.cn/bratgreen/): Variant focused on the iconic green color (#8ACF01) from the Brat album
+- [Multi-language Support](https://www.bratgenerator.com.cn/zh-CN/): Supports multiple languages including Chinese, English, Spanish, and more
+
+## Resources
+- [Privacy Policy](https://www.bratgenerator.com.cn/privacy.html): Learn how we protect your data
+- [Terms of Service](https://www.bratgenerator.com.cn/terms.html): Terms and conditions of use
+- [Contact Us](https://www.bratgenerator.com.cn/contact.html): Ways to contact us
+
+## About
+- This is an unofficial fan-made tool
+- Brat Generator is not affiliated with, endorsed by, or connected to Charli XCX or her management
+- "Brat" is a trademark of Charli XCX
+- This tool is created for fan entertainment purposes only 
