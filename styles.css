@@ -79,6 +79,7 @@ nav {
 .nav-title {
     margin: 0;
     line-height: 1.1;
+    font-size: 22px;
 }
 
 .nav-subtitle {
@@ -614,7 +615,7 @@ footer a:hover {
     }
     
     .nav-title {
-        font-size: 1.4em;
+        font-size: 1.3em;
     }
     
     .nav-subtitle {
