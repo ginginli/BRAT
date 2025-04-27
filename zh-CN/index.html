@@ -123,7 +123,7 @@
                     
                     <div class="preview-container">
                         <div id="meme-container">
-                            <img id="meme-image" src="/images/brat-bg-black.png" alt="Brat 背景图片">
+                            <img id="meme-image" src="/images/brat-bg-black.png" alt="Brat 背景图片" loading="eager">
                             <div id="text-overlay"></div>
                         </div>
                         <p class="tip" data-i18n="generator.tip">提示：你也可以截屏保存图片</p>
@@ -236,25 +236,25 @@
                 <p class="gallery-description">查看这些不同主题的 Brat 风格示例。使用上方的生成器创建你自己的作品。</p>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <div class="gallery-placeholder brat-style green-theme">
+                        <div class="gallery-placeholder brat-style green-theme lazy-placeholder">
                             <span>brat</span>
                         </div>
                         <p class="style-name">绿色主题</p>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-placeholder brat-style black-theme">
+                        <div class="gallery-placeholder brat-style black-theme lazy-placeholder">
                             <span>brat</span>
                         </div>
                         <p class="style-name">黑色主题</p>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-placeholder brat-style white-theme">
+                        <div class="gallery-placeholder brat-style white-theme lazy-placeholder">
                             <span>brat</span>
                         </div>
                         <p class="style-name">白色主题</p>
                     </div>
                     <div class="gallery-item">
-                        <div class="gallery-placeholder brat-style blue-theme">
+                        <div class="gallery-placeholder brat-style blue-theme lazy-placeholder">
                             <span>brat</span>
                         </div>
                         <p class="style-name">蓝色主题</p>
@@ -387,6 +387,7 @@
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script src="../script.js"></script>
+    <script src="../js/enhanced-lazy-loader.js"></script>
     <script>
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();

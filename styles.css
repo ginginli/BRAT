@@ -1138,31 +1138,77 @@ body.no-lazy-load section {
     opacity: 1 !important;
 }
 
-/* 懒加载图片相关样式 */
-.lazy-image {
-  opacity: 0;
-  transition: opacity 0.3s ease-in;
-}
-
-.lazy-image.loaded {
-  opacity: 1;
-}
-
+/* 懒加载相关样式 */
 .lazy-section {
-  opacity: 0.2;
-  transition: opacity 0.5s ease-in;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    will-change: opacity, transform;
 }
 
 .lazy-section.loaded {
-  opacity: 1;
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* 确保懒加载占位符有合理的高度 */
-.lazy-section .content-placeholder {
-  min-height: 200px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* 懒加载图片样式 */
+img[data-lazy-src] {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+img.lazy-loaded {
+    opacity: 1;
+}
+
+/* 懒加载占位符样式 */
+.lazy-placeholder {
+    background-color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.lazy-placeholder::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: -150px;
+    top: 0;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(to right, transparent 0%, #e8e8e8 50%, transparent 100%);
+    animation: shimmer 1.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -150px;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* 保证顶部导航和生成器部分始终可见 */
+header, .generator-section {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* SVG懒加载样式 */
+.lazy-load-svg {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.lazy-load-svg.loaded {
+    opacity: 1;
+}
+
+/* 保证第一屏内容始终可见 */
+.above-fold {
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 
