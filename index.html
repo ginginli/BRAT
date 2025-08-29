@@ -19,17 +19,55 @@
     <title data-i18n="meta.title">Brat Generator - Free Online Charli XCX Brat Text Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37"></script>
+    <!-- 延迟加载非关键脚本 -->
+    <script defer src="script.js"></script>
+    <script defer src="LanguageSwitcher.js"></script>
+    
+    <!-- 延迟加载分析脚本 -->
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-V98G2H0L37');
+        // 延迟加载 Google Analytics
+        function loadAnalytics() {
+            const gtagScript = document.createElement('script');
+            gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-V98G2H0L37';
+            gtagScript.async = true;
+            gtagScript.onload = function() {
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-V98G2H0L37');
+            };
+            document.head.appendChild(gtagScript);
+            
+            // 延迟加载 Ahrefs
+            const ahrefsScript = document.createElement('script');
+            ahrefsScript.src = 'https://analytics.ahrefs.com/analytics.js';
+            ahrefsScript.setAttribute('data-key', 'ps+d9akS4JtD1vgMjzi2Qg');
+            ahrefsScript.async = true;
+            document.head.appendChild(ahrefsScript);
+        }
+        
+        // 在用户交互后加载分析脚本
+        document.addEventListener('DOMContentLoaded', function() {
+            // 延迟 2 秒后加载
+            setTimeout(loadAnalytics, 2000);
+        });
     </script>
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="ps+d9akS4JtD1vgMjzi2Qg" async></script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119" crossorigin="anonymous"></script>
+    
+    <!-- 延迟加载 AdSense -->
+    <script>
+        function loadAdSense() {
+            const adScript = document.createElement('script');
+            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119';
+            adScript.crossOrigin = 'anonymous';
+            adScript.async = true;
+            document.head.appendChild(adScript);
+        }
+        
+        // 在页面完全加载后加载 AdSense
+        window.addEventListener('load', function() {
+            setTimeout(loadAdSense, 1000);
+        });
+    </script>
     <!-- 语言选择器相关链接 -->
     <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/" />
     <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/" />
@@ -433,5 +471,65 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    
+    <!-- 性能监控面板 -->
+    <div id="performance-panel" class="performance-panel">
+        <h3>Performance Monitor</h3>
+        <div class="performance-metric">
+            <span>INP:</span>
+            <span id="inp-value" class="value">-</span>
+        </div>
+        <div class="performance-metric">
+            <span>Long Tasks:</span>
+            <span id="long-task-count" class="value">-</span>
+        </div>
+        <div class="performance-metric">
+            <span>Status:</span>
+            <span id="performance-status" class="value">-</span>
+        </div>
+        <button id="toggle-performance" style="margin-top: 10px; padding: 5px 10px; background: #8ACF01; border: none; border-radius: 4px; color: black; cursor: pointer;">
+            Toggle Panel
+        </button>
+    </div>
+    
+    <script>
+        // 性能监控面板控制
+        document.addEventListener('DOMContentLoaded', function() {
+            const panel = document.getElementById('performance-panel');
+            const toggleBtn = document.getElementById('toggle-performance');
+            const inpValue = document.getElementById('inp-value');
+            const longTaskCount = document.getElementById('long-task-count');
+            const performanceStatus = document.getElementById('performance-status');
+            
+            toggleBtn.addEventListener('click', function() {
+                panel.classList.toggle('visible');
+            });
+            
+            // 更新性能指标
+            function updatePerformanceMetrics() {
+                if (window.performanceMonitor) {
+                    const metrics = window.performanceMonitor.getMetrics();
+                    inpValue.textContent = metrics.averageINP + 'ms';
+                    longTaskCount.textContent = metrics.longTaskCount;
+                    
+                    // 设置状态颜色
+                    const avgINP = parseFloat(metrics.averageINP);
+                    if (avgINP > 500) {
+                        performanceStatus.textContent = 'Poor';
+                        performanceStatus.className = 'value warning';
+                    } else if (avgINP > 200) {
+                        performanceStatus.textContent = 'Needs Improvement';
+                        performanceStatus.className = 'value warning';
+                    } else {
+                        performanceStatus.textContent = 'Good';
+                        performanceStatus.className = 'value good';
+                    }
+                }
+            }
+            
+            // 每秒更新一次指标
+            setInterval(updatePerformanceMetrics, 1000);
+        });
+    </script>
 </body>
 </html> 

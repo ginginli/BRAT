@@ -1,8 +1,45 @@
-// Wait for DOM to load
+// 优化后的初始化逻辑 - 使用模块化架构
+// 动态导入模块，按需加载
+let ThemeGenerator, ImageProcessor;
+
+// 延迟加载模块
+async function loadModules() {
+    try {
+        const [themeModule, imageModule, monitorModule] = await Promise.all([
+            import('./modules/theme-generator.js'),
+            import('./modules/image-processor.js'),
+            import('./performance-monitor.js')
+        ]);
+        ThemeGenerator = themeModule.default;
+        ImageProcessor = imageModule.default;
+        
+        // 初始化性能监控
+        const PerformanceMonitor = monitorModule.default;
+        window.performanceMonitor = new PerformanceMonitor();
+        console.log('Modules and performance monitoring loaded successfully');
+    } catch (error) {
+        console.warn('Failed to load modules, using fallback:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM Content Loaded');
     
-    // 等待 LanguageSwitcher 初始化
+    // 立即执行关键初始化
+    initializeCriticalFeatures();
+    
+    // 延迟加载模块
+    setTimeout(() => {
+        loadModules();
+    }, 100);
+    
+    // 延迟执行非关键功能
+    setTimeout(() => {
+        waitForLanguageSwitcher(() => {
+            initializeApp();
+        });
+    }, 200);
+    
     function waitForLanguageSwitcher(callback, maxAttempts = 10) {
         let attempts = 0;
         
@@ -24,24 +61,48 @@ document.addEventListener('DOMContentLoaded', function() {
         checkLanguageSwitcher();
     }
     
-    waitForLanguageSwitcher(function() {
-        // Initialize app
-        initializeApp();
-    });
+    function initializeCriticalFeatures() {
+        console.log('Initializing critical features...');
+        // 只初始化最核心的功能
+        setupBasicUI();
+    }
     
     function initializeApp() {
         console.log('Initializing app...');
-
-    // Get DOM elements
-    const textInput = document.getElementById('text-input');
+        
+        // 使用 requestIdleCallback 分批初始化
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                initializeUI();
+            });
+        } else {
+            setTimeout(initializeUI, 0);
+        }
+    }
+    
+    function setupBasicUI() {
+        console.log('Setting up basic UI...');
+        // 只设置最基本的 UI 元素
         const memeContainer = document.getElementById('meme-container');
-    const downloadBtn = document.getElementById('download-btn');
-    const themeGreen = document.getElementById('theme-green');
-    const themeBlack = document.getElementById('theme-black');
-    const themeWhite = document.getElementById('theme-white');
-    const themeBlue = document.getElementById('theme-blue');
-    const autoWrapCheckbox = document.getElementById('auto-wrap');
-    const fontSizeSlider = document.getElementById('font-size-slider');
+        if (memeContainer) {
+            // 创建简单的占位符
+            memeContainer.innerHTML = '<div class="loading-placeholder">Loading...</div>';
+        }
+    }
+    
+    function initializeUI() {
+        console.log('Initializing full UI...');
+        
+        // Get DOM elements
+        const textInput = document.getElementById('text-input');
+        const memeContainer = document.getElementById('meme-container');
+        const downloadBtn = document.getElementById('download-btn');
+        const themeGreen = document.getElementById('theme-green');
+        const themeBlack = document.getElementById('theme-black');
+        const themeWhite = document.getElementById('theme-white');
+        const themeBlue = document.getElementById('theme-blue');
+        const autoWrapCheckbox = document.getElementById('auto-wrap');
+        const fontSizeSlider = document.getElementById('font-size-slider');
     
         // Log element status
         console.log('Elements found:', {
@@ -388,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 应用轻微的对比度增强，使文字更加清晰
                 enhanceContrast(destCanvas, 1.1);
                 
-                // 辅助函数：应用多方向模糊以获得更均匀的效果
+                // 优化后的多方向模糊函数 - 分批处理避免长任务
                 function applyMultiDirectionalBlur(sourceCanvas, destCanvas, radius, iterations, alpha) {
                     const srcCtx = sourceCanvas.getContext('2d');
                     const destCtx = destCanvas.getContext('2d');
@@ -403,67 +464,82 @@ document.addEventListener('DOMContentLoaded', function() {
                     // 使用更多迭代来获得更均匀的模糊
                     destCtx.globalAlpha = alpha;
                     
-                    for (let i = 0; i < iterations; i++) {
-                        const angle = (Math.PI * 2 * i) / iterations;
-                        // 使用余弦和正弦计算偏移
-                        const dx = Math.cos(angle) * radius;
-                        const dy = Math.sin(angle) * radius;
-                        destCtx.drawImage(tempCanvas, dx, dy);
+                    // 分批处理迭代，避免长任务
+                    const batchSize = 4; // 每批处理 4 次迭代
+                    let currentIteration = 0;
+                    
+                    function processBlurBatch() {
+                        const endIteration = Math.min(currentIteration + batchSize, iterations);
                         
-                        // 添加额外的偏移点以填充间隙，使模糊更均匀
-                        if (iterations < 24 && radius > 3) {
-                            const halfAngle = angle + (Math.PI / iterations);
-                            const halfDx = Math.cos(halfAngle) * (radius * 0.7);
-                            const halfDy = Math.sin(halfAngle) * (radius * 0.7);
-                            destCtx.drawImage(tempCanvas, halfDx, halfDy);
+                        for (let i = currentIteration; i < endIteration; i++) {
+                            const angle = (Math.PI * 2 * i) / iterations;
+                            // 使用余弦和正弦计算偏移
+                            const dx = Math.cos(angle) * radius;
+                            const dy = Math.sin(angle) * radius;
+                            destCtx.drawImage(tempCanvas, dx, dy);
+                            
+                            // 添加额外的偏移点以填充间隙，使模糊更均匀
+                            if (iterations < 24 && radius > 3) {
+                                const halfAngle = angle + (Math.PI / iterations);
+                                const halfDx = Math.cos(halfAngle) * (radius * 0.7);
+                                const halfDy = Math.sin(halfAngle) * (radius * 0.7);
+                                destCtx.drawImage(tempCanvas, halfDx, halfDy);
+                            }
+                        }
+                        
+                        currentIteration = endIteration;
+                        
+                        // 如果还有迭代，继续下一批
+                        if (currentIteration < iterations) {
+                            requestAnimationFrame(processBlurBatch);
                         }
                     }
+                    
+                    // 开始处理
+                    requestAnimationFrame(processBlurBatch);
                 }
                 
-                // 辅助函数：增强对比度，使模糊文字更加突出
+                // 优化后的对比度增强函数 - 分批处理避免长任务
                 function enhanceContrast(canvas, factor) {
                     const ctx = canvas.getContext('2d');
                     try {
                         const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                         const data = imageData.data;
                         
-                        // 获取绿色背景的平均值，用于校准对比度
-                        let backgroundSum = 0;
-                        let backgroundPixels = 0;
-                        let textSum = 0;
-                        let textPixels = 0;
+                        // 分批处理像素，避免长任务
+                        const batchSize = 10000; // 每批处理 10000 个像素
+                        let currentIndex = 0;
                         
-                        // 采样识别背景和文字
-                        for (let i = 0; i < data.length; i += 4) {
-                            // 检测是否为绿色背景(G通道显著高于R和B)
-                            if (data[i+1] > data[i] * 1.5 && data[i+1] > data[i+2] * 1.5) {
-                                backgroundSum += data[i+1];
-                                backgroundPixels++;
-                            } else {
-                                // 可能是文字区域
-                                textSum += (data[i] + data[i+1] + data[i+2])/3;
-                                textPixels++;
-                            }
-                        }
-                        
-                        // 计算平均值
-                        const backgroundAvg = backgroundPixels > 0 ? backgroundSum / backgroundPixels : 0;
-                        const textAvg = textPixels > 0 ? textSum / textPixels : 0;
-                        
-                        // 应用对比度增强
-                        for (let i = 0; i < data.length; i += 4) {
-                            // 检测是否为文字区域(非纯绿色区域)
-                            const avgPixel = (data[i] + data[i+1] + data[i+2])/3;
+                        function processBatch() {
+                            const endIndex = Math.min(currentIndex + batchSize, data.length);
                             
-                            // 如果是深色区域(可能是文字)，增强对比度
-                            if (avgPixel < textAvg * 1.2) {
-                                data[i] = Math.max(0, Math.min(255, data[i] * factor));
-                                data[i+1] = Math.max(0, Math.min(255, data[i+1] * factor));
-                                data[i+2] = Math.max(0, Math.min(255, data[i+2] * factor));
+                            // 处理当前批次的像素
+                            for (let i = currentIndex; i < endIndex; i += 4) {
+                                // 检测是否为文字区域(非纯绿色区域)
+                                const avgPixel = (data[i] + data[i+1] + data[i+2])/3;
+                                
+                                // 如果是深色区域(可能是文字)，增强对比度
+                                if (avgPixel < 128) { // 简化判断逻辑
+                                    data[i] = Math.max(0, Math.min(255, data[i] * factor));
+                                    data[i+1] = Math.max(0, Math.min(255, data[i+1] * factor));
+                                    data[i+2] = Math.max(0, Math.min(255, data[i+2] * factor));
+                                }
+                            }
+                            
+                            currentIndex = endIndex;
+                            
+                            // 如果还有像素，继续下一批
+                            if (currentIndex < data.length) {
+                                requestAnimationFrame(processBatch);
+                            } else {
+                                // 全部完成，更新画布
+                                ctx.putImageData(imageData, 0, 0);
                             }
                         }
                         
-                        ctx.putImageData(imageData, 0, 0);
+                        // 开始处理
+                        requestAnimationFrame(processBatch);
+                        
                     } catch (e) {
                         console.error('Error enhancing contrast:', e);
                     }
@@ -471,17 +547,34 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 更新预览
-        function updatePreview() {
+        // 防抖函数
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+        
+        // 更新预览 - 使用防抖优化
+        const debouncedUpdatePreview = debounce(function() {
             renderBratCanvas(previewCanvas, {
                 text: currentText,
                 theme: currentTheme,
                 fontSizeFactor: fontSizeFactor,
                 isAutoWrap: autoWrapCheckbox.checked
             });
+        }, 150); // 150ms 防抖
+        
+        function updatePreview() {
+            debouncedUpdatePreview();
         }
         
-        // 事件监听器
+        // 事件监听器 - 使用防抖
         textInput.addEventListener('input', function() {
             currentText = this.value;
             updatePreview();
