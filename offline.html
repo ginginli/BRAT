@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>离线 - Brat Generator</title>
+    <style>
+        body {
+            font-family: 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #8ACF01, #84BD00);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #000;
+        }
+        
+        .offline-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            margin: 20px;
+        }
+        
+        .offline-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            filter: blur(2px);
+        }
+        
+        h1 {
+            font-size: 48px;
+            margin: 0 0 20px 0;
+            filter: blur(1.5px);
+            transform: scaleX(0.85);
+            letter-spacing: -2px;
+        }
+        
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        
+        .retry-button {
+            background: #8ACF01;
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .retry-button:hover {
+            background: #84BD00;
+            transform: scale(1.05);
+        }
+        
+        .features {
+            margin-top: 30px;
+            text-align: left;
+        }
+        
+        .feature {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(138, 207, 1, 0.1);
+            border-radius: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .offline-container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .offline-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="offline-container">
+        <div class="offline-icon">📱</div>
+        <h1>brat</h1>
+        <p>您当前处于离线状态。请检查您的网络连接，然后重试。</p>
+        
+        <button class="retry-button" onclick="window.location.reload()">
+            重新加载
+        </button>
+        
+        <div class="features">
+            <h3>离线功能：</h3>
+            <div class="feature">✅ 基本文本生成</div>
+            <div class="feature">✅ 主题切换</div>
+            <div class="feature">✅ 颜色调整</div>
+            <div class="feature">✅ 字体大小控制</div>
+        </div>
+    </div>
+    
+    <script>
+        // 检测网络状态
+        window.addEventListener('online', () => {
+            window.location.reload();
+        });
+        
+        // 定期检查网络连接
+        setInterval(() => {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }, 5000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+/* 移动端体验优化样式 */
+
+/* 1. 移动端界面布局优化 */
+@media (max-width: 768px) {
+  /* 底部固定控制面板 */
+  .mobile-control-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    border-top: 1px solid #eee;
+    max-height: 50vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* 为底部控制面板留出空间 */
+  .preview-container {
+    margin-bottom: 200px;
+    padding-bottom: 20px;
+  }
+  
+  /* 生成器容器调整 */
+  .generator-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* 控制面板在移动端隐藏，使用底部面板 */
+  .controls {
+    display: none;
+  }
+  
+  /* 显示移动端控制面板 */
+  .mobile-control-panel {
+    display: block;
+  }
+}
+
+/* 2. 触摸交互优化 */
+@media (max-width: 768px) {
+  /* 增大所有可点击元素的最小尺寸 */
+  .theme-btn, .download-button, .color-picker, input[type="range"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* 优化按钮间距 */
+  .theme-options {
+    gap: 15px;
+    justify-content: center;
+  }
+  
+  .theme-btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    touch-action: manipulation;
+  }
+  
+  /* 优化滑块控件 */
+  input[type="range"] {
+    height: 44px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  input[type="range"]::-webkit-slider-track {
+    background: #ddd;
+    height: 6px;
+    border-radius: 3px;
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #8ACF01;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+  
+  input[type="range"]::-moz-range-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #8ACF01;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  }
+}
+
+/* 3. 输入体验优化 */
+@media (max-width: 768px) {
+  /* 文本输入框优化 */
+  textarea#text-input {
+    font-size: 16px; /* 防止iOS缩放 */
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    min-height: 100px;
+    resize: none;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  textarea#text-input:focus {
+    border-color: #8ACF01;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(138, 207, 1, 0.1);
+  }
+  
+  /* 数字输入优化 */
+  input[type="number"] {
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    width: 100%;
+    text-align: center;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  /* 颜色选择器优化 */
+  input[type="color"] {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    background: none;
+  }
+  
+  input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 50%;
+  }
+}
+
+/* 4. 预览区域优化 */
+@media (max-width: 768px) {
+  .preview-container {
+    position: relative;
+    touch-action: pan-x pan-y;
+  }
+  
+  #meme-container {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+  }
+  
+  #meme-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* 固定下载按钮 */
+  .mobile-download-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #8ACF01;
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(138, 207, 1, 0.3);
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+  }
+  
+  .mobile-download-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(138, 207, 1, 0.4);
+  }
+  
+  .mobile-download-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /* 隐藏桌面端下载按钮 */
+  .download-button {
+    display: none;
+  }
+}
+
+/* 5. 手势支持 */
+@media (max-width: 768px) {
+  /* 预览图片手势支持 */
+  .preview-container {
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .preview-zoom-container {
+    transition: transform 0.3s ease;
+    transform-origin: center center;
+  }
+  
+  /* 长按效果 */
+  .long-press {
+    animation: pulse 0.6s ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  /* 滑动调整参数 */
+  .slider-container {
+    position: relative;
+    touch-action: pan-x;
+  }
+  
+  .slider-value-display {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+  }
+}
+
+/* 6. 响应式设计改进 */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .mobile-control-panel {
+    padding: 10px;
+  }
+  
+  .control-group {
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .control-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  /* 主题按钮在小屏幕上调整 */
+  .theme-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .theme-btn {
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+/* 支持安全区域 */
+@supports (padding: max(0px)) {
+  .mobile-control-panel {
+    padding-bottom: max(15px, env(safe-area-inset-bottom));
+  }
+  
+  .mobile-download-btn {
+    bottom: max(80px, calc(80px + env(safe-area-inset-bottom)));
+  }
+}
+
+/* 7. 加载体验优化 */
+@media (max-width: 768px) {
+  /* 骨架屏 */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+  }
+  
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  .skeleton-text {
+    height: 20px;
+    margin: 10px 0;
+  }
+  
+  .skeleton-button {
+    height: 44px;
+    border-radius: 8px;
+  }
+  
+  .skeleton-preview {
+    height: 300px;
+    border-radius: 12px;
+  }
+  
+  /* 加载状态 */
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(138, 207, 1, 0.3);
+    border-radius: 50%;
+    border-top-color: #8ACF01;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+}
+
+/* 8. 性能优化 */
+@media (max-width: 768px) {
+  /* 减少重绘和重排 */
+  .mobile-control-panel * {
+    will-change: auto;
+  }
+  
+  .preview-container {
+    contain: layout style paint;
+  }
+  
+  /* 优化动画性能 */
+  .theme-btn, .mobile-download-btn {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  
+  /* 触摸优化 */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  input, textarea {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+  }
+}
+
+/* 9. 移动端专用控制面板样式 */
+.mobile-control-panel {
+  display: none;
+}
+
+.mobile-control-panel .control-group {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.mobile-control-panel .control-group h4 {
+  margin: 0 0 10px 0;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.mobile-control-panel .color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.mobile-control-panel .color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.mobile-control-panel .color-option.selected {
+  border-color: #8ACF01;
+  transform: scale(1.1);
+}
+
+.mobile-control-panel .color-option::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-control-panel .color-option.selected::after {
+  opacity: 1;
+}
+
+.mobile-control-panel .slider-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.mobile-control-panel .slider-group label {
+  min-width: 80px;
+  font-size: 14px;
+  color: #666;
+}
+
+.mobile-control-panel .slider-group input[type="range"] {
+  flex: 1;
+  margin: 0;
+}
+
+.mobile-control-panel .slider-group .value-display {
+  min-width: 40px;
+  text-align: center;
+  font-weight: bold;
+  color: #8ACF01;
+  font-size: 14px;
+}
+
+/* 10. 移动端导航优化 */
+@media (max-width: 768px) {
+  /* 汉堡菜单 */
+  .mobile-menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1001;
+  }
+  
+  .mobile-menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #333;
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+  
+  .mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+  
+  /* 移动端导航菜单 */
+  .mobile-nav {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    background: white;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    transition: left 0.3s ease;
+    z-index: 1000;
+    padding-top: 60px;
+  }
+  
+  .mobile-nav.active {
+    left: 0;
+  }
+  
+  .mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .mobile-nav li {
+    border-bottom: 1px solid #eee;
+  }
+  
+  .mobile-nav a {
+    display: block;
+    padding: 20px;
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+  }
+  
+  .mobile-nav a:hover {
+    background-color: #f8f9fa;
+  }
+  
+  /* 导航遮罩 */
+  .nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+  
+  .nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* 隐藏桌面端导航 */
+  nav ul {
+    display: none;
+  }
+}
+
+/* 11. 触觉反馈和动画 */
+@media (max-width: 768px) {
+  /* 按钮点击反馈 */
+  .mobile-control-panel button:active,
+  .theme-btn:active,
+  .mobile-download-btn:active {
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+  }
+  
+  /* 滑动反馈 */
+  .slider-container:active {
+    transform: scale(1.02);
+  }
+  
+  /* 颜色选择反馈 */
+  .color-option:active {
+    transform: scale(0.9);
+  }
+  
+  /* 平滑滚动 */
+  .mobile-control-panel {
+    scroll-behavior: smooth;
+  }
+  
+  /* 页面切换动画 */
+  .page-transition {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  .page-transition.entering {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .page-transition.entered {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 12. 深色模式支持 */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .mobile-control-panel {
+    background: #1a1a1a;
+    border-top-color: #333;
+  }
+  
+  .mobile-control-panel .control-group {
+    background: #2a2a2a;
+    border-color: #333;
+  }
+  
+  .mobile-control-panel .control-group h4 {
+    color: #fff;
+  }
+  
+  .mobile-nav {
+    background: #1a1a1a;
+  }
+  
+  .mobile-nav a {
+    color: #fff;
+  }
+  
+  .mobile-nav a:hover {
+    background-color: #2a2a2a;
+  }
+  
+  .mobile-nav li {
+    border-bottom-color: #333;
+  }
+}
+
+/* 13. 横屏优化 */
+@media (max-width: 768px) and (orientation: landscape) {
+  .mobile-control-panel {
+    max-height: 40vh;
+  }
+  
+  .preview-container {
+    margin-bottom: 150px;
+  }
+  
+  .mobile-download-btn {
+    bottom: 60px;
+  }
+}
+
+/* 14. 高分辨率屏幕优化 */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .mobile-control-panel {
+    border-top-width: 0.5px;
+  }
+  
+  .control-group {
+    border-width: 0.5px;
+  }
+}
+
+/* 15. 可访问性优化 */
+@media (max-width: 768px) {
+  /* 焦点状态 */
+  .theme-btn:focus,
+  .mobile-download-btn:focus,
+  .color-option:focus {
+    outline: 3px solid #8ACF01;
+    outline-offset: 2px;
+  }
+  
+  /* 高对比度模式 */
+  @media (prefers-contrast: high) {
+    .mobile-control-panel {
+      border-top: 2px solid #000;
+    }
+    
+    .control-group {
+      border: 2px solid #000;
+    }
+    
+    .theme-btn {
+      border: 2px solid #000;
+    }
+  }
+  
+  /* 减少动画 */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
