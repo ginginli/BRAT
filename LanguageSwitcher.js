@@ -11,7 +11,8 @@ class LanguageSwitcher {
         'nav.why': 'Why',
         'nav.gallery': 'Gallery',
         'nav.faq': 'FAQ',
-        'nav.about': 'About'
+        'nav.about': 'About',
+        'generator.generateButton': 'Create Image'
       },
       'es-MX': {
         'nav.generator': 'Generador',
@@ -21,7 +22,8 @@ class LanguageSwitcher {
         'nav.why': 'Por Qué',
         'nav.gallery': 'Galería',
         'nav.faq': 'Preguntas Frecuentes',
-        'nav.about': 'Acerca de'
+        'nav.about': 'Acerca de',
+        'generator.generateButton': 'Crear Imagen'
       },
       'zh-CN': {
         'nav.generator': '生成器',
@@ -31,7 +33,8 @@ class LanguageSwitcher {
         'nav.why': '为什么使用',
         'nav.gallery': '作品展示',
         'nav.faq': '常见问题',
-        'nav.about': '关于我们'
+        'nav.about': '关于我们',
+        'generator.generateButton': '生成图片'
       }
     };
     console.log('LanguageSwitcher constructed');
@@ -124,8 +127,18 @@ class LanguageSwitcher {
   }
 
   updateNavigation() {
+    // 更新导航项
     const navItems = document.querySelectorAll('[data-i18n^="nav."]');
     navItems.forEach(item => {
+      const key = item.getAttribute('data-i18n');
+      if (this.translations[this.currentLang] && this.translations[this.currentLang][key]) {
+        item.textContent = this.translations[this.currentLang][key];
+      }
+    });
+    
+    // 更新生成器相关元素
+    const generatorItems = document.querySelectorAll('[data-i18n^="generator."]');
+    generatorItems.forEach(item => {
       const key = item.getAttribute('data-i18n');
       if (this.translations[this.currentLang] && this.translations[this.currentLang][key]) {
         item.textContent = this.translations[this.currentLang][key];
@@ -140,4 +153,4 @@ document.addEventListener('DOMContentLoaded', () => {
   const langSwitcher = new LanguageSwitcher();
   langSwitcher.init();
   window.langSwitcher = langSwitcher;
-}); 
+});

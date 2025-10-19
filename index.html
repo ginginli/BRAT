@@ -19,12 +19,16 @@
     <title data-i18n="meta.title">Brat Generator - Free Online Charli XCX Brat Text Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="mobile-optimization.css">
+    <link rel="stylesheet" href="css/auth-styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- 延迟加载非关键脚本 -->
     <script defer src="script.js"></script>
     <script defer src="LanguageSwitcher.js"></script>
     <script defer src="mobile-optimization.js"></script>
     <script defer src="performance-optimization.js"></script>
+    <!-- 认证相关脚本 -->
+    <script defer src="js/google-auth.js"></script>
+    <script defer src="js/auth-ui.js"></script>
     
     <!-- 延迟加载分析脚本 -->
     <script>
@@ -176,6 +180,7 @@
                             </div>
                         </div>
                         
+                        <button id="generate-btn" class="generate-button" data-i18n="generator.generateButton">Create Image</button>
                         <button id="download-btn" class="download-button" data-i18n="generator.downloadButton">Save Image</button>
                         
                         <div id="loading-animation" class="loading-animation" style="display: none;">
@@ -465,13 +470,46 @@
 
     <!-- Scripts -->
     <script src="js/language.js"></script>
-    <script src="script.js"></script>
+    <!-- script.js already loaded with defer in head, removing duplicate -->
     <script src="js/lazy-loader.js"></script>
     <script src="js/faq-handler.js"></script>
     <script src="js/enhanced-lazy-loader.js"></script>
     <script>
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // 初始化认证系统
+        document.addEventListener('DOMContentLoaded', function() {
+            // 等待认证脚本加载完成
+            setTimeout(() => {
+                if (window.googleAuth && window.authUI) {
+                    // 设置认证回调
+                    window.googleAuth.setCallbacks({
+                        onSignIn: function(user) {
+                            console.log('User signed in:', user);
+                            window.authUI.updateUI(user);
+                        },
+                        onSignOut: function() {
+                            console.log('User signed out');
+                            window.authUI.updateUI(null);
+                        },
+                        onError: function(error) {
+                            console.error('Auth error:', error);
+                            window.authUI.showErrorMessage('Authentication error occurred');
+                        }
+                    });
+                    
+                    // 尝试恢复用户会话
+                    const savedUser = window.googleAuth.restoreUser();
+                    if (savedUser) {
+                        window.authUI.updateUI(savedUser);
+                    }
+                    
+                    // 显示认证UI
+                    window.authUI.show();
+                }
+            }, 1000);
+        });
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     
@@ -535,4 +573,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

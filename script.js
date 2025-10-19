@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const textInput = document.getElementById('text-input');
         const memeContainer = document.getElementById('meme-container');
         const downloadBtn = document.getElementById('download-btn');
+        const generateBtn = document.getElementById('generate-btn');
         const themeGreen = document.getElementById('theme-green');
         const themeBlack = document.getElementById('theme-black');
         const themeWhite = document.getElementById('theme-white');
@@ -109,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             textInput: !!textInput,
             memeContainer: !!memeContainer,
             downloadBtn: !!downloadBtn,
+            generateBtn: !!generateBtn,
             themeGreen: !!themeGreen,
             themeBlack: !!themeBlack,
             themeWhite: !!themeWhite,
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // 确保所有必需的元素都存在
-        if (!textInput || !memeContainer || !downloadBtn || 
+        if (!textInput || !memeContainer || !downloadBtn || !generateBtn ||
             !themeGreen || !themeBlack || !themeWhite || !themeBlue || 
             !autoWrapCheckbox || !fontSizeSlider) {
             console.error('Some required elements are missing');
@@ -574,13 +576,22 @@ document.addEventListener('DOMContentLoaded', function() {
             debouncedUpdatePreview();
         }
         
-        // 事件监听器 - 使用防抖
-        textInput.addEventListener('input', function() {
-            currentText = this.value;
-            updatePreview();
-        });
+        // 移除即时预览 - 注释掉input事件监听器
+        // textInput.addEventListener('input', function() {
+        //     currentText = this.value;
+        //     updatePreview();
+        // });
         
-        // Theme switching with error handling
+        // 添加生成按钮事件监听器
+        if (generateBtn) {
+            generateBtn.addEventListener('click', function() {
+                console.log('Generate button clicked');
+                currentText = textInput.value;
+                updatePreview();
+            });
+        }
+        
+        // Theme switching with error handling - 移除自动预览更新
         if (themeGreen) {
             themeGreen.addEventListener('click', () => {
                 console.log('Green theme clicked');
@@ -589,7 +600,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentText = 'brat';
                     textInput.value = currentText;
                 }
-                updatePreview();
+                // updatePreview(); // 移除自动预览更新
                 updateThemeButtons();
             });
         }
@@ -602,7 +613,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentText = 'brat';
                     textInput.value = currentText;
                 }
-                updatePreview();
+                // updatePreview(); // 移除自动预览更新
                 updateThemeButtons();
             });
         }
@@ -615,7 +626,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentText = 'brat';
                     textInput.value = currentText;
                 }
-                updatePreview();
+                // updatePreview(); // 移除自动预览更新
                 updateThemeButtons();
             });
         }
@@ -628,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentText = 'brat';
                     textInput.value = currentText;
                 }
-                updatePreview();
+                // updatePreview(); // 移除自动预览更新
                 updateThemeButtons();
             });
         }
@@ -647,13 +658,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        // 自动换行切换
-        autoWrapCheckbox.addEventListener('change', updatePreview);
+        // 自动换行切换 - 移除自动预览更新
+        // autoWrapCheckbox.addEventListener('change', updatePreview);
         
-        // 字体大小滑块
+        // 字体大小滑块 - 移除自动预览更新
         fontSizeSlider.addEventListener('input', function() {
             fontSizeFactor = this.value / 100;
-            updatePreview();
+            // updatePreview(); // 移除自动预览更新
         });
     
     // Download button event listener
@@ -687,11 +698,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (loadingAnimation) {
                 loadingAnimation.style.display = 'none';
             }
-});
+        });
         
-        // 初始化
+        // 初始化 - 恢复初始预览更新以显示默认内容
         updateThemeButtons();
-        updatePreview();
+        updatePreview(); // 恢复初始预览更新，显示默认的"brat"文本
     }
 
 // Add structured data
