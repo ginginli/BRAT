@@ -101,8 +101,9 @@ nav {
     font-weight: normal;
 }
 
+/* 隐藏导航菜单 - 所有设备上都不显示 */
 nav ul {
-    display: flex;
+    display: none !important;
     list-style: none;
 }
 
