@@ -37,6 +37,21 @@
     <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/" />
     <link rel="alternate" hreflang="id" href="https://www.bratgenerator.com.cn/id/" />
     <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+    <!-- 延迟加载 AdSense -->
+    <script>
+        function loadAdSense() {
+            const adScript = document.createElement('script');
+            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119';
+            adScript.crossOrigin = 'anonymous';
+            adScript.async = true;
+            document.head.appendChild(adScript);
+        }
+        
+        // 在页面完全加载后加载 AdSense
+        window.addEventListener('load', function() {
+            setTimeout(loadAdSense, 1000);
+        });
+    </script>
 </head>
 <body>
     <header>

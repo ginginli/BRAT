@@ -7,8 +7,6 @@
     <title data-i18n="terms.meta.title">Terms of Use - Brat Generator</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119" crossorigin="anonymous"></script>
     <!-- 语言选择器相关链接 -->
     <link rel="alternate" hreflang="en-US" href="https://www.bratgenerator.com.cn/en-US/terms" />
     <link rel="alternate" hreflang="es-MX" href="https://www.bratgenerator.com.cn/es-MX/terms" />
@@ -17,6 +15,21 @@
     <link rel="alternate" hreflang="tr" href="https://www.bratgenerator.com.cn/tr/terms" />
     <link rel="alternate" hreflang="fil" href="https://www.bratgenerator.com.cn/fil/terms" />
     <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/terms" />
+    <!-- 延迟加载 AdSense -->
+    <script>
+        function loadAdSense() {
+            const adScript = document.createElement('script');
+            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119';
+            adScript.crossOrigin = 'anonymous';
+            adScript.async = true;
+            document.head.appendChild(adScript);
+        }
+        
+        // 在页面完全加载后加载 AdSense
+        window.addEventListener('load', function() {
+            setTimeout(loadAdSense, 1000);
+        });
+    </script>
 </head>
 <body>
     <header>

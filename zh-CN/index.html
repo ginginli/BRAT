@@ -28,12 +28,25 @@
         gtag('config', 'G-V98G2H0L37');
     </script>
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="ps+d9akS4JtD1vgMjzi2Qg" async></script>
-    <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119" crossorigin="anonymous"></script>
     <!-- 语言选择器相关链接 -->
     <link rel="alternate" hreflang="en" href="https://www.bratgenerator.com.cn/" />
     <link rel="alternate" hreflang="zh-CN" href="https://www.bratgenerator.com.cn/zh-CN/" />
     <link rel="alternate" hreflang="x-default" href="https://www.bratgenerator.com.cn/" />
+    <!-- 延迟加载 AdSense -->
+    <script>
+        function loadAdSense() {
+            const adScript = document.createElement('script');
+            adScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7293351660638119';
+            adScript.crossOrigin = 'anonymous';
+            adScript.async = true;
+            document.head.appendChild(adScript);
+        }
+        
+        // 在页面完全加载后加载 AdSense
+        window.addEventListener('load', function() {
+            setTimeout(loadAdSense, 1000);
+        });
+    </script>
 </head>
 <body>
     <!-- 1. 顶部导航 -->
