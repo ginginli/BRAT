@@ -154,6 +154,17 @@ h2 {
     font-size: 32px;
 }
 
+/* 隐藏 H1 和 H2，但保留 SEO 价值 */
+h1, h2 {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    font-size: 0;
+    line-height: 0;
+}
+
 /* 英雄区域 */
 .hero {
     text-align: center;
