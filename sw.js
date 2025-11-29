@@ -1,6 +1,6 @@
 // Service Worker for offline support
 
-const CACHE_NAME = 'brat-generator-v1';
+const CACHE_NAME = 'brat-generator-v2';
 const STATIC_ASSETS = [
     '/',
     '/index.html',
@@ -43,9 +43,29 @@ self.addEventListener('activate', event => {
 
 // 拦截网络请求
 self.addEventListener('fetch', event => {
-    event.respondWith(
-        caches.match(event.request).then(response => {
-            return response || fetch(event.request);
-        })
-    );
+    const url = new URL(event.request.url);
+    
+    // 对于 CSS 和 JS 文件，使用网络优先策略（始终获取最新版本）
+    if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')) {
+        event.respondWith(
+            fetch(event.request).then(response => {
+                // 如果网络请求成功，更新缓存
+                const responseClone = response.clone();
+                caches.open(CACHE_NAME).then(cache => {
+                    cache.put(event.request, responseClone);
+                });
+                return response;
+            }).catch(() => {
+                // 如果网络失败，使用缓存
+                return caches.match(event.request);
+            })
+        );
+    } else {
+        // 对于其他资源，使用缓存优先策略
+        event.respondWith(
+            caches.match(event.request).then(response => {
+                return response || fetch(event.request);
+            })
+        );
+    }
 });
