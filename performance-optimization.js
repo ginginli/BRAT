@@ -685,14 +685,10 @@ class PerformanceOptimizer {
     }
     
     setupTouchOptimization() {
-        // 优化触摸事件
-        document.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-        }, { passive: false });
-        
-        // 使用passive事件监听器
+        // 优化触摸事件 - 使用passive事件监听器以不阻止滚动
+        // 注意：不再阻止默认行为，以允许正常的页面滚动
         document.addEventListener('touchmove', (e) => {
-            // 处理触摸移动
+            // 处理触摸移动（如果需要的话）
         }, { passive: true });
     }
     
