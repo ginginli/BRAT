@@ -181,9 +181,6 @@ class MobileOptimizer {
         // 触摸反馈
         this.setupTouchFeedback();
         
-        // 防止双击缩放
-        this.preventDoubleZoom();
-        
         // 优化滚动
         this.optimizeScrolling();
     }
@@ -244,17 +241,6 @@ class MobileOptimizer {
         });
     }
     
-    preventDoubleZoom() {
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (e) => {
-            const now = (new Date()).getTime();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
-    }
-    
     optimizeScrolling() {
         // 优化滚动性能
         document.addEventListener('touchmove', (e) => {
@@ -267,8 +253,8 @@ class MobileOptimizer {
     // 3. 手势支持
     setupGestureSupport() {
         this.setupPinchZoom();
-        this.setupSwipeGestures();
         this.setupSliderGestures();
+        this.setupFontSizeGesture();
     }
     
     setupPinchZoom() {
@@ -312,59 +298,61 @@ class MobileOptimizer {
         }
     }
     
-    setupSwipeGestures() {
-        let startX = 0;
+    // 字体大小手势调整（仅在预览区域内）
+    setupFontSizeGesture() {
+        const previewContainer = document.querySelector('.preview-container');
+        if (!previewContainer) return;
+        
         let startY = 0;
+        let startTime = 0;
+        let isGesture = false;
         
-        document.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-            startY = e.touches[0].clientY;
-        });
+        previewContainer.addEventListener('touchstart', (e) => {
+            // 只在预览区域内开始手势识别
+            if (e.target.closest('.preview-container')) {
+                startY = e.touches[0].clientY;
+                startTime = Date.now();
+                isGesture = false;
+            }
+        }, { passive: true });
         
-        document.addEventListener('touchend', (e) => {
-            const endX = e.changedTouches[0].clientX;
+        previewContainer.addEventListener('touchmove', (e) => {
+            if (!startY) return;
+            
+            const currentY = e.touches[0].clientY;
+            const diffY = startY - currentY;
+            
+            // 如果垂直滑动距离超过 30px，认为是手势
+            if (Math.abs(diffY) > 30) {
+                isGesture = true;
+            }
+        }, { passive: true });
+        
+        previewContainer.addEventListener('touchend', (e) => {
+            if (!startY || !isGesture) {
+                startY = 0;
+                return;
+            }
+            
             const endY = e.changedTouches[0].clientY;
-            const diffX = startX - endX;
             const diffY = startY - endY;
+            const duration = Date.now() - startTime;
             
-            // 水平滑动
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    this.handleSwipeLeft();
-                } else {
-                    this.handleSwipeRight();
-                }
-            }
-            
-            // 垂直滑动
-            if (Math.abs(diffY) > Math.abs(diffX) && Math.abs(diffY) > 50) {
+            // 只在预览区域内，且滑动距离足够，时间足够短时触发
+            if (Math.abs(diffY) > 50 && duration < 500) {
+                // 上滑增加字体大小
                 if (diffY > 0) {
-                    this.handleSwipeUp();
-                } else {
-                    this.handleSwipeDown();
+                    this.adjustFontSize(10);
+                } 
+                // 下滑减少字体大小
+                else {
+                    this.adjustFontSize(-10);
                 }
             }
-        });
-    }
-    
-    handleSwipeLeft() {
-        // 切换到下一个主题
-        this.switchToNextTheme();
-    }
-    
-    handleSwipeRight() {
-        // 切换到上一个主题
-        this.switchToPreviousTheme();
-    }
-    
-    handleSwipeUp() {
-        // 增加字体大小
-        this.adjustFontSize(10);
-    }
-    
-    handleSwipeDown() {
-        // 减少字体大小
-        this.adjustFontSize(-10);
+            
+            startY = 0;
+            isGesture = false;
+        }, { passive: true });
     }
     
     setupSliderGestures() {
