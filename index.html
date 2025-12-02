@@ -18,13 +18,10 @@
     <link rel="canonical" href="https://www.bratgenerator.com.cn/" />
     <title data-i18n="meta.title">Brat Generator - Free Online Charli XCX Brat Text Generator</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="mobile-optimization.css">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <!-- 延迟加载非关键脚本 -->
     <script defer src="script.js"></script>
-    <script defer src="LanguageSwitcher.js"></script>
     <script defer src="mobile-optimization.js"></script>
-    <script defer src="performance-optimization.js"></script>
     
     <!-- 延迟加载分析脚本 -->
     <script>
@@ -470,7 +467,6 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/language.js"></script>
     <!-- script.js already loaded with defer in head, removing duplicate -->
     <script src="js/lazy-loader.js"></script>
     <script src="js/faq-handler.js"></script>
@@ -480,65 +476,5 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-    
-    <!-- 性能监控面板 -->
-    <div id="performance-panel" class="performance-panel">
-        <h3>Performance Monitor</h3>
-        <div class="performance-metric">
-            <span>INP:</span>
-            <span id="inp-value" class="value">-</span>
-        </div>
-        <div class="performance-metric">
-            <span>Long Tasks:</span>
-            <span id="long-task-count" class="value">-</span>
-        </div>
-        <div class="performance-metric">
-            <span>Status:</span>
-            <span id="performance-status" class="value">-</span>
-        </div>
-        <button id="toggle-performance" style="margin-top: 10px; padding: 5px 10px; background: #8ACF01; border: none; border-radius: 4px; color: black; cursor: pointer;">
-            Toggle Panel
-        </button>
-    </div>
-    
-    <script>
-        // 性能监控面板控制
-        document.addEventListener('DOMContentLoaded', function() {
-            const panel = document.getElementById('performance-panel');
-            const toggleBtn = document.getElementById('toggle-performance');
-            const inpValue = document.getElementById('inp-value');
-            const longTaskCount = document.getElementById('long-task-count');
-            const performanceStatus = document.getElementById('performance-status');
-            
-            toggleBtn.addEventListener('click', function() {
-                panel.classList.toggle('visible');
-            });
-            
-            // 更新性能指标
-            function updatePerformanceMetrics() {
-                if (window.performanceMonitor) {
-                    const metrics = window.performanceMonitor.getMetrics();
-                    inpValue.textContent = metrics.averageINP + 'ms';
-                    longTaskCount.textContent = metrics.longTaskCount;
-                    
-                    // 设置状态颜色
-                    const avgINP = parseFloat(metrics.averageINP);
-                    if (avgINP > 500) {
-                        performanceStatus.textContent = 'Poor';
-                        performanceStatus.className = 'value warning';
-                    } else if (avgINP > 200) {
-                        performanceStatus.textContent = 'Needs Improvement';
-                        performanceStatus.className = 'value warning';
-                    } else {
-                        performanceStatus.textContent = 'Good';
-                        performanceStatus.className = 'value good';
-                    }
-                }
-            }
-            
-            // 每秒更新一次指标
-            setInterval(updatePerformanceMetrics, 1000);
-        });
-    </script>
 </body>
 </html> 
