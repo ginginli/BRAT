@@ -50,10 +50,18 @@ self.addEventListener('fetch', event => {
         event.respondWith(
             fetch(event.request).then(response => {
                 // 如果网络请求成功，更新缓存
-                const responseClone = response.clone();
-                caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, responseClone);
-                });
+                // 只缓存 HTTP/HTTPS 协议的请求，避免缓存扩展协议等不支持的协议
+                if (url.protocol === 'http:' || url.protocol === 'https:') {
+                    const responseClone = response.clone();
+                    caches.open(CACHE_NAME).then(cache => {
+                        try {
+                            cache.put(event.request, responseClone);
+                        } catch (error) {
+                            // 静默处理缓存错误（例如不支持的协议）
+                            console.warn('Failed to cache resource:', event.request.url, error);
+                        }
+                    });
+                }
                 return response;
             }).catch(() => {
                 // 如果网络失败，使用缓存
@@ -62,10 +70,28 @@ self.addEventListener('fetch', event => {
         );
     } else {
         // 对于其他资源，使用缓存优先策略
-        event.respondWith(
-            caches.match(event.request).then(response => {
-                return response || fetch(event.request);
-            })
-        );
+        // 只处理 HTTP/HTTPS 协议的请求，跳过扩展协议等
+        if (url.protocol === 'http:' || url.protocol === 'https:') {
+            event.respondWith(
+                caches.match(event.request).then(response => {
+                    return response || fetch(event.request).then(fetchResponse => {
+                        // 如果获取成功，尝试更新缓存
+                        const responseClone = fetchResponse.clone();
+                        caches.open(CACHE_NAME).then(cache => {
+                            try {
+                                cache.put(event.request, responseClone);
+                            } catch (error) {
+                                // 静默处理缓存错误
+                                console.warn('Failed to cache resource:', event.request.url, error);
+                            }
+                        });
+                        return fetchResponse;
+                    });
+                })
+            );
+        } else {
+            // 对于非 HTTP/HTTPS 协议的请求（如扩展协议），直接获取，不缓存
+            event.respondWith(fetch(event.request));
+        }
     }
 });
