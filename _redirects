@@ -1,0 +1,10 @@
+# Redirect all non-www to www
+http://bratgenerator.com.cn/* https://www.bratgenerator.com.cn/:splat 301!
+https://bratgenerator.com.cn/* https://www.bratgenerator.com.cn/:splat 301!
+
+# Redirect HTTP to HTTPS
+http://www.bratgenerator.com.cn/* https://www.bratgenerator.com.cn/:splat 301!
+
+# Redirect old paths if any
+/brat-generator/* /bratgreen/:splat 301
+/generator/* / 301

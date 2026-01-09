@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fix Index.html Canonical Issue - Brat Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #8ACF01; text-align: center; }
+        .issue {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .solution {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .code {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            overflow-x: auto;
+        }
+        .url {
+            font-family: monospace;
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        button {
+            background: #8ACF01;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover { background: #7AB801; }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; }
+        .warning { background: #fff3cd; border: 1px solid #ffeaa7; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Fix Index.html Canonical Issue</h1>
+        <p style="text-align: center; color: #666;">Resolve "Alternate page with proper canonical tag" for index.html</p>
+        
+        <div class="issue">
+            <h2>❌ The Problem</h2>
+            <p><strong>Google Search Console Error:</strong></p>
+            <p class="url">https://www.bratgenerator.com.cn/index.html</p>
+            <p><em>"Alternate page with proper canonical tag"</em></p>
+            
+            <h3>Why this happens:</h3>
+            <ul>
+                <li>Google discovered the URL <span class="url">/index.html</span></li>
+                <li>This page has a canonical tag pointing to <span class="url">/</span></li>
+                <li>Google sees this as a duplicate page with proper canonical</li>
+                <li>The page should redirect instead of serving content</li>
+            </ul>
+        </div>
+        
+        <div class="solution">
+            <h2>✅ Current Solution in Place</h2>
+            <p>Your <strong>vercel.json</strong> already has the correct redirect rule:</p>
+            <div class="code">
+{
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
+            </div>
+            
+            <p>This should redirect <span class="url">/index.html</span> → <span class="url">/</span> with a 301 status.</p>
+        </div>
+        
+        <div class="solution">
+            <h2>🚀 Immediate Actions Required</h2>
+            
+            <h3>1. Test the Redirect</h3>
+            <button onclick="testRedirect()">Test Redirect Now</button>
+            <div id="redirect-result"></div>
+            
+            <h3>2. Google Search Console Actions</h3>
+            <ol>
+                <li><strong>URL Inspection Tool:</strong>
+                    <ul>
+                        <li>Go to <a href="https://search.google.com/search-console" target="_blank">Google Search Console</a></li>
+                        <li>Test URL: <span class="url">https://www.bratgenerator.com.cn/index.html</span></li>
+                        <li>Verify it shows "Page is not indexed" or redirects properly</li>
+                        <li>Test URL: <span class="url">https://www.bratgenerator.com.cn/</span></li>
+                        <li>Click "Request Indexing" for the root URL</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Remove index.html from Google:</strong>
+                    <ul>
+                        <li>Go to "Removals" in GSC</li>
+                        <li>Request temporary removal of <span class="url">/index.html</span></li>
+                        <li>This speeds up the process</li>
+                    </ul>
+                </li>
+                
+                <li><strong>Check Coverage Report:</strong>
+                    <ul>
+                        <li>Monitor "Excluded" pages</li>
+                        <li>Look for "Alternate page with proper canonical tag"</li>
+                        <li>This should decrease over time</li>
+                    </ul>
+                </li>
+            </ol>
+            
+            <h3>3. Additional Verification</h3>
+            <button onclick="checkInternalLinks()">Check Internal Links</button>
+            <button onclick="checkSitemap()">Check Sitemap</button>
+            <div id="verification-results"></div>
+        </div>
+        
+        <div class="issue">
+            <h2>⚠️ If the Problem Persists</h2>
+            
+            <h3>Possible Causes:</h3>
+            <ul>
+                <li><strong>Cached redirects:</strong> Google might have cached the old response</li>
+                <li><strong>Internal links:</strong> Your site might link to <span class="url">/index.html</span></li>
+                <li><strong>External links:</strong> Other sites might link to <span class="url">/index.html</span></li>
+                <li><strong>Sitemap:</strong> The sitemap might include <span class="url">/index.html</span></li>
+            </ul>
+            
+            <h3>Additional Solutions:</h3>
+            <div class="code">
+<!-- Option 1: Add noindex to index.html (temporary) -->
+&lt;meta name="robots" content="noindex, follow"&gt;
+
+<!-- Option 2: Use JavaScript redirect as backup -->
+&lt;script&gt;
+if (window.location.pathname === '/index.html') {
+    window.location.replace('/');
+}
+&lt;/script&gt;
+            </div>
+        </div>
+        
+        <div class="solution">
+            <h2>📊 Expected Timeline</h2>
+            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background: #f8f9fa;">
+                    <th style="padding: 10px; border: 1px solid #ddd;">Time</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Expected Result</th>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Immediate</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Redirect should work for new requests</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">1-3 days</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Google re-crawls and sees redirect</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">1 week</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">GSC shows updated status</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;">2-4 weeks</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Error completely disappears</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button onclick="window.open('https://search.google.com/search-console', '_blank')">
+                Open Google Search Console
+            </button>
+            <button onclick="runFullDiagnostic()">
+                Run Full Diagnostic
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function testRedirect() {
+            const resultDiv = document.getElementById('redirect-result');
+            resultDiv.innerHTML = '<div class="warning">Testing redirect...</div>';
+            
+            // Test the redirect by making a fetch request
+            fetch('/index.html', { method: 'HEAD', redirect: 'manual' })
+                .then(response => {
+                    if (response.status === 301 || response.status === 302) {
+                        const location = response.headers.get('Location');
+                        resultDiv.innerHTML = `
+                            <div class="success">
+                                ✅ Redirect working! Status: ${response.status}<br>
+                                Redirects to: ${location || 'Root directory'}
+                            </div>
+                        `;
+                    } else if (response.status === 200) {
+                        resultDiv.innerHTML = `
+                            <div class="error">
+                                ❌ No redirect detected! Status: ${response.status}<br>
+                                The page is serving content instead of redirecting.
+                            </div>
+                        `;
+                    } else {
+                        resultDiv.innerHTML = `
+                            <div class="warning">
+                                ⚠️ Unexpected status: ${response.status}
+                            </div>
+                        `;
+                    }
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `
+                        <div class="error">
+                            ❌ Error testing redirect: ${error.message}
+                        </div>
+                    `;
+                });
+        }
+        
+        function checkInternalLinks() {
+            const resultDiv = document.getElementById('verification-results');
+            resultDiv.innerHTML = '<div class="warning">Checking internal links...</div>';
+            
+            // Check for links to index.html in the current page
+            const links = document.querySelectorAll('a[href*="index.html"]');
+            const results = [];
+            
+            if (links.length > 0) {
+                results.push(`❌ Found ${links.length} internal links to index.html:`);
+                links.forEach(link => {
+                    results.push(`   • ${link.href} (text: "${link.textContent.trim()}")`);
+                });
+                results.push('These should be updated to point to "/" instead.');
+            } else {
+                results.push('✅ No internal links to index.html found on this page.');
+            }
+            
+            results.push('');
+            results.push('Manual check needed:');
+            results.push('• Check all pages for links to index.html');
+            results.push('• Update navigation menus');
+            results.push('• Check footer links');
+            results.push('• Verify sitemap.xml doesn\'t include index.html');
+            
+            resultDiv.innerHTML = `<div class="test-result"><pre>${results.join('\n')}</pre></div>`;
+        }
+        
+        function checkSitemap() {
+            const resultDiv = document.getElementById('verification-results');
+            resultDiv.innerHTML = '<div class="warning">Checking sitemap...</div>';
+            
+            fetch('/sitemap.xml')
+                .then(response => response.text())
+                .then(data => {
+                    const hasIndexHtml = data.includes('index.html');
+                    const results = [];
+                    
+                    if (hasIndexHtml) {
+                        results.push('❌ Sitemap contains index.html URLs');
+                        results.push('Action needed: Remove index.html from sitemap');
+                    } else {
+                        results.push('✅ Sitemap looks clean (no index.html found)');
+                    }
+                    
+                    results.push('');
+                    results.push('Sitemap URLs should use:');
+                    results.push('• https://www.bratgenerator.com.cn/ (not /index.html)');
+                    results.push('• https://www.bratgenerator.com.cn/bratgreen/ (not /bratgreen)');
+                    
+                    resultDiv.innerHTML = `<div class="test-result"><pre>${results.join('\n')}</pre></div>`;
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = `<div class="error">Error checking sitemap: ${error.message}</div>`;
+                });
+        }
+        
+        function runFullDiagnostic() {
+            console.log('🔍 Running full diagnostic...');
+            
+            // Test redirect
+            testRedirect();
+            
+            // Wait a bit then check other things
+            setTimeout(() => {
+                checkInternalLinks();
+                setTimeout(() => {
+                    checkSitemap();
+                }, 1000);
+            }, 1000);
+        }
+        
+        // Auto-run basic checks on page load
+        window.addEventListener('load', function() {
+            console.log('🔍 Auto-running basic diagnostic...');
+            setTimeout(testRedirect, 500);
+        });
+    </script>
+</body>
+</html>

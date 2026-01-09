@@ -3,7 +3,6 @@
 const CACHE_NAME = 'brat-generator-v2';
 const STATIC_ASSETS = [
     '/',
-    '/index.html',
     '/styles.css',
     '/mobile-optimization.css',
     '/script.js',

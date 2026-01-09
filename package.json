@@ -1,0 +1,22 @@
+{
+  "name": "brat-generator-indexnow",
+  "version": "1.0.0",
+  "description": "IndexNow implementation for Brat Generator website",
+  "main": "scripts/indexnow-submit.js",
+  "scripts": {
+    "indexnow": "node scripts/indexnow-submit.js",
+    "indexnow:all": "node scripts/indexnow-submit.js --all",
+    "indexnow:home": "node scripts/indexnow-submit.js https://www.bratgenerator.com.cn/"
+  },
+  "keywords": [
+    "indexnow",
+    "seo",
+    "search-engines",
+    "brat-generator"
+  ],
+  "author": "Brat Generator",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

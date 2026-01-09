@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Indexing Admin - Brat Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #4285f4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        button {
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #3367d6;
+        }
+        button.secondary {
+            background-color: #34a853;
+        }
+        button.secondary:hover {
+            background-color: #2d8f47;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .status {
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        .domain-list {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .domain-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        .domain-item:last-child {
+            border-bottom: none;
+        }
+        .status-indicator {
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .status-unknown { background: #6c757d; color: white; }
+        .status-indexed { background: #28a745; color: white; }
+        .status-not-indexed { background: #dc3545; color: white; }
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist li:before {
+            content: "☐ ";
+            margin-right: 8px;
+        }
+        .checklist li.completed:before {
+            content: "☑ ";
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Google Indexing Admin Panel</h1>
+        <p style="text-align: center; color: #666;">Comprehensive Google indexing management for Brat Generator</p>
+        
+        <div class="section">
+            <h2>🌐 Domain Status Check</h2>
+            <p>Check indexing status of all domain variations:</p>
+            <div class="domain-list">
+                <div class="domain-item">
+                    <span>https://www.bratgenerator.com.cn</span>
+                    <span class="status-indicator status-unknown" id="status-https-www">Unknown</span>
+                </div>
+                <div class="domain-item">
+                    <span>https://bratgenerator.com.cn</span>
+                    <span class="status-indicator status-unknown" id="status-https">Unknown</span>
+                </div>
+                <div class="domain-item">
+                    <span>http://www.bratgenerator.com.cn</span>
+                    <span class="status-indicator status-unknown" id="status-http-www">Unknown</span>
+                </div>
+                <div class="domain-item">
+                    <span>http://bratgenerator.com.cn</span>
+                    <span class="status-indicator status-unknown" id="status-http">Unknown</span>
+                </div>
+            </div>
+            <button onclick="checkDomainStatus()">Check Domain Status</button>
+            <div id="domain-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Indexability Checklist</h2>
+            <p>Verify current page meets Google's indexing requirements:</p>
+            <ul class="checklist" id="indexability-checklist">
+                <li>Page has proper title tag</li>
+                <li>Meta description is present and descriptive</li>
+                <li>Canonical URL is set</li>
+                <li>No noindex directive</li>
+                <li>Page loads successfully (200 status)</li>
+                <li>Content is substantial and unique</li>
+                <li>Internal linking structure exists</li>
+            </ul>
+            <button onclick="runIndexabilityCheck()">Run Indexability Check</button>
+            <div id="indexability-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>🗺️ Sitemap Management</h2>
+            <p>Submit sitemaps to search engines:</p>
+            <div class="info status">
+                <strong>Primary Sitemap:</strong> /sitemap_index.xml<br>
+                <strong>Secondary Sitemap:</strong> /sitemap.xml<br>
+                <strong>Last Updated:</strong> <span id="sitemap-date">Checking...</span>
+            </div>
+            <button onclick="pingSitemaps()">Ping All Search Engines</button>
+            <button class="secondary" onclick="openGSC()">Open Google Search Console</button>
+            <div id="sitemap-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>🚀 Manual Indexing Requests</h2>
+            <p>Request indexing for specific pages:</p>
+            <button onclick="requestIndexing('current')">Request Current Page</button>
+            <button onclick="requestIndexing('all')">Request All Key Pages</button>
+            <button onclick="requestIndexing('sitemap')">Submit Sitemap</button>
+            <div id="indexing-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>📊 SEO Health Check</h2>
+            <p>Comprehensive SEO analysis:</p>
+            <button onclick="runSEOCheck()">Run SEO Analysis</button>
+            <div id="seo-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>ℹ️ Google Search Console Setup</h2>
+            <div class="info status">
+                <strong>Required Actions:</strong><br>
+                1. Verify all domain variations in Google Search Console<br>
+                2. Submit sitemap: /sitemap_index.xml<br>
+                3. Set up proper 301 redirects from non-www to www<br>
+                4. Monitor coverage and performance reports<br>
+                5. Fix any crawl errors or indexing issues
+            </div>
+            <button onclick="showGSCInstructions()">Show Detailed Instructions</button>
+            <div id="gsc-instructions" class="results" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="js/google-indexing.js"></script>
+    <script>
+        async function checkDomainStatus() {
+            const domains = [
+                'https://www.bratgenerator.com.cn',
+                'https://bratgenerator.com.cn',
+                'http://www.bratgenerator.com.cn',
+                'http://bratgenerator.com.cn'
+            ];
+            
+            const resultsDiv = document.getElementById('domain-results');
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Checking domain status...';
+            
+            let results = 'Domain Status Check Results:\n\n';
+            
+            for (const domain of domains) {
+                try {
+                    // Note: Due to CORS, we can't directly check other domains
+                    // This would need to be done server-side or through GSC API
+                    const statusId = domain.replace('https://', 'status-https').replace('http://', 'status-http').replace('www.', 'www');
+                    const indicator = document.getElementById(statusId);
+                    
+                    if (domain === window.location.origin) {
+                        results += `✅ ${domain}: Current domain (accessible)\n`;
+                        if (indicator) {
+                            indicator.textContent = 'Current';
+                            indicator.className = 'status-indicator status-indexed';
+                        }
+                    } else {
+                        results += `⚠️ ${domain}: Check manually in GSC\n`;
+                        if (indicator) {
+                            indicator.textContent = 'Check GSC';
+                            indicator.className = 'status-indicator status-unknown';
+                        }
+                    }
+                } catch (error) {
+                    results += `❌ ${domain}: Error checking\n`;
+                }
+            }
+            
+            results += '\nNote: Use Google Search Console for accurate indexing status';
+            resultsDiv.textContent = results;
+        }
+        
+        function runIndexabilityCheck() {
+            const resultsDiv = document.getElementById('indexability-results');
+            const checklist = document.getElementById('indexability-checklist');
+            
+            resultsDiv.style.display = 'block';
+            
+            const checkResult = window.GoogleIndexing.checkIndexability();
+            let results = 'Indexability Check Results:\n\n';
+            
+            if (checkResult.indexable) {
+                results += '✅ Page appears to be indexable\n\n';
+                checklist.querySelectorAll('li').forEach(li => li.classList.add('completed'));
+            } else {
+                results += '⚠️ Issues found that may prevent indexing:\n\n';
+                checkResult.issues.forEach(issue => {
+                    results += `❌ ${issue}\n`;
+                });
+            }
+            
+            // Additional checks
+            results += '\nAdditional Recommendations:\n';
+            results += '• Ensure page loads in under 3 seconds\n';
+            results += '• Add structured data (JSON-LD)\n';
+            results += '• Include internal links to other pages\n';
+            results += '• Optimize for Core Web Vitals\n';
+            results += '• Add social media meta tags\n';
+            
+            resultsDiv.textContent = results;
+        }
+        
+        function pingSitemaps() {
+            const resultsDiv = document.getElementById('sitemap-results');
+            resultsDiv.style.display = 'block';
+            
+            const pingUrls = window.GoogleIndexing.getSitemapPings();
+            
+            let results = 'Sitemap Ping URLs:\n\n';
+            results += `Google: ${pingUrls.google}\n`;
+            results += `Bing: ${pingUrls.bing}\n`;
+            results += `Yandex: ${pingUrls.yandex}\n\n`;
+            results += 'Note: Open these URLs in new tabs to ping search engines\n';
+            results += 'Or submit directly through Google Search Console';
+            
+            resultsDiv.textContent = results;
+        }
+        
+        function openGSC() {
+            window.open('https://search.google.com/search-console', '_blank');
+        }
+        
+        function requestIndexing(type) {
+            const resultsDiv = document.getElementById('indexing-results');
+            resultsDiv.style.display = 'block';
+            
+            let results = 'Manual Indexing Request:\n\n';
+            
+            switch (type) {
+                case 'current':
+                    results += `Current Page: ${window.location.href}\n\n`;
+                    results += 'Steps to request indexing:\n';
+                    results += '1. Go to Google Search Console\n';
+                    results += '2. Use URL Inspection tool\n';
+                    results += '3. Enter the URL above\n';
+                    results += '4. Click "Request Indexing"\n';
+                    break;
+                    
+                case 'all':
+                    results += 'Key Pages to Request:\n';
+                    results += '• https://www.bratgenerator.com.cn/\n';
+                    results += '• https://www.bratgenerator.com.cn/zh-CN/\n';
+                    results += '• https://www.bratgenerator.com.cn/en-US/\n';
+                    results += '• https://www.bratgenerator.com.cn/bratgreen/\n';
+                    results += '• https://www.bratgenerator.com.cn/privacy.html\n';
+                    results += '• https://www.bratgenerator.com.cn/terms.html\n\n';
+                    results += 'Submit each URL through GSC URL Inspection tool\n';
+                    break;
+                    
+                case 'sitemap':
+                    results += 'Sitemap Submission:\n';
+                    results += '1. Go to Google Search Console\n';
+                    results += '2. Navigate to Sitemaps section\n';
+                    results += '3. Add sitemap URL: sitemap_index.xml\n';
+                    results += '4. Click Submit\n';
+                    break;
+            }
+            
+            resultsDiv.textContent = results;
+        }
+        
+        function runSEOCheck() {
+            const resultsDiv = document.getElementById('seo-results');
+            resultsDiv.style.display = 'block';
+            
+            let results = 'SEO Health Check:\n\n';
+            
+            // Title check
+            const title = document.title;
+            results += `Title: ${title}\n`;
+            results += title.length >= 30 && title.length <= 60 ? '✅ Title length optimal\n' : '⚠️ Title should be 30-60 characters\n';
+            
+            // Meta description check
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                results += `Meta Description: ${metaDesc.content}\n`;
+                results += metaDesc.content.length >= 120 && metaDesc.content.length <= 160 ? '✅ Meta description length optimal\n' : '⚠️ Meta description should be 120-160 characters\n';
+            } else {
+                results += '❌ Missing meta description\n';
+            }
+            
+            // Heading structure
+            const h1s = document.querySelectorAll('h1');
+            results += `H1 tags: ${h1s.length}\n`;
+            results += h1s.length === 1 ? '✅ Single H1 tag found\n' : '⚠️ Should have exactly one H1 tag\n';
+            
+            // Images
+            const images = document.querySelectorAll('img');
+            const imagesWithAlt = document.querySelectorAll('img[alt]');
+            results += `Images: ${images.length} total, ${imagesWithAlt.length} with alt text\n`;
+            results += images.length === imagesWithAlt.length ? '✅ All images have alt text\n' : '⚠️ Some images missing alt text\n';
+            
+            // Internal links
+            const internalLinks = document.querySelectorAll('a[href^="/"], a[href*="bratgenerator.com.cn"]');
+            results += `Internal links: ${internalLinks.length}\n`;
+            results += internalLinks.length >= 3 ? '✅ Good internal linking\n' : '⚠️ Consider adding more internal links\n';
+            
+            resultsDiv.textContent = results;
+        }
+        
+        function showGSCInstructions() {
+            const resultsDiv = document.getElementById('gsc-instructions');
+            resultsDiv.style.display = 'block';
+            
+            const instructions = window.GoogleIndexing.getGSCInfo();
+            let results = instructions.message + '\n\n';
+            
+            instructions.steps.forEach(step => {
+                results += step + '\n';
+            });
+            
+            results += '\nSitemaps to submit:\n';
+            instructions.sitemaps.forEach(sitemap => {
+                results += `• ${sitemap}\n`;
+            });
+            
+            results += '\nAdditional Tips:\n';
+            results += '• Set up 301 redirects from non-preferred versions\n';
+            results += '• Monitor Core Web Vitals in GSC\n';
+            results += '• Check mobile usability reports\n';
+            results += '• Review search performance data\n';
+            results += '• Fix any security issues or manual actions\n';
+            
+            resultsDiv.textContent = results;
+        }
+        
+        // Check sitemap date on load
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch('/sitemap_index.xml', { method: 'HEAD' });
+                const lastModified = response.headers.get('last-modified');
+                const dateElement = document.getElementById('sitemap-date');
+                if (lastModified) {
+                    dateElement.textContent = new Date(lastModified).toLocaleDateString();
+                } else {
+                    dateElement.textContent = 'Unknown';
+                }
+            } catch (error) {
+                document.getElementById('sitemap-date').textContent = 'Error checking';
+            }
+        });
+    </script>
+</body>
+</html>

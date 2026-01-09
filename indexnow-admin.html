@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexNow Admin - Brat Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #8ACF01;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .section h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        button {
+            background-color: #8ACF01;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #7AB801;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: monospace;
+        }
+        .results {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .warning { background-color: #fff3cd; color: #856404; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 IndexNow Admin Panel</h1>
+        <p style="text-align: center; color: #666;">Manage IndexNow submissions for Brat Generator</p>
+        
+        <div class="section">
+            <h2>📄 Current Page</h2>
+            <p>Submit the current page to search engines:</p>
+            <button onclick="submitCurrentPage()">Submit Current Page</button>
+            <div id="current-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>🌐 All Pages</h2>
+            <p>Submit all pages from sitemap to search engines:</p>
+            <button onclick="submitAllPages()">Submit All Pages</button>
+            <div id="all-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>✏️ Custom URLs</h2>
+            <p>Submit specific URLs (one per line):</p>
+            <textarea id="custom-urls" placeholder="https://www.bratgenerator.com.cn/
+https://www.bratgenerator.com.cn/zh-CN/
+https://www.bratgenerator.com.cn/bratgreen/"></textarea>
+            <br>
+            <button onclick="submitCustomUrls()">Submit Custom URLs</button>
+            <div id="custom-results" class="results" style="display: none;"></div>
+        </div>
+        
+        <div class="section">
+            <h2>ℹ️ IndexNow Information</h2>
+            <div class="info status">
+                <strong>API Key:</strong> f92e9497ed1359346b43b75a5438842e05f7d9b9aa030c3ddd947ddce21db1c6<br>
+                <strong>Key File:</strong> <a href="/f92e9497ed1359346b43b75a5438842e05f7d9b9aa030c3ddd947ddce21db1c6.txt" target="_blank">View Key File</a><br>
+                <strong>Supported Engines:</strong> Bing, Yandex, IndexNow API<br>
+                <strong>Auto-submission:</strong> Enabled on page interactions
+            </div>
+        </div>
+    </div>
+
+    <script src="js/indexnow.js"></script>
+    <script>
+        async function submitCurrentPage() {
+            const button = event.target;
+            const resultsDiv = document.getElementById('current-results');
+            
+            button.disabled = true;
+            button.textContent = 'Submitting...';
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Submitting current page to search engines...';
+            
+            try {
+                const results = await window.IndexNow.submitCurrent();
+                displayResults(resultsDiv, results, 'Current page submission');
+            } catch (error) {
+                resultsDiv.textContent = `Error: ${error.message}`;
+                resultsDiv.className = 'results error';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Submit Current Page';
+            }
+        }
+        
+        async function submitAllPages() {
+            const button = event.target;
+            const resultsDiv = document.getElementById('all-results');
+            
+            button.disabled = true;
+            button.textContent = 'Submitting...';
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = 'Submitting all pages to search engines...';
+            
+            try {
+                const results = await window.IndexNow.submitAll();
+                displayResults(resultsDiv, results, 'All pages submission');
+            } catch (error) {
+                resultsDiv.textContent = `Error: ${error.message}`;
+                resultsDiv.className = 'results error';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Submit All Pages';
+            }
+        }
+        
+        async function submitCustomUrls() {
+            const button = event.target;
+            const textarea = document.getElementById('custom-urls');
+            const resultsDiv = document.getElementById('custom-results');
+            
+            const urls = textarea.value
+                .split('\n')
+                .map(url => url.trim())
+                .filter(url => url && url.startsWith('http'));
+            
+            if (urls.length === 0) {
+                alert('Please enter at least one valid URL');
+                return;
+            }
+            
+            button.disabled = true;
+            button.textContent = 'Submitting...';
+            resultsDiv.style.display = 'block';
+            resultsDiv.textContent = `Submitting ${urls.length} custom URLs to search engines...`;
+            
+            try {
+                const results = await window.IndexNow.submit(urls);
+                displayResults(resultsDiv, results, `Custom URLs submission (${urls.length} URLs)`);
+            } catch (error) {
+                resultsDiv.textContent = `Error: ${error.message}`;
+                resultsDiv.className = 'results error';
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Submit Custom URLs';
+            }
+        }
+        
+        function displayResults(container, results, title) {
+            let output = `${title} completed at ${new Date().toLocaleString()}\n\n`;
+            
+            results.forEach((result, index) => {
+                const endpoint = result.endpoint.replace('https://', '').replace('/indexnow', '');
+                if (result.success) {
+                    output += `✅ ${endpoint}: Success (${result.status})\n`;
+                } else if (result.error) {
+                    output += `❌ ${endpoint}: Error - ${result.error}\n`;
+                } else {
+                    output += `⚠️ ${endpoint}: Failed (${result.status})\n`;
+                }
+            });
+            
+            const successCount = results.filter(r => r.success).length;
+            const totalCount = results.length;
+            
+            output += `\nSummary: ${successCount}/${totalCount} endpoints successful`;
+            
+            container.textContent = output;
+            container.className = successCount > 0 ? 'results success' : 'results error';
+        }
+        
+        // Auto-check key file accessibility
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch('/f92e9497ed1359346b43b75a5438842e05f7d9b9aa030c3ddd947ddce21db1c6.txt');
+                if (!response.ok) {
+                    console.warn('IndexNow key file not accessible');
+                }
+            } catch (error) {
+                console.warn('Could not verify IndexNow key file:', error);
+            }
+        });
+    </script>
+</body>
+</html>
